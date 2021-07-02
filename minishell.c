@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 14:24:07 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/02 16:38:35 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/02 16:56:54 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ void	minishell(void)
 	while (1)
 	{
 		in = readline(">");
+		if (!in)
+			break ;
 		add_history(in);
 		if (ft_strncmp(in, "./", 2) == 0)
 		{
