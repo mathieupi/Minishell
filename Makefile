@@ -6,7 +6,7 @@
 #    By: mmehran <mmehran@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/02 11:38:02 by mmehran          ###   ########.fr        #
+#    Updated: 2021/07/02 14:27:39 by mmehran          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 LIBS = -L ./Libft -lft -lreadline
 
-OBJS =
+OBJS = main.o minishell.o
 OBJS_BONUS =
 
 ifdef WITH_BONUS
@@ -24,7 +24,7 @@ OBJS = $(OBJS_BONUS)
 endif
 
 $(NAME): $(OBJS)
-	make -C ./libft
+	make -C ./Libft
 	$(CC) $(CFLAGS) -o $@ $^ $(LIBS)
 
 .c.o:
@@ -33,11 +33,11 @@ $(NAME): $(OBJS)
 all: $(NAME)
 
 clean:
-	make -C ./libft clean
+	make -C ./Libft clean
 	$(RM) $(OBJS) $(OBJS_BONUS)
 
 fclean: clean
-	make -C ./libft fclean
+	make -C ./Libft fclean
 	$(RM) $(NAME)
 
 re: clean all
