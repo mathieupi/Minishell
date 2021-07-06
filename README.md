@@ -25,9 +25,10 @@
 
 Votre shell doit :
 - Ne pas interpréter les guillemets non fermés ou les caractères spéciaux non spécifiés comme \ ou ;.
-- N'utilisez pas plus d'une variable globale, réfléchissez-y et soyez prêt à expliquer pourquoiTu le fais.
-- Afficher une invite lors de l'attente d'une nouvelle commande.• Avoir une histoire de travail.
-- Rechercher et lancer le bon exécutable (basé sur la variable PATH ou en utilisantchemin relatif ou absolu)
+- N'utilisez pas plus d'une variable globale, réfléchissez-y et soyez prêt à expliquer pourquoi ? tu le fais.
+- Afficher une invite lors de l'attente d'une nouvelle commande.
+- Avoir une histoire de travail.
+- Rechercher et lancer le bon exécutable (basé sur la variable PATH ou en utilisant chemin relatif ou absolu)
 - Il doit implémenter les commandes intégrées :
 	- echo avec l'option -n
 	- cd avec seulement un chemin relatif ou absolu
@@ -40,7 +41,7 @@ Votre shell doit :
 - " inhibe toute interprétation d'une séquence de caractères à l'exception de $.
 - Redirections :
 	- < doit rediriger l'entrée.
-	- > devrait rediriger la sortie.
+	- \> devrait rediriger la sortie.
 	- « << » lit l'entrée de la source actuelle jusqu'à une ligne contenant uniquement le de-limiteur est vu. il n'a pas besoin de mettre à jour l'historique !
 	- ">>" devrait rediriger la sortie avec le mode ajout.
 - Tuyaux | La sortie de chaque commande dans le pipeline est connectée via un tuyau ausaisie de la commande suivante.
