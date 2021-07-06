@@ -18,7 +18,7 @@
 | :--------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Turn in files    |                                                                                                                                                                                        |
 | Makefile         | Yes                                                                                                                                                                                          |
-| Arguments        | number_of_philosophers time_to_die time_to_eat \| time_to_sleep [number_of_times_each_philosopher_must_eat]                                                                                  |
+| Arguments        |                                                                                 |
 | External functs. | readline, rl_on_new_line, rl_replace_line,rl_redisplay, add_history, printf, malloc, gratuit,écrire, ouvrir, lire, fermer, fork, attendre, waitpid,wait3, wait4, signal, kill, exit, getcwd, chdir,stat, lstat, fstat, dissocier, execve, dup, dup2,tuyau, opendir, readdir, closedir, strerror, errno,isatty, ttyname, ttyslot, ioctl, getenv |
 | Libft authorized | Yes                                                                                                                                                                                           |
 | Description      | Écrire un shell                                                                                                                                                           |
