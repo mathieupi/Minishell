@@ -51,9 +51,9 @@ Votre shell doit :
 - En mode interactif :
 	- ctrl-C imprime une nouvelle invite sur une nouvelle ligne.
 	- ctrl-D quitte le shell.
-	- ctrl-\ ne fait rien
-- .Tout ce qui n'est pas demandé n'est pas obligatoire.
-Pour chaque point, si vous avez le moindre doute, prenez [bash](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/) comme référence.
+	- ctrl-\ ne fait rien.
+- Tout ce qui n'est pas demandé n'est pas obligatoire.
+- Pour chaque point, si vous avez le moindre doute, prenez [bash](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/) comme référence.
 
 ### 🚩 Bonus part
 
