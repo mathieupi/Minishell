@@ -19,13 +19,7 @@
 | Turn in files    |                                                                                                                                                                                        |
 | Makefile         | Yes                                                                                                                                                                                          |
 | Arguments        |                                                                                 |
-| External functs. | readline, rl_on_new_line, rl_replace_line,
-rl_redisplay, add_history, printf, malloc, free,
-write, open, read, close, fork, wait, waitpid,
-wait3, wait4, signal, kill, exit, getcwd, chdir,
-stat, lstat, fstat, unlink, execve, dup, dup2,
-pipe, opendir, readdir, closedir, strerror, errno,
-isatty, ttyname, ttyslot, ioctl, getenv
+| External functs. | readline, rl_on_new_line, rl_replace_line, rl_redisplay, add_history, printf, malloc, free, write, open, read, close, fork, wait, waitpid, wait3, wait4, signal, kill, exit, getcwd, chdir, stat, lstat, fstat, unlink, execve, dup, dup2, pipe, opendir, readdir, closedir, strerror, errno, isatty, ttyname, ttyslot, ioctl, getenv
  |
 | Libft authorized | Yes                                                                                                                                                                                           |
 | Description      | Écrire un shell                                                                                                                                                           |
