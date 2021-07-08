@@ -1,5 +1,5 @@
 # Minishell
-[![bledda's 42Project Score](https://badge42.herokuapp.com/api/project/bledda/minishell)](https://github.com/JaeSeoKim/bad)
+[![Team 42Project Score](https://badge42.herokuapp.com/api/project/bledda/minishell)](https://github.com/JaeSeoKim/bad)
 
 ## Le points de minishell
 

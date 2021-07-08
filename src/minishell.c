@@ -3,19 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 14:24:07 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/02 16:56:54 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/08 23:42:05 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <readline/readline.h>
-#include <readline/history.h>
-#include "./Libft/libft.h"
+#include "../header/minishell.h"
 
 void	free_array(char **arr)
 {
@@ -32,16 +27,15 @@ void	free_array(char **arr)
 	free(arr);
 }
 
-void	exec(char **argv)
+void    exec(char **argv)
 {
-	int	pid;
+    int    pid;
 
-	pid = fork();
-	if (pid == 0)
-		execvp(argv[0], argv);
-	else if (pid > 0)
-		while (wait(NULL) != pid)
-			;
+    pid = fork();
+    if (pid == 0)
+        execvp(argv[0], argv);
+    else if (pid > 0)
+        waitpid(pid, NULL, 0);
 }
 
 void	minishell(void)

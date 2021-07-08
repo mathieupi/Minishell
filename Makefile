@@ -3,46 +3,50 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mmehran <mmehran@student.42.fr>            +#+  +:+       +#+         #
+#    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/02 14:27:39 by mmehran          ###   ########.fr        #
+#    Updated: 2021/07/08 23:49:55 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = minishell
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror
-RM = rm -f
-LIBS = -L ./Libft -lft -lreadline
+NAME				= minishell
 
-OBJS = main.o minishell.o
-OBJS_BONUS =
+HEADER_FILE 		= header/minishell.h
 
-ifdef WITH_BONUS
-OBJS = $(OBJS_BONUS)
-endif
+FOLDER				= src/
 
-$(NAME): $(OBJS)
-	make -C ./Libft
-	$(CC) $(CFLAGS) -o $@ $^ $(LIBS)
+SRCS				= minishell.c \
+						main.c
 
-.c.o:
-	$(CC) $(CFLAGS) -c -o $@ $<
+SRC					= $(addprefix ${FOLDER},${SRCS})
 
-all: $(NAME)
+OBJS				= ${SRC:.c=.o}
+
+CC					= gcc
+CFLAGS  			= -Wall -Wextra -Werror -lreadline
+RM					= rm -f
+
+$(NAME):	libft ${OBJS}
+			$(CC) $(CFLAGS) ${OBJS} libft/libft.a -o $(NAME)
+
+all:		${NAME}
+
+%.o: %.c	$(HEADER_FILE)
+			$(CC) -c $(CFLAGS) -o $@ $<
+
+libft:
+			make -C ./libft
+
+re: 		fclean all
 
 clean:
-	make -C ./Libft clean
-	$(RM) $(OBJS) $(OBJS_BONUS)
+			make -C ./libft clean
+			${RM} $(OBJS_COMU) $(OBJS_BONUS) $(OBJS)
 
-fclean: clean
-	make -C ./Libft fclean
-	$(RM) $(NAME)
+fclean:		
+			make -C ./libft fclean
+			${RM} $(OBJS_COMU) $(OBJS_BONUS) $(OBJS)
+			${RM} $(NAME)
 
-re: clean all
-
-bonus:
-	$(MAKE) WITH_BONUS=1 all
-
-.PHONY: all clean fclean re bonus
+.PHONY: 	libft all clean fclean re

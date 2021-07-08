@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 14:11:20 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/02 14:27:21 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/08 23:41:00 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../header/minishell.h"
 
 int	main(void)
 {
