@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 14:24:07 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/08 23:42:05 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/08 23:54:37 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,15 @@ void	free_array(char **arr)
 	free(arr);
 }
 
-void    exec(char **argv)
+void	exec(char **argv)
 {
-    int    pid;
+	int	pid;
 
-    pid = fork();
-    if (pid == 0)
-        execvp(argv[0], argv);
-    else if (pid > 0)
-        waitpid(pid, NULL, 0);
+	pid = fork();
+	if (pid == 0)
+		execvp(argv[0], argv);
+	else if (pid > 0)
+		waitpid(pid, NULL, 0);
 }
 
 void	minishell(void)
