@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 14:24:07 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/09 04:48:40 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/09 05:32:48 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	exec(char **argv)
 	
 	function is int
 	0 = exec
-	1 = ft_echo // ft_echo gère '-n' "-n"
+	1 = ft_echo
 */
 void	ft_using(int function, char *in)
 {

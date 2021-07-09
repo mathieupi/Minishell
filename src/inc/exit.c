@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 05:42:10 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/09 04:10:52 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/09 05:18:40 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 void	ft_exit(void)
 {
 	printf("exit\n");
-	exit(0);
+	exit(EXIT_SUCCESS);
 }

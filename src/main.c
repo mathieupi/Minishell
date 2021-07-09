@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 14:11:20 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/09 05:11:27 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/09 05:29:10 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,10 @@ void	handle_sigint(int sig)
 	rl_redisplay();
 }
 
-/*
-	 Faut trouver comment effacer ^\
-*/
 void	handle_sigquit(int sig)
 {
 	(void)sig;
+	printf("\b\b  \b\b");
 }
 
 int	main(void)
