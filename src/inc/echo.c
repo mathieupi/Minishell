@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 05:42:10 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/09 01:33:31 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/09 04:37:33 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,22 @@ void	ft_putargs(int ac, char **av, int option)
 	}
 }
 
-int	main(int ac, char **av)
+void	ft_echo(int ac, char **av)
 {
 	int	option;
 
 	option = 0;
-	if (ac >= 2 && ft_strncmp(av[1], "-n", 2) == 0)
+	if (ac >= 2 && (ft_strncmp(av[1], "-n", 2) == 0
+			|| ft_strncmp(av[1], "'-n'", 4) == 0
+			|| ft_strncmp(av[1], "\"-n\"", 4) == 0))
 	{
 		option = 1;
-		if (ft_strlen(av[1]) >= 3 && ft_strncmp(av[1], "-n ", 3) == 0)
+		if (ft_strlen(av[1]) >= 3 && (ft_strncmp(av[1], "-n ", 3) == 0
+				|| ft_strncmp(av[1], "'-n '", 5) == 0
+				|| ft_strncmp(av[1], "\"-n \"", 5) == 0))
 			option = 0;
 	}
 	ft_putargs(ac, av, option);
 	if (option == 0)
 		ft_putchar_fd('\n', 1);
-	return (0);
 }

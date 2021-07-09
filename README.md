@@ -34,9 +34,9 @@ Votre shell doit :
 	- cd avec seulement un chemin relatif ou absolu
 	- pwd sans options
 	- exporter sans options
-	- non défini sans options
+	- unset sans options
 	- env sans options ni arguments
-	- sortie sans options
+	- exit sans options
 - ' inhibe toute interprétation d'une séquence de caractères.
 - " inhibe toute interprétation d'une séquence de caractères à l'exception de $.
 - Redirections :
