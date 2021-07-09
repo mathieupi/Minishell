@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 14:24:07 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/09 05:32:48 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/09 07:41:24 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,14 @@ void	exec(char **argv)
 	function is int
 	0 = exec
 	1 = ft_echo
+	{
+		Faut gere les "" '' """ '''
+		PRONT $ echo "coucou
+		> je suis un retour a la ligne"
+		coucou
+		je suis un retour a la ligne
+		PRONT $ 
+	}
 */
 void	ft_using(int function, char *in)
 {
@@ -70,7 +78,9 @@ void	ft_using(int function, char *in)
 void	minishell(void)
 {
 	char	*in;
+	char	*pwd;
 
+	pwd = ft_pwd();
 	while (1)
 	{
 		in = readline("\e[1;34mMinishell\e[0m $ ");
@@ -80,11 +90,16 @@ void	minishell(void)
 		if (ft_strncmp(in, "./", 2) == 0)
 			ft_using(0, in);
 		else if (ft_strncmp(in, "exit", 4) == 0)
+		{
+			free(pwd);
 			ft_exit();
+		}
 		else if (ft_strncmp(in, "pwd", 3) == 0)
-			ft_pwd();
+			printf("%s\n", pwd);
 		else if (ft_strncmp(in, "echo", 3) == 0)
 			ft_using(1, in);
+		else if (ft_strncmp(in, "cd", 2) == 0)
+			ft_cd(&pwd, in);
 		free(in);
 	}
 }
