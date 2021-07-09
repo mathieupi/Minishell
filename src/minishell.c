@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 14:24:07 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/09 07:41:24 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/09 08:58:17 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	minishell(void)
 		}
 		else if (ft_strncmp(in, "pwd", 3) == 0)
 			printf("%s\n", pwd);
-		else if (ft_strncmp(in, "echo", 3) == 0)
+		else if (ft_strncmp(in, "echo", 4) == 0)
 			ft_using(1, in);
 		else if (ft_strncmp(in, "cd", 2) == 0)
 			ft_cd(&pwd, in);

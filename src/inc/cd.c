@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 05:42:10 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/09 08:55:21 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/09 08:58:53 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 void	add_value(char **str, char *new_value)
 {
-	char *tmp;
+	char	*tmp;
 
 	tmp = ft_strjoin(*str, new_value);
 	free(*str);
@@ -61,7 +61,7 @@ void	update_pwd(char **chemin, char **pwd, char *arg)
 			while (pwd_explode[size_pwd])
 			{
 				add_value(pwd, pwd_explode[size_pwd]);
-				add_value(pwd,"/");
+				add_value(pwd, "/");
 				size_pwd++;
 			}
 			if (ft_strncmp(chemin[i], ".", 1) == 0)
@@ -82,7 +82,7 @@ void	update_pwd(char **chemin, char **pwd, char *arg)
 			{
 				add_value(pwd, pwd_explode[size_pwd_tmp]);
 				if (size_pwd_tmp + 1 < size_pwd || chemin[i])
-					add_value(pwd,"/");
+					add_value(pwd, "/");
 				size_pwd++;
 			}
 			while (chemin[i])
