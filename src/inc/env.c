@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 20:52:30 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/10 05:19:48 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/10 19:57:31 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,11 @@ void	ft_env(char **env, char *in)
 	size_arg = count_array(args);
 	if (size_arg == 1)
 	{
-		while(*env)
+		while (*env)
 		{
 			printf("%s\n", *env);
 			env++;
 		}
 	}
+	free_array(args);
 }
