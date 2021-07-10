@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 05:42:10 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/09 08:58:53 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/10 02:11:42 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,12 @@ void	update_pwd(char **chemin, char **pwd, char *arg)
 		{
 			i++;
 			size_pwd--;
+			if (!chemin[i])
+				break ;
 		}
 		free(*pwd);
 		*pwd = ft_strdup("/");
-		if (size_pwd <= 0 && chemin[i])
-		{
-			// seg here si pas de parametre apres ../
-			while (chemin[i])
-			{
-				add_value(pwd, chemin[i]);
-				i++;
-			}
-		}
-		else if (i == 0)
+		if (i == 0)
 		{
 			size_pwd = 0;
 			while (pwd_explode[size_pwd])
@@ -69,25 +62,36 @@ void	update_pwd(char **chemin, char **pwd, char *arg)
 			while (chemin[i])
 			{
 				add_value(pwd, chemin[i]);
+				if (chemin[i + 1])
+					add_value(pwd, "/");
+				i++;
+			}
+		}
+		else if (size_pwd <= 0)
+		{
+			while (chemin[i])
+			{
+				add_value(pwd, chemin[i]);
+				if (chemin[i + 1])
+					add_value(pwd, "/");
 				i++;
 			}
 		}
 		else
 		{
-			// boucle infi ou seg
 			size_pwd_tmp = 0;
-			if (ft_strncmp(chemin[i], ".", 1) == 0)
-				i++;
 			while (size_pwd_tmp < size_pwd)
 			{
 				add_value(pwd, pwd_explode[size_pwd_tmp]);
 				if (size_pwd_tmp + 1 < size_pwd || chemin[i])
 					add_value(pwd, "/");
-				size_pwd++;
+				size_pwd_tmp++;
 			}
 			while (chemin[i])
 			{
 				add_value(pwd, chemin[i]);
+				if (chemin[i + 1])
+					add_value(pwd, "/");
 				i++;
 			}
 		}
@@ -110,6 +114,8 @@ void	ft_cd(char **pwd, char *in)
 		free(*pwd);
 		*pwd = ft_strdup(args[1]);
 	}
+	else if (args[1][0] == '.')
+		return ;
 	else
 	{
 		chemin = ft_split(args[1], '/');
