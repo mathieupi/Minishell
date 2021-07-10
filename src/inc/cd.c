@@ -6,15 +6,11 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 05:42:10 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/10 18:39:37 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/10 18:55:00 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/minishell.h"
-
-// Faut verifier que ce soit des dossiers
-// -bash: cd: ARGS: No such file or directory
-// -bash: cd: ARGS: Not a directory
 
 void	add_value(char **str, char *new_value)
 {
@@ -50,7 +46,11 @@ void	update_pwd(char **chemin, char **pwd, char *arg)
 	int		size_pwd_tmp;
 	char	*tmp;
 
-	(void)arg;
+	if (ft_strncmp(chemin[0], "...", 3) == 0)
+	{
+		printf("-minishell: cd: %s: No such file or directory\n", arg);
+		return ;
+	}
 
 	tmp = ft_strdup(*pwd);
 	pwd_explode = ft_split(*pwd, '/');
