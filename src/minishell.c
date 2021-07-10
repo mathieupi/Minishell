@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 14:24:07 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/10 21:01:32 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/10 21:10:26 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,10 @@ void	minishell(char **envp)
 		ft_prompt(&prompt, pwd);
 		in = readline(prompt);
 		if (!in)
+		{
+			ft_exit();
 			break ;
+		}
 		add_history(in);
 		if (ft_strncmp(in, "./", 2) == 0)
 			ft_using(0, in);
