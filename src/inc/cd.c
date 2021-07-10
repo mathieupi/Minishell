@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 05:42:10 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/10 04:49:20 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/10 05:06:48 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void	ft_cd(char **pwd, char *in)
 	int		size_arg;
 	char	**args;
 	char	**chemin;
-	char *tmp;
+	char 	*tmp;
 
 	args = ft_split(in, ' ');
 	size_arg = count_array(args);

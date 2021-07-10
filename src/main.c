@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 14:11:20 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/10 02:21:30 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/10 05:04:00 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,11 @@ void	handle(int sig)
 	}
 }
 
-
-int	main(void)
+int	main(int ac, char **av, char **envp)
 {
+	(void)ac;
+	(void)av;
 	signal(SIGINT, handle);
 	signal(SIGQUIT, handle);
-	minishell();
+	minishell(envp);
 }

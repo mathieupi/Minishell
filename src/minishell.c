@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 14:24:07 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/09 08:58:17 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/10 05:04:46 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	ft_using(int function, char *in)
 	free_array(splitted);
 }
 
-void	minishell(void)
+void	minishell(char **envp)
 {
 	char	*in;
 	char	*pwd;
@@ -100,6 +100,8 @@ void	minishell(void)
 			ft_using(1, in);
 		else if (ft_strncmp(in, "cd", 2) == 0)
 			ft_cd(&pwd, in);
+		else if (ft_strncmp(in, "export", 6) == 0)
+			ft_export(envp, in);
 		free(in);
 	}
 }
