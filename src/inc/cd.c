@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 05:42:10 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/10 02:26:23 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/10 04:47:02 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,11 +104,16 @@ void	ft_cd(char **pwd, char *in)
 	int		size_arg;
 	char	**args;
 	char	**chemin;
+	char *tmp;
 
 	args = ft_split(in, ' ');
 	size_arg = count_array(args);
-	if (size_arg == 1)
-		printf("Dossier user\n");
+	if (size_arg == 1 || (args[1][0] == '~' && args[1][1] == 0))
+	{
+		tmp = getenv("HOME");
+		free(*pwd);
+		*pwd = ft_strdup(tmp);
+	}
 	else if (args[1][0] == '/')
 	{
 		free(*pwd);
