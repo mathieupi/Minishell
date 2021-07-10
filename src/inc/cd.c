@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 05:42:10 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/10 02:11:42 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/10 02:26:23 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,8 +114,6 @@ void	ft_cd(char **pwd, char *in)
 		free(*pwd);
 		*pwd = ft_strdup(args[1]);
 	}
-	else if (args[1][0] == '.')
-		return ;
 	else
 	{
 		chemin = ft_split(args[1], '/');
