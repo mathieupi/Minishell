@@ -6,7 +6,11 @@
 /*   By: mmehran <mmehran@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 11:28:54 by mmehran           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2021/07/10 21:00:15 by mmehran          ###   ########.fr       */
+=======
+/*   Updated: 2021/07/10 20:49:06 by bledda           ###   ########.fr       */
+>>>>>>> 92557388df82150a59ff0665623e91da453a5f27
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +41,7 @@ void	ft_exit(void);
 void	ft_cd(char **pwd, char *in);
 void	ft_export(char **env, char *in);
 void	ft_env(char **env, char *in);
+
 void	add_value(char **str, char *new_value);
 
 int		count_array(char **arr);
