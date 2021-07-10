@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 05:42:10 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/10 04:47:02 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/10 04:49:20 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,10 @@ void	ft_cd(char **pwd, char *in)
 	size_arg = count_array(args);
 	if (size_arg == 1 || (args[1][0] == '~' && args[1][1] == 0))
 	{
+		/*
+			!!! Ne pas modifier directement tmp car modifie variable global
+			pointer directement sur la variable global
+		*/
 		tmp = getenv("HOME");
 		free(*pwd);
 		*pwd = ft_strdup(tmp);
