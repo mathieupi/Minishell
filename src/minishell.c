@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 14:24:07 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/10 05:20:15 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/10 18:12:52 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ void	minishell(char **envp)
 			ft_export(envp, in);
 		else if (ft_strncmp(in, "env", 3) == 0)
 			ft_env(envp, in);
+		else if (ft_strncmp(in, "ls", 2) == 0)
+			system("ls");
 		free(in);
 	}
 }
