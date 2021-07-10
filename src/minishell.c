@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 14:24:07 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/10 18:51:20 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/10 19:54:33 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,15 +75,36 @@ void	ft_using(int function, char *in)
 	free_array(splitted);
 }
 
+void	ft_pront(char **pront, char *pwd)
+{
+	char *name;
+	char *logname;
+
+	name = getenv("NAME");
+	logname = getenv("LOGNAME");
+	*pront = ft_strdup(GREEN);
+	add_value(pront, logname);
+	add_value(pront, "@");
+	add_value(pront, name);
+	add_value(pront, WHITE);
+	add_value(pront, ":");
+	add_value(pront, BLUE);
+	add_value(pront, pwd);
+	add_value(pront, WHITE);
+	add_value(pront, "$ ");
+}
+
 void	minishell(char **envp)
 {
 	char	*in;
 	char	*pwd;
+	char 	*pront;
 
 	pwd = ft_pwd();
 	while (1)
 	{
-		in = readline("\e[1;34mMinishell\e[0m $ ");
+		ft_pront(&pront, pwd);
+		in = readline(pront);
 		if (!in)
 			break ;
 		add_history(in);
