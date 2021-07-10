@@ -6,11 +6,16 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 20:52:30 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/10 05:08:45 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/10 05:19:19 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/minishell.h"
+
+/*
+	Visiblement resultat ok pour env
+	change un petit peut sur export seul
+*/
 
 void	ft_export(char **env, char *in)
 {
