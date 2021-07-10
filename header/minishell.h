@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 11:28:54 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/10 19:26:07 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/10 20:27:50 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # define BLUE "\e[1;34m"
 # define MAGENTA "\e[1;35m"
 # define CYAN "\e[1;36m"
-# define WHITE "\e[1;37m"
+# define WHITE "\e[0m"
 
 # include <stdio.h>
 # include <readline/readline.h>
