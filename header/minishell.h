@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 11:28:54 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/10 20:27:50 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/10 21:00:15 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# define BLACK "\e[1;30m"
-# define GREEN "\e[1;32m"
-# define YELLOW "\e[1;33m"
-# define BLUE "\e[1;34m"
-# define MAGENTA "\e[1;35m"
-# define CYAN "\e[1;36m"
-# define WHITE "\e[0m"
+# define BLACK "\001\e[1;30m\002"
+# define GREEN "\001\e[1;32m\002"
+# define YELLOW "\001\e[1;33m\002"
+# define BLUE "\001\e[1;34m\002"
+# define MAGENTA "\001\e[1;35m\002"
+# define CYAN "\001\e[1;36m\002"
+# define WHITE "\001\e[0m\002"
 
 # include <stdio.h>
 # include <readline/readline.h>

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
+#    By: mmehran <mmehran@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/09 21:16:08 by bledda           ###   ########.fr        #
+#    Updated: 2021/07/10 21:00:53 by mmehran          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,7 @@ clean:
 			make -C ./libft clean
 			${RM} ${OBJS} ${OBJS_INC}
 
-fclean:		
+fclean:
 			make -C ./libft fclean
 			${RM} ${OBJS} ${OBJS_INC}
 			${RM} $(NAME)

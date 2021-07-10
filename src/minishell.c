@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 14:24:07 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/10 19:54:33 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/10 20:59:10 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,17 @@ void	exec(char **argv)
 
 /*
 	MAN FT_USING
-	
+
 	function is int
 	0 = exec
 	1 = ft_echo
 	{
 		Faut gere les "" '' """ '''
-		PRONT $ echo "coucou
+		prompt $ echo "coucou
 		> je suis un retour a la ligne"
 		coucou
 		je suis un retour a la ligne
-		PRONT $ 
+		prompt $
 	}
 */
 void	ft_using(int function, char *in)
@@ -75,36 +75,36 @@ void	ft_using(int function, char *in)
 	free_array(splitted);
 }
 
-void	ft_pront(char **pront, char *pwd)
+void	ft_prompt(char **prompt, char *pwd)
 {
-	char *name;
-	char *logname;
+	char	*name;
+	char	*logname;
 
 	name = getenv("NAME");
 	logname = getenv("LOGNAME");
-	*pront = ft_strdup(GREEN);
-	add_value(pront, logname);
-	add_value(pront, "@");
-	add_value(pront, name);
-	add_value(pront, WHITE);
-	add_value(pront, ":");
-	add_value(pront, BLUE);
-	add_value(pront, pwd);
-	add_value(pront, WHITE);
-	add_value(pront, "$ ");
+	*prompt = ft_strdup(GREEN);
+	add_value(prompt, logname);
+	add_value(prompt, "@");
+	add_value(prompt, name);
+	add_value(prompt, WHITE);
+	add_value(prompt, ":");
+	add_value(prompt, BLUE);
+	add_value(prompt, pwd);
+	add_value(prompt, WHITE);
+	add_value(prompt, "$ ");
 }
 
 void	minishell(char **envp)
 {
 	char	*in;
 	char	*pwd;
-	char 	*pront;
+	char	*prompt;
 
 	pwd = ft_pwd();
 	while (1)
 	{
-		ft_pront(&pront, pwd);
-		in = readline(pront);
+		ft_prompt(&prompt, pwd);
+		in = readline(prompt);
 		if (!in)
 			break ;
 		add_history(in);
