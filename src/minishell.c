@@ -43,7 +43,7 @@ void	exec(char **argv)
 
 	pid = fork();
 	if (pid == 0)
-		execvp(argv[0], argv);
+		execve(argv[0], argv, NULL);
 	else if (pid > 0)
 		waitpid(pid, NULL, 0);
 }
