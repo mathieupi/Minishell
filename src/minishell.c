@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 14:24:07 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/10 21:10:26 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/10 21:17:25 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,11 @@ void	ft_prompt(char **prompt, char *pwd)
 	add_value(prompt, logname);
 	add_value(prompt, "@");
 	add_value(prompt, name);
-	add_value(prompt, WHITE);
+	add_value(prompt, RESET);
 	add_value(prompt, ":");
 	add_value(prompt, BLUE);
 	add_value(prompt, pwd);
-	add_value(prompt, WHITE);
+	add_value(prompt, RESET);
 	add_value(prompt, "$ ");
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 11:28:54 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/10 21:05:18 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/10 21:17:16 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
 # define BLUE "\001\e[1;34m\002"
 # define MAGENTA "\001\e[1;35m\002"
 # define CYAN "\001\e[1;36m\002"
-# define WHITE "\001\e[0m\002"
+# define WHITE "\001\e[1;37m\002"
+# define RESET "\001\e[0m\002"
 
 # include <stdio.h>
 # include <readline/readline.h>
