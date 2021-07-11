@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 18:18:53 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/11 18:19:24 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/11 18:34:59 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,36 +30,22 @@ void	exec(char **argv)
 void	try_exec(char **argv)
 {
 	if (!argv || !argv[0])
-		return ;
-	if (ft_streql(argv[0], "env"))
 	{
+		return ;
+	}
+	else if (ft_streql(argv[0], "env"))
 		ft_env(argv);
-		return ;
-	}
 	else if (ft_streql(argv[0], "export"))
-	{
 		ft_export(argv);
-		return ;
-	}
 	else if (ft_streql(argv[0], "exit"))
-	{
 		ft_exit();
-		return ;
-	}
 	else if (ft_streql(argv[0], "pwd"))
-	{
 		ft_pwd();
-		return ;
-	}
 	else if (ft_streql(argv[0], "echo"))
-	{
 		ft_echo(argv);
-		return ;
-	}
 	else if (ft_streql(argv[0], "cd"))
-	{
 		ft_cd(argv);
-		return ;
-	}
-	exec(argv);
+	else
+		exec(argv);
+	return ;
 }
