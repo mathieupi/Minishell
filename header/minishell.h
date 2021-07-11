@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 11:28:54 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/11 06:16:10 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/11 06:18:21 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_pwd(void);
 void	ft_echo(char **argv);
 void	ft_exit(void);
 void	ft_echo(char **argv);
-void	ft_export(char **env, char *in);
+void	ft_export(char **argv);
 void	ft_env(char **argv);
 void	ft_cd(char **argv);
 

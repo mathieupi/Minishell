@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 14:24:07 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/11 06:16:42 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/11 06:18:53 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,13 @@ void	try_exec(char **argv)
 	{
 		ft_env(argv);
 		return ;
-	} else if (ft_streql(argv[0], "exit"))
+	}
+	else if (ft_streql(argv[0], "export"))
+	{
+		ft_export(argv);
+		return ;
+	}
+	else if (ft_streql(argv[0], "exit"))
 	{
 		ft_exit();
 		return ;
@@ -44,11 +50,13 @@ void	try_exec(char **argv)
 	{
 		ft_pwd();
 		return ;
-	}else if (ft_streql(argv[0], "echo"))
+	}
+	else if (ft_streql(argv[0], "echo"))
 	{
 		ft_echo(argv);
 		return ;
-	}else if (ft_streql(argv[0], "cd"))
+	}
+	else if (ft_streql(argv[0], "cd"))
 	{
 		ft_cd(argv);
 		return ;

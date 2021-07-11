@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 20:52:30 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/10 05:19:19 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/11 06:21:39 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,15 @@
 	change un petit peut sur export seul
 */
 
-void	ft_export(char **env, char *in)
+void	ft_export(char **argv)
 {
-	char	**args;
-	int		size_arg;
+	char	**env;
 
-	args = ft_split(in, ' ');
-	size_arg = count_array(args);
-	if (size_arg == 1)
+	(void)argv;
+	env = environ;
+	while (*env)
 	{
-		while(*env)
-		{
-			printf("%s\n", *env);
-			env++;
-		}
+		printf("%s\n", *env);
+		env++;
 	}
 }
