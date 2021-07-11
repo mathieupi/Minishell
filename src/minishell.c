@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 14:24:07 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/11 04:57:23 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/11 06:16:42 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,13 +135,12 @@ int	ft_clean_input(char **in)
 	return (1);
 }
 
-void	minishell(char **envp)
+void	minishell(void)
 {
 	char	*in;
 	char	**argv;
 	char	*prompt;
 
-	(void) envp;
 	while (1)
 	{
 		ft_prompt(&prompt);

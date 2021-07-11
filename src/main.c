@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 14:11:20 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/10 18:02:20 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/11 06:16:25 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,9 @@ void	handle(int sig)
 	}
 }
 
-int	main(int ac, char **av, char **envp)
+int	main(void)
 {
-	(void)ac;
-	(void)av;
 	signal(SIGINT, handle);
 	signal(SIGQUIT, handle);
-	minishell(envp);
+	minishell();
 }

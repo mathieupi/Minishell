@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 11:28:54 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/11 04:46:27 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/11 06:16:10 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 
 extern char	**environ;
 
-void	minishell(char **env);
+void	minishell(void);
 void	ft_pwd(void);
 void	ft_echo(char **argv);
 void	ft_exit(void);
