@@ -45,21 +45,6 @@ int	count_arg(char **av)
 	return (0);
 }
 
-int	try_tilde(char **tmp, int i, char *saved_pwd, char **av)
-{
-	if (ft_streql(*tmp, "~"))
-	{
-		if (i != 0)
-		{
-			ft_error2("cd", av[0], "No such file or directory");
-			chdir(saved_pwd);
-			return (1);
-		}
-		*tmp = getenv("HOME");
-	}
-	return (0);
-}
-
 void	ft_cd(char **av)
 {
 	char		**splitted;
@@ -76,8 +61,8 @@ void	ft_cd(char **av)
 	while (splitted[i])
 	{
 		tmp = splitted[i];
-		if (try_tilde(&tmp, i, saved_pwd, av))
-			break ;
+		if (ft_streql(tmp, "~") && i == 0)
+			tmp = getenv("HOME");
 		if (try_chdir(tmp, saved_pwd, av))
 			break ;
 		i++;

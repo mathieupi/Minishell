@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 01:43:26 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/11 18:16:11 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/11 20:52:40 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,11 @@ void	ft_prompt(char **prompt)
 {
 	char	*name;
 	char	*logname;
+	char	*pwd;
 
 	name = getenv("NAME");
 	logname = getenv("LOGNAME");
+	pwd = get_pwd();
 	*prompt = ft_strdup("(dev)");
 	add_value(prompt, GREEN);
 	add_value(prompt, logname);
@@ -75,7 +77,8 @@ void	ft_prompt(char **prompt)
 	add_value(prompt, RESET);
 	add_value(prompt, ":");
 	add_value(prompt, BLUE);
-	add_value(prompt, get_pwd());
+	add_value(prompt, pwd);
+	free(pwd);
 	add_value(prompt, RESET);
 	add_value(prompt, "$ ");
 }

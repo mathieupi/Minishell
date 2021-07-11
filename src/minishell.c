@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 14:24:07 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/11 18:19:40 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/11 20:53:57 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ void	minishell(void)
 	while (1)
 	{
 		ft_prompt(&prompt);
-		in = readline(prompt);
+		in = readline("> ");
 		if (!in)
 			ft_exit();
 		if (in[0])
 			add_history(in);
-		ft_clean_input(&in);
+		//ft_clean_input(&in); memleak
 		argv = ft_split(in, ' ');
 		try_exec(argv);
 		free(prompt);
