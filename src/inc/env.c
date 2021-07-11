@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 20:52:30 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/10 19:57:31 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/11 03:52:53 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,15 @@
 	change un petit peut sur export seul
 */
 
-void	ft_env(char **env, char *in)
+void	ft_env(char **argv)
 {
-	char	**args;
-	int		size_arg;
+	(void)argv;
+	char	**env;
 
-	args = ft_split(in, ' ');
-	size_arg = count_array(args);
-	if (size_arg == 1)
+	env = environ;
+	while (*env)
 	{
-		while (*env)
-		{
-			printf("%s\n", *env);
-			env++;
-		}
+		printf("%s\n", *env);
+		env++;
 	}
-	free_array(args);
 }

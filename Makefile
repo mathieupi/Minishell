@@ -6,19 +6,23 @@
 #    By: mmehran <mmehran@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/10 21:00:53 by mmehran          ###   ########.fr        #
+#    Updated: 2021/07/11 04:12:54 by mmehran          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME				= minishell
 
-HEADER_FILE 		= header/minishell.h
+HEADER_FILE 		= minishell.h \
+						utils.h
 
 FOLDER				= src/
 FOLDER_INC			= src/inc/
+FOLDER_HEADER		= header/
 
 SRCS				= minishell.c \
-						main.c
+						main.c \
+						utils.c \
+						utils2.c
 
 SRCS_INC			= pwd.c \
 						echo.c \
@@ -26,10 +30,11 @@ SRCS_INC			= pwd.c \
 						env.c \
 						exit.c \
 						export.c \
-						unset.c
+						unset.c \
 
 SRC					= $(addprefix ${FOLDER},${SRCS})
 SRC_INC				= $(addprefix ${FOLDER_INC},${SRCS_INC})
+HEADERS				= $(addprefix ${FOLDER_HEADER},${HEADER_FILE})
 
 OBJS				= ${SRC:.c=.o}
 OBJS_INC			= ${SRC_INC:.c=.o}
@@ -47,7 +52,7 @@ $(NAME):	${OBJS} ${OBJS_INC}
 
 all:		${NAME}
 
-%.o: %.c	$(HEADER_FILE)
+%.o: %.c	$(HEADERS)
 			$(CC) -c $(CFLAGS) -o $@ $<
 
 re: 		fclean all

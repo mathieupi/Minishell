@@ -12,15 +12,11 @@
 
 #include "../../header/minishell.h"
 
-char	*ft_pwd(void)
+void	ft_pwd(void)
 {
 	char	buffer[4096];
-	char	*str;
 
-	str = 0;
 	if (getcwd(buffer, 4096) == 0)
 		exit(EXIT_FAILURE);
-	else
-		str = ft_strdup(buffer);
-	return (str);
+	printf("%s\n", buffer);
 }

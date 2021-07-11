@@ -3,154 +3,86 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/06 05:42:10 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/10 18:55:00 by bledda           ###   ########.fr       */
+/*   Created: 2021/07/11 04:36:22 by mmehran           #+#    #+#             */
+/*   Updated: 2021/07/11 04:36:22 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/minishell.h"
 
-void	add_value(char **str, char *new_value)
+int	try_chdir(char *tmp, char *saved_pwd, char **av)
 {
-	char	*tmp;
+	struct stat	buffer;
+	int			status;
 
-	tmp = ft_strjoin(*str, new_value);
-	free(*str);
-	*str = tmp;
-}
-
-void	check_pwd(char *tmp, char **pwd, char *arg)
-{
-	struct stat buffer;
-	int         status;
-
-	if (chdir(*pwd) == -1)
+	if (chdir(tmp) == -1)
 	{
-		status = stat(*pwd, &buffer);
-		free(*pwd);
-		*pwd = ft_strdup(tmp);
+		chdir(saved_pwd);
+		status = stat(*av, &buffer);
 		if (status == -1)
-			printf("-minishell: cd: %s: No such file or directory\n", arg);
+			ft_error("cd", "No such file or directory");
 		else if (status == 0)
-			printf("-minishell: cd: %s: Not a directory\n", arg);
+			ft_error("cd", "Not a directory");
+		return (1);
 	}
+	return (0);
 }
 
-void	update_pwd(char **chemin, char **pwd, char *arg)
+int	count_arg(char **av)
 {
-	int		size_pwd;
-	char	**pwd_explode;
-	int		i;
-	int		size_pwd_tmp;
-	char	*tmp;
-
-	if (ft_strncmp(chemin[0], "...", 3) == 0)
+	if (count_array(av) > 1)
 	{
-		printf("-minishell: cd: %s: No such file or directory\n", arg);
-		return ;
+		ft_error("cd", "too many arguments");
+		return (1);
 	}
+	else if (count_array(av) == 0)
+	{
+		chdir(getenv("HOME"));
+		return (1);
+	}
+	return (0);
+}
 
-	tmp = ft_strdup(*pwd);
-	pwd_explode = ft_split(*pwd, '/');
-	size_pwd = count_array(pwd_explode);
+int	try_tilde(char **tmp, int i, char *saved_pwd, char **av)
+{
+	if (ft_streql(*tmp, "~"))
+	{
+		if (i != 0)
+		{
+			ft_error(*av, "No such file or directory");
+			chdir(saved_pwd);
+			return (1);
+		}
+		free(*tmp);
+		*tmp = getenv("HOME");
+	}
+	return (0);
+}
 
+void	ft_cd(char **av)
+{
+	char		**splitted;
+	char		*tmp;
+	int			i;
+	char		*saved_pwd;
+
+	av++;
 	i = 0;
-	while (ft_strncmp(chemin[i], "..", 2) == 0)
-	{
-		i++;
-		size_pwd--;
-		if (!chemin[i])
-			break ;
-	}
-	free(*pwd);
-	*pwd = ft_strdup("/");
-
-	if (i == 0)
-	{
-		size_pwd = 0;
-		while (pwd_explode[size_pwd])
-		{
-			add_value(pwd, pwd_explode[size_pwd]);
-			add_value(pwd, "/");
-			size_pwd++;
-		}
-		if (ft_strncmp(chemin[i], ".", 1) == 0)
-			i++;
-		while (chemin[i])
-		{
-			add_value(pwd, chemin[i]);
-			if (chemin[i + 1])
-				add_value(pwd, "/");
-			i++;
-		}
-	}
-	else if (size_pwd <= 0)
-	{
-		while (chemin[i])
-		{
-			add_value(pwd, chemin[i]);
-			if (chemin[i + 1])
-				add_value(pwd, "/");
-			i++;
-		}
-	}
-	else
-	{
-		size_pwd_tmp = 0;
-		while (size_pwd_tmp < size_pwd)
-		{
-			add_value(pwd, pwd_explode[size_pwd_tmp]);
-			if (size_pwd_tmp + 1 < size_pwd || chemin[i])
-				add_value(pwd, "/");
-			size_pwd_tmp++;
-		}
-		while (chemin[i])
-		{
-			add_value(pwd, chemin[i]);
-			if (chemin[i + 1])
-				add_value(pwd, "/");
-			i++;
-		}
-	}
-
-	check_pwd(tmp, pwd, arg);
-	free(tmp);
-	free_array(pwd_explode);
-}
-
-void	ft_cd(char **pwd, char *in)
-{
-	int		size_arg;
-	char	**args;
-	char	**chemin;
-	char 	*tmp;
-
-	args = ft_split(in, ' ');
-	size_arg = count_array(args);
-	if (size_arg == 1 || (args[1][0] == '~' && args[1][1] == 0))
-	{
-		tmp = getenv("HOME");
-		free(*pwd);
-		*pwd = ft_strdup(tmp);
-		chdir(*pwd);
-	}
-	else if (args[1][0] == '/')
-	{
-		tmp = ft_strdup(*pwd);
-		free(*pwd);
-		*pwd = ft_strdup(args[1]);
-		check_pwd(tmp, pwd, args[1]);
-		free(tmp);
-	}
-	else if (args[1][0] == '.' && args[1][1] == 0)
+	if (count_arg(av))
 		return ;
-	else
+	saved_pwd = get_pwd();
+	splitted = ft_split(*av, '/');
+	while (splitted[i])
 	{
-		chemin = ft_split(args[1], '/');
-		update_pwd(chemin, pwd, args[1]);
-		free_array(chemin);
+		tmp = splitted[i];
+		if (try_tilde(&tmp, i, saved_pwd, av))
+			break ;
+		if (try_chdir(tmp, saved_pwd, av))
+			break ;
+		i++;
 	}
-	free_array(args);
+	free(saved_pwd);
+	free_array(splitted);
 }

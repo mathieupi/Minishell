@@ -3,39 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 14:24:07 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/10 22:38:42 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/11 04:57:23 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
-
-void	free_array(char **arr)
-{
-	int	i;
-
-	if (!arr)
-		return ;
-	i = 0;
-	while (arr[i])
-	{
-		free(arr[i]);
-		i++;
-	}
-	free(arr);
-}
-
-int	count_array(char **arr)
-{
-	int	i;
-
-	i = 0;
-	while (arr[i])
-		i++;
-	return (i);
-}
 
 void	exec(char **argv)
 {
@@ -43,39 +18,45 @@ void	exec(char **argv)
 
 	pid = fork();
 	if (pid == 0)
-		execve(argv[0], argv, NULL);
+	{
+		if (execve(argv[0], argv, NULL) == -1)
+			ft_error(argv[0], "command not found");
+		exit(EXIT_FAILURE);
+	}
 	else if (pid > 0)
 		waitpid(pid, NULL, 0);
 }
 
-/*
-	MAN FT_USING
-
-	function is int
-	0 = exec
-	1 = ft_echo
-	{
-		Faut gere les "" '' """ '''
-		prompt $ echo "coucou
-		> je suis un retour a la ligne"
-		coucou
-		je suis un retour a la ligne
-		prompt $
-	}
-*/
-void	ft_using(int function, char *in)
+void	try_exec(char **argv)
 {
-	char	**splitted;
-
-	splitted = ft_split(in, ' ');
-	if (function == 0)
-		exec(splitted);
-	else if (function == 1)
-		ft_echo(count_array(splitted), splitted);
-	free_array(splitted);
+	if (!argv || !argv[0])
+		return ;
+	if (ft_streql(argv[0], "env"))
+	{
+		ft_env(argv);
+		return ;
+	} else if (ft_streql(argv[0], "exit"))
+	{
+		ft_exit();
+		return ;
+	}
+	else if (ft_streql(argv[0], "pwd"))
+	{
+		ft_pwd();
+		return ;
+	}else if (ft_streql(argv[0], "echo"))
+	{
+		ft_echo(argv);
+		return ;
+	}else if (ft_streql(argv[0], "cd"))
+	{
+		ft_cd(argv);
+		return ;
+	}
+	exec(argv);
 }
 
-void	ft_prompt(char **prompt, char *pwd)
+void	ft_prompt(char **prompt)
 {
 	char	*name;
 	char	*logname;
@@ -90,53 +71,44 @@ void	ft_prompt(char **prompt, char *pwd)
 	add_value(prompt, RESET);
 	add_value(prompt, ":");
 	add_value(prompt, BLUE);
-	add_value(prompt, pwd);
+	//add_value(prompt, pwd);
 	add_value(prompt, RESET);
 	add_value(prompt, "$ ");
 }
 
-int 	ft_count_char(char *str, char c)
+char	*ft_remove_char(char *str)
 {
-	int i;
-	int j;
-
-	i = 0;
-	j = 0;
-	while (str[i] != 0)
-	{
-		if (str[i] == c)
-			j++;
-		i++;
-	}
-	return (j);
-}
-
-int	ft_iswhitespace(char c)
-{
-	if (c == ' '
-		|| c == '\t'
-		|| c == '\n'
-		||c == '\v'
-		|| c == '\f'
-		|| c == '\r')
-		return (1);
-	return (0);
-}
-
-char	*ft_remove_char(char *str, char c)
-{
-	char 	*tmp;
+	char	*tmp;
 	int		i;
-	int     j;
+	int		j;
 
 	i = 0;
 	j = 0;
 	tmp = malloc(ft_strlen(str));
-	while (ft_iswhitespace(str[i]) && str[i] != 0)
+	while (ft_isspace(str[i]) && str[i] != 0)
 		i++;
 	while (str[i] != 0)
 	{
-		if (str[i] != c)
+		if (str[i] == '\'' || str[i] == '\\' || str[i] == '"')
+		{
+			if (str[i] == '\'' || str[i] == '\"')
+			{
+				if (i - 1 >= 0 && str[i - 1] == '\\')
+				{
+					tmp[j] = str[i];
+					j++;
+				}
+			}
+			else
+			{
+				if (i - 1 >= 0 && (str[i - 1] == '"' || str[i - 1] == '\''))
+				{
+					tmp[j] = str[i];
+					j++;
+				}
+			}
+		}
+		else
 		{
 			tmp[j] = str[i];
 			j++;
@@ -148,69 +120,41 @@ char	*ft_remove_char(char *str, char c)
 	return (tmp);
 }
 
-int	ft_clear_input(char **in)
+int	ft_clean_input(char **in)
 {
-	int		nb_simple;
-	int		nb_double;
+	int	size_input;
 
-	nb_simple = ft_count_char(*in, '\'');
-	nb_double = ft_count_char(*in, '"');
-	if (ft_strnstr(*in, "\\\'", ft_strlen(*in) != 0)
-		|| ft_strnstr(*in, "\\\"", ft_strlen(*in) != 0)
-		|| nb_simple % 2 != 0 || nb_double % 2 != 0)
+	size_input = ft_strlen(*in);
+	if ((*in)[size_input - 1] == '\\')
 	{
 		printf("This case should not be managed\n");
 		return (0);
 	}
-	else if (nb_simple == 0 && nb_double == 0)
-		return (1);
 	else
-	{
-		*in = ft_strdup(ft_remove_char(*in, '\''));
-		*in = ft_strdup(ft_remove_char(*in, '"'));
-	}
+		*in = ft_strdup(ft_remove_char(*in));
 	return (1);
 }
 
 void	minishell(char **envp)
 {
 	char	*in;
-	char	*pwd;
+	char	**argv;
 	char	*prompt;
 
-	pwd = ft_pwd();
+	(void) envp;
 	while (1)
 	{
-		ft_prompt(&prompt, pwd);
+		ft_prompt(&prompt);
 		in = readline(prompt);
 		if (!in)
-		{
 			ft_exit();
-			break ;
-		}
-		add_history(in);
-		if (ft_clear_input(&in))
-		{
-			if (ft_strncmp(in, "./", 2) == 0)
-				ft_using(0, in);
-			else if (ft_strncmp(in, "exit", 4) == 0)
-			{
-				free(pwd);
-				ft_exit();
-			}
-			else if (ft_strncmp(in, "pwd", 3) == 0)
-				printf("%s\n", pwd);
-			else if (ft_strncmp(in, "echo", 4) == 0)
-				ft_using(1, in);
-			else if (ft_strncmp(in, "cd", 2) == 0)
-				ft_cd(&pwd, in);
-			else if (ft_strncmp(in, "export", 6) == 0)
-				ft_export(envp, in);
-			else if (ft_strncmp(in, "env", 3) == 0)
-				ft_env(envp, in);
-			else if (ft_strncmp(in, "ls", 2) == 0)
-				system("ls");
-		}
+		if (in[0])
+			add_history(in);
+		//ft_clean_input(&in);
+		argv = ft_split(in, ' ');
+		try_exec(argv);
+		free(prompt);
+		free_array(argv);
 		free(in);
 	}
 }
