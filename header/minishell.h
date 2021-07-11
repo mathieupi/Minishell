@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 11:28:54 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/11 06:18:21 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/11 17:55:41 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,10 @@
 # include <signal.h>
 # include "../libft/libft.h"
 # include "utils.h"
+# include "inc.h"
 
 extern char	**environ;
 
 void	minishell(void);
-void	ft_pwd(void);
-void	ft_echo(char **argv);
-void	ft_exit(void);
-void	ft_echo(char **argv);
-void	ft_export(char **argv);
-void	ft_env(char **argv);
-void	ft_cd(char **argv);
 
 #endif

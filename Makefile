@@ -3,26 +3,30 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mmehran <mmehran@student.42.fr>            +#+  +:+       +#+         #
+#    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/11 04:12:54 by mmehran          ###   ########.fr        #
+#    Updated: 2021/07/11 18:02:23 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME				= minishell
 
 HEADER_FILE 		= minishell.h \
-						utils.h
+						utils.h \
+						inc.h
 
 FOLDER				= src/
 FOLDER_INC			= src/inc/
+FOLDER_UTILS		= src/utils/
 FOLDER_HEADER		= header/
 
 SRCS				= minishell.c \
 						main.c \
-						utils.c \
-						utils2.c
+
+SRCS_UTILS			= utils.c \
+						utils2.c \
+						ft_error.c
 
 SRCS_INC			= pwd.c \
 						echo.c \
@@ -34,10 +38,12 @@ SRCS_INC			= pwd.c \
 
 SRC					= $(addprefix ${FOLDER},${SRCS})
 SRC_INC				= $(addprefix ${FOLDER_INC},${SRCS_INC})
+SRC_UTILS			= $(addprefix ${FOLDER_UTILS},${SRCS_UTILS})
 HEADERS				= $(addprefix ${FOLDER_HEADER},${HEADER_FILE})
 
 OBJS				= ${SRC:.c=.o}
 OBJS_INC			= ${SRC_INC:.c=.o}
+OBJS_UTILS			= ${SRC_UTILS:.c=.o}
 
 ECHO				= $(FOLDER_INC)echo
 
@@ -46,9 +52,9 @@ CFLAGS  			= -Wall -Wextra -Werror
 RM					= rm -f
 LIBS				= -L ./libft -lft -lreadline
 
-$(NAME):	${OBJS} ${OBJS_INC}
+$(NAME):	${OBJS} ${OBJS_INC} ${OBJS_UTILS}
 			make -C ./libft
-			$(CC) $(CFLAGS) ${OBJS} ${OBJS_INC} $(LIBS) -o $(NAME)
+			$(CC) $(CFLAGS) ${OBJS} ${OBJS_INC} ${OBJS_UTILS} $(LIBS) -o $(NAME)
 
 all:		${NAME}
 
@@ -59,11 +65,11 @@ re: 		fclean all
 
 clean:
 			make -C ./libft clean
-			${RM} ${OBJS} ${OBJS_INC}
+			${RM} ${OBJS} ${OBJS_INC} ${OBJS_UTILS}
 
 fclean:
 			make -C ./libft fclean
-			${RM} ${OBJS} ${OBJS_INC}
+			${RM} ${OBJS} ${OBJS_INC} ${OBJS_UTILS}
 			${RM} $(NAME)
 
 .PHONY: 	all clean fclean re

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 04:10:50 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/11 05:41:04 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/11 17:54:06 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/utils.h"
+#include "../../header/utils.h"
 
 int	ft_count_char(char *str, char c)
 {

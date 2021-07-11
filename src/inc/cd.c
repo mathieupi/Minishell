@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 04:36:22 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/11 04:36:22 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/11 18:11:22 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/minishell.h"
+#include "../../header/inc.h"
 
 int	try_chdir(char *tmp, char *saved_pwd, char **av)
 {
@@ -22,7 +22,7 @@ int	try_chdir(char *tmp, char *saved_pwd, char **av)
 		chdir(saved_pwd);
 		status = stat(*av, &buffer);
 		if (status == -1)
-			ft_error("cd", "No such file or directory");
+			ft_error2("cd", av[0], "No such file or directory");
 		else if (status == 0)
 			ft_error("cd", "Not a directory");
 		return (1);
@@ -51,11 +51,10 @@ int	try_tilde(char **tmp, int i, char *saved_pwd, char **av)
 	{
 		if (i != 0)
 		{
-			ft_error(*av, "No such file or directory");
+			ft_error2("cd", av[0], "No such file or directory");
 			chdir(saved_pwd);
 			return (1);
 		}
-		free(*tmp);
 		*tmp = getenv("HOME");
 	}
 	return (0);
