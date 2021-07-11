@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 01:43:26 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/11 18:00:10 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/11 18:16:11 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,24 @@ int	count_array(char **arr)
 	while (arr[i])
 		i++;
 	return (i);
+}
+
+void	ft_prompt(char **prompt)
+{
+	char	*name;
+	char	*logname;
+
+	name = getenv("NAME");
+	logname = getenv("LOGNAME");
+	*prompt = ft_strdup("(dev)");
+	add_value(prompt, GREEN);
+	add_value(prompt, logname);
+	add_value(prompt, "@");
+	add_value(prompt, name);
+	add_value(prompt, RESET);
+	add_value(prompt, ":");
+	add_value(prompt, BLUE);
+	add_value(prompt, get_pwd());
+	add_value(prompt, RESET);
+	add_value(prompt, "$ ");
 }

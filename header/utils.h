@@ -12,5 +12,8 @@ int		count_array(char **arr);
 void	free_array(char **arr);
 int		ft_count_char(char *str, char c);
 char	*get_pwd(void);
+void	ft_prompt(char **prompt);
+int		ft_clean_input(char **in);
+void	try_exec(char **argv);
 
 #endif

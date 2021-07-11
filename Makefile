@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/11 18:02:23 by bledda           ###   ########.fr        #
+#    Updated: 2021/07/11 18:19:37 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,9 @@ SRCS				= minishell.c \
 
 SRCS_UTILS			= utils.c \
 						utils2.c \
-						ft_error.c
+						ft_error.c \
+						ft_clean_input.c \
+						try_exec.c
 
 SRCS_INC			= pwd.c \
 						echo.c \
