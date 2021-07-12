@@ -46,6 +46,7 @@ coucou les monde
 ```shell
 echo           chien
 chien
+```
 
 ```shell
 echo   "        chien"
