@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 01:43:26 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/11 20:52:40 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/12 21:52:09 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,18 +62,14 @@ int	count_array(char **arr)
 
 void	ft_prompt(char **prompt)
 {
-	char	*name;
 	char	*logname;
 	char	*pwd;
 
-	name = getenv("NAME");
 	logname = getenv("LOGNAME");
 	pwd = get_pwd();
 	*prompt = ft_strdup("(dev)");
 	add_value(prompt, GREEN);
 	add_value(prompt, logname);
-	add_value(prompt, "@");
-	add_value(prompt, name);
 	add_value(prompt, RESET);
 	add_value(prompt, ":");
 	add_value(prompt, BLUE);
