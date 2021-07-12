@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 14:24:07 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/11 21:09:43 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/12 02:10:28 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,11 @@ void	minishell(void)
 	while (1)
 	{
 		ft_prompt(&prompt);
-		in = readline("> ");
+		in = readline(prompt);
 		if (!in)
 			ft_exit();
 		if (in[0])
 			add_history(in);
-		//ft_clean_input(&in); memleak
 		argv = ft_split(in, ' ');
 		try_exec(argv);
 		free(prompt);
