@@ -29,6 +29,31 @@ coucou les monde
 ```
 
 ```shell
+echo $salut
+
+```
+
+```shell
+echo "$salut"
+
+```
+
+```shell
+echo "\$salut"
+$salut
+```
+
+```shell
+echo \$salut
+$salut
+```
+
+```shell
+echo '$salut'
+$salut
+```
+
+```shell
 """"echo"""" \'\'\'\'
 ''''
 ```
