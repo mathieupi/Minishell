@@ -6,13 +6,11 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 20:52:30 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/13 09:20:45 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/13 11:47:22 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/inc.h"
-
-// pas encore compris quand ce message doit ce print exactement
 
 void	print_var(void)
 {
