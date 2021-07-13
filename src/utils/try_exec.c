@@ -12,19 +12,23 @@
 
 #include "../../header/utils.h"
 
-void	exec(char **argv)
+int	exec(char **argv)
 {
 	int	pid;
+	int	status;
 
 	pid = fork();
 	if (pid == 0)
 	{
-		if (execve(argv[0], argv, NULL) == -1)
-			ft_error(argv[0], "command not found");
+		execve(argv[0], argv, NULL);
 		exit(EXIT_FAILURE);
 	}
 	else if (pid > 0)
-		waitpid(pid, NULL, 0);
+	{
+		waitpid(pid, &status, 0);
+		return (WEXITSTATUS(status));
+	}
+	return (1);
 }
 
 void	try_exec2(char **argv)
@@ -41,7 +45,8 @@ void	try_exec2(char **argv)
 		add_value(&splitted[i], "/");
 		add_value(&splitted[i], argv[0]);
 		argv[0] = splitted[i];
-		exec(argv);
+		if (exec(argv) == 0)
+			break ;
 		free(argv[0]);
 		argv[0] = saved;
 		i++;
