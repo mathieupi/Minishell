@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 21:42:23 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/13 06:08:28 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/13 08:20:30 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	ft_unset(char **av)
 {
-	int i;
-	int j;
-	int z;
-	int ac;
-	char **env;
+	int		i;
+	int		j;
+	int		z;
+	int		ac;
+	char	**env;
 
 	i = 1;
 	j = 0;
@@ -27,16 +27,17 @@ void	ft_unset(char **av)
 	{
 		while (av[i])
 		{
-			i = 1;
 			j = 0;
 			if (ft_strisalnum(av[i]) == 0)
 			{
 				ft_error2("unset", av[i], "not a valid identifier");
 				return ;
 			}
-			while (g_environ[j] && ft_strncmp(g_environ[j], av[i], ft_strlen(av[i])) != 0)
+			while (g_environ[j]
+				&& ft_strncmp(g_environ[j], av[i], ft_strlen(av[i])) != 0)
 				j++;
-			if (g_environ[j] && ft_strncmp(g_environ[j], av[i], ft_strlen(av[i])) == 0)
+			if (g_environ[j]
+				&& ft_strncmp(g_environ[j], av[i], ft_strlen(av[i])) == 0)
 			{
 				env = ft_calloc(sizeof(char *), count_array(g_environ));
 				z = 0;
