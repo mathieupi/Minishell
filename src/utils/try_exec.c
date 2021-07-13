@@ -21,7 +21,7 @@ int	exec(char **argv)
 	if (pid == 0)
 	{
 		execve(argv[0], argv, NULL);
-		exit(EXIT_FAILURE);
+		exit(126);
 	}
 	else if (pid > 0)
 	{
@@ -36,22 +36,27 @@ void	try_exec2(char **argv)
 	int		i;
 	char	**splitted;
 	char	*saved;
+	int		code;
 
 	splitted = ft_split(getenv("PATH"), ':');
 	saved = argv[0];
 	i = 0;
+	code = 1;
 	while (splitted[i])
 	{
 		add_value(&splitted[i], "/");
 		add_value(&splitted[i], argv[0]);
 		argv[0] = splitted[i];
-		if (exec(argv) == 0)
+		code = exec(argv);
+		if (code != 126)
 			break ;
 		free(argv[0]);
 		argv[0] = saved;
 		i++;
 	}
 	free(splitted);
+	if (code == 126)
+		ft_error(argv[0], "command not found");
 }
 
 void	try_exec(char **argv)
