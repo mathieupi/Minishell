@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 20:52:30 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/13 03:23:32 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/13 05:50:44 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,45 +24,48 @@ void	ft_export(char **av)
 	z = 1;
 	if (count_array(av) == 1)
 	{
-		env = environ;
-		while (env[i])
+		while (g_environ[i])
 		{
-			// Apres le = les arg doitvent avoir le "
-			printf("declare -x %s\n", env[i]);
+			// Apres le '=' les arg doit ve avoir le "
+			printf("declare -x %s\n", g_environ[i]);
 			i++;
 		}
 	}
 	else if (count_array(av) >= 2)
 	{
-		i = 0;
-		j = 0;
 		while (av[z])
 		{
+			i = 0;
+			j = 0;
 			while (av[z][i] && av[z][i] != '=')
 				i++;
 			if (av[z][i] != '=')
 			{
 				// pas encore compris quand ce message doit ce print exactement
 				ft_error2("export", av[z], "not a valid identifier");
-				// pas encore compris quand ce message doit ce print exactement
 				return ;
 			}
-			while (environ[j] && ft_strncmp(environ[j], av[z], i) != 0)
+			while (g_environ[j] && ft_strncmp(g_environ[j], av[z], i) != 0)
 				j++;
-			if (environ[j] && ft_strncmp(environ[j], av[z], i) == 0)
-				environ[j] = ft_strdup(av[z]);
+			if (g_environ[j] && ft_strncmp(g_environ[j], av[z], i) == 0)
+			{
+				free(g_environ[j]);
+				g_environ[j] = ft_strdup(av[z]);
+			}
 			else
 			{
-				j = count_array(environ) + 1; 
+				j = count_array(g_environ) + 1;
 				env = ft_calloc(sizeof(char *), j + 1);
 				j = 0;
-				while (environ[j])
+				while (g_environ[j])
 				{
-					env[j] = environ[j];
+					env[j] = ft_strdup(g_environ[j]);
+					free(g_environ[j]);
 					j++;
 				}
 				env[j] = ft_strdup(av[z]);
-				environ = env;
+				free(g_environ);
+				g_environ = env;
 			}
 			z++;
 		}

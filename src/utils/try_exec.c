@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 18:18:53 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/13 03:30:14 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/13 04:07:07 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,5 @@ void	try_exec(char **argv)
 	else if (ft_streql(argv[0], "cd"))
 		ft_cd(argv);
 	else
-		try_exec2(argv);
+	 	try_exec2(argv);
 }

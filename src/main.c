@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 14:11:20 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/12 21:54:17 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/13 05:47:12 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,19 @@ void	handle(int sig)
 	}
 }
 
-int	main(void)
+int	main(int ac, char **av, char **envp)
 {
+	int i;
+
+	(void)ac;
+	(void)av;
+	i = 0;
+	g_environ = ft_calloc(sizeof(char *), count_array(envp) + 1);
+	while(envp[i])
+	{
+		g_environ[i] = ft_strdup(envp[i]);
+		i++;
+	}
 	signal(SIGINT, handle);
 	signal(SIGQUIT, handle);
 	minishell();
