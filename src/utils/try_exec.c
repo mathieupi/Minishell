@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 18:18:53 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/11 18:34:59 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/13 01:13:49 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	try_exec(char **argv)
 		ft_env(argv);
 	else if (ft_streql(argv[0], "export"))
 		ft_export(argv);
+	else if (ft_streql(argv[0], "unset"))
+		ft_unset(argv);
 	else if (ft_streql(argv[0], "exit"))
 		ft_exit();
 	else if (ft_streql(argv[0], "pwd"))

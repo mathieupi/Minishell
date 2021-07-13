@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 01:43:26 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/12 21:52:09 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/13 02:55:13 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ void	ft_prompt(char **prompt)
 
 	logname = getenv("LOGNAME");
 	pwd = get_pwd();
-	*prompt = ft_strdup("(dev)");
+	*prompt = ft_strdup(MAGENTA);
+	add_value(prompt, "(dev)");
 	add_value(prompt, GREEN);
 	add_value(prompt, logname);
 	add_value(prompt, RESET);
