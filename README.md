@@ -33,7 +33,7 @@ Votre shell doit :
 	- echo avec l'option -n
 	- cd avec seulement un chemin relatif ou absolu
 	- pwd sans options
-	- exporter sans options
+	- export sans options
 	- unset sans options
 	- env sans options ni arguments
 	- exit sans options
