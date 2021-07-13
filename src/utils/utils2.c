@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 04:10:50 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/13 09:41:50 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/13 23:59:44 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/utils.h"
 
-int	ft_count_char(char *str, char c)
+int	ft_count_char(const char *str, char c)
 {
 	int	j;
 
@@ -35,7 +35,7 @@ char	*get_pwd(void)
 	return (ft_strdup(buffer));
 }
 
-int	ft_strisalnum(char *str)
+int	ft_strisalnum(const char *str)
 {
 	int	i;
 

@@ -1,35 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/02 14:24:07 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/14 00:34:46 by mmehran          ###   ########.fr       */
+/*   Created: 2021/07/14 00:18:53 by mmehran           #+#    #+#             */
+/*   Updated: 2021/07/14 00:33:29 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/minishell.h"
+#ifndef PARSER_H
+# define PARSER_H
 
-void	minishell(void)
-{
-	char	*in;
-	char	**argv;
-	char	*prompt;
+char	**parsing(char *str);
 
-	while (1)
-	{
-		ft_prompt(&prompt);
-		in = readline(prompt);
-		if (!in)
-			ft_exit();
-		if (in[0])
-			add_history(in);
-		argv = parsing(in);
-		try_exec(argv);
-		free(prompt);
-		free_array(argv);
-		free(in);
-	}
-}
+#endif

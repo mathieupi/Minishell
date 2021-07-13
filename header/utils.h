@@ -10,12 +10,12 @@ void	ft_error2(char *msg, char *msg2, char *error_msg);
 void	add_value(char **str, char *new_value);
 int		count_array(char **arr);
 void	free_array(char **arr);
-int		ft_count_char(char *str, char c);
+int		ft_count_char(const char *str, char c);
 char	*get_pwd(void);
 void	ft_prompt(char **prompt);
 int		ft_clean_input(char **in);
 void	try_exec(char **argv);
-int		ft_strisalnum(char *str);
+int		ft_strisalnum(const char *str);
 char	*ft_getenv(char *str);
 
 #endif
