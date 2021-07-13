@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 11:28:54 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/13 05:47:28 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/13 13:04:42 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@
 char	**g_environ;
 
 void	minishell(void);
+char	**parsing(char *str);
 
 #endif

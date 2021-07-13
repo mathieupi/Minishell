@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/13 09:28:34 by bledda           ###   ########.fr        #
+#    Updated: 2021/07/13 13:59:48 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ FOLDER_HEADER		= header/
 
 SRCS				= minishell.c \
 						main.c \
+						parsing.c
 
 SRCS_UTILS			= utils.c \
 						utils2.c \
@@ -46,8 +47,6 @@ HEADERS				= $(addprefix ${FOLDER_HEADER},${HEADER_FILE})
 OBJS				= ${SRC:.c=.o}
 OBJS_INC			= ${SRC_INC:.c=.o}
 OBJS_UTILS			= ${SRC_UTILS:.c=.o}
-
-ECHO				= $(FOLDER_INC)echo
 
 CC					= gcc
 CFLAGS  			= -Wall -Wextra -Werror
@@ -75,4 +74,3 @@ fclean:
 			${RM} $(NAME)
 
 .PHONY: 	all clean fclean re
-

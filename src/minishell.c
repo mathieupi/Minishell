@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 14:24:07 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/12 02:10:28 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/13 13:46:00 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	minishell(void)
 			ft_exit();
 		if (in[0])
 			add_history(in);
-		argv = ft_split(in, ' ');
+		//argv = ft_split(in, ' ');
+		argv = parsing(in);
 		try_exec(argv);
 		free(prompt);
 		free_array(argv);

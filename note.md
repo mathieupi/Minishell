@@ -92,3 +92,8 @@ echo   '        chien           &'
 echo "\""
 "
 ```
+
+```shell
+"echo""chien"
+-bash: echochien: command not found
+```
