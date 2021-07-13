@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 20:52:30 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/13 09:01:03 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/13 09:20:45 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	print_var(void)
 		ft_strlcpy(name, g_environ[i], i_tmp + 2);
 		ft_strlcpy(content, g_environ[i] + i_tmp + 1,
 			ft_strlen(g_environ[i]) - i_tmp);
-		printf("declare -x %s %s\n", name, content);
+		printf("declare -x %s\"%s\"\n", name, content);
 		free(name);
 		free(content);
 		i++;
