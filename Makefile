@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/13 14:47:20 by bledda           ###   ########.fr        #
+#    Updated: 2021/07/13 14:59:31 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,8 +58,9 @@ LIBS				= -L ./libft -lft -lreadline
 $(NAME):	${OBJ}
 			make -C ./libft
 			$(CC) $(CFLAGS) ${OBJ} $(LIBS) -o $(NAME)
-			@echo "Your best shell is ready ✅"
-
+			@echo "\e[1;34m---------------------------"
+			@echo "\e[1;35mYour best shell is ready ✅"
+			@echo "\e[1;36m---------------------------\e[0m"
 all:		${NAME}
 
 %.o: %.c	$(HEADERS)
@@ -70,11 +71,15 @@ re: 		fclean all
 clean:
 			make -C ./libft clean
 			${RM} ${OBJ}
-			@echo "Object file is delete 🚮"
+			@echo "\e[1;34m------------------------"
+			@echo "\e[1;35mObject file is delete 🚮"
+			@echo "\e[1;36m------------------------\e[0m"
 
 fclean:
 			make -C ./libft fclean
 			${RM} ${OBJ} $(NAME)
-			@echo "Your folder is clean 🧹"
+			@echo "\e[1;34m-----------------------"
+			@echo "\e[1;35mYour folder is clean 🧹"
+			@echo "\e[1;36m-----------------------\e[0m"
 
 .PHONY: 	all clean fclean re
