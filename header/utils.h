@@ -16,5 +16,6 @@ void	ft_prompt(char **prompt);
 int		ft_clean_input(char **in);
 void	try_exec(char **argv);
 int		ft_strisalnum(char *str);
+char	*ft_getenv(char *str);
 
 #endif
