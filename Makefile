@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/13 13:59:48 by bledda           ###   ########.fr        #
+#    Updated: 2021/07/13 14:47:20 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,14 +48,17 @@ OBJS				= ${SRC:.c=.o}
 OBJS_INC			= ${SRC_INC:.c=.o}
 OBJS_UTILS			= ${SRC_UTILS:.c=.o}
 
+OBJ					= ${OBJS} ${OBJS_INC} ${OBJS_UTILS}
+
 CC					= gcc
 CFLAGS  			= -Wall -Wextra -Werror
 RM					= rm -f
 LIBS				= -L ./libft -lft -lreadline
 
-$(NAME):	${OBJS} ${OBJS_INC} ${OBJS_UTILS}
+$(NAME):	${OBJ}
 			make -C ./libft
-			$(CC) $(CFLAGS) ${OBJS} ${OBJS_INC} ${OBJS_UTILS} $(LIBS) -o $(NAME)
+			$(CC) $(CFLAGS) ${OBJ} $(LIBS) -o $(NAME)
+			@echo "Your best shell is ready ✅"
 
 all:		${NAME}
 
@@ -66,11 +69,12 @@ re: 		fclean all
 
 clean:
 			make -C ./libft clean
-			${RM} ${OBJS} ${OBJS_INC} ${OBJS_UTILS}
+			${RM} ${OBJ}
+			@echo "Object file is delete 🚮"
 
 fclean:
 			make -C ./libft fclean
-			${RM} ${OBJS} ${OBJS_INC} ${OBJS_UTILS}
-			${RM} $(NAME)
+			${RM} ${OBJ} $(NAME)
+			@echo "Your folder is clean 🧹"
 
 .PHONY: 	all clean fclean re
