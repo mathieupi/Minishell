@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 00:16:35 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/14 08:33:37 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/14 10:31:07 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,53 +21,50 @@ void	print_array(char **arr)
 	}
 }
 
-void	ft_replace_str(char **argp, char *env_name, char *env_value)
+void	ft_replace_str(char **arg, char *env_name, char *env_value)
 {
-	char	*arg;
 	char	*tmp;
 	char	*pre;
 	char	*post;
 
-	arg = *argp;
-	tmp = ft_strnstr(arg, env_name, ft_strlen(arg));
-	pre = ft_substr(arg, 0, tmp - arg - 1);
+	tmp = ft_strnstr(*arg, env_name, ft_strlen(*arg));
+	pre = ft_substr(*arg, 0, tmp - *arg - 1);
 	post = ft_substr(tmp, ft_strlen(env_name),
 			ft_strlen(tmp) - ft_strlen(env_name));
 	add_value(&pre, env_value);
 	add_value(&pre, post);
-	free(*argp);
-	*argp = ft_strdup(pre);
+	free(*arg);
+	*arg = ft_strdup(pre);
 	free(pre);
-	free(env_value);
+	if (env_value != 0)
+		free(env_value);
 	free(post);
+	free(env_name);
 }
 
-void	sub_env(char **argp)
+void	sub_env(char **arg)
 {
-	char	*arg;
 	char	*tmp;
 	char	*env_name;
 
-	arg = *argp;
 	env_name = 0;
-	if (arg[0] != '\'' && ft_count_char(arg, '$') > 0)
+	if (*arg[0] != '\'' && ft_count_char(*arg, '$') > 0)
 	{
-		while (1)
+		// SI \$ ne foit pas etre affecter
+		tmp = ft_strchr(*arg, '$');
+		if (!tmp)
+			return ;
+		tmp++;
+		if (ft_isalnum(*tmp))
 		{
-			tmp = ft_strchr(arg, '$');
-			if (!tmp)
-				break ;
-			tmp++;
-			if (ft_isalnum(*tmp))
+			while (ft_isalnum(*tmp) && !ft_isspace(*tmp))
 			{
-				while (ft_isalnum(*tmp) && !ft_isspace(*tmp))
-				{
-					add_char(&env_name, *tmp);
-					tmp++;
-				}
-				ft_replace_str(&arg, env_name, ft_getenv(env_name));
+				add_char(&env_name, *tmp);
+				tmp++;
 			}
+			ft_replace_str(arg, env_name, ft_getenv(env_name));
 		}
+		sub_env(arg);
 	}
 }
 
