@@ -1,39 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   count_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/14 00:16:35 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/14 06:25:33 by bledda           ###   ########.fr       */
+/*   Created: 2021/07/14 06:23:57 by bledda            #+#    #+#             */
+/*   Updated: 2021/07/14 06:25:00 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/parser.h"
 
-void	print_array(char **arr)
+int	count_args(char *str)
 {
-	while (*arr)
-	{
-		printf("%s\n", *arr);
-		arr++;
-	}
-}
+	t_parsing	pars;
+	int			i;
 
-char	**parsing(char *str)
-{
-	char	**pars;
-	int		ac;
-
-	if (!is_valid(str))
+	i = 0;
+	pars = (t_parsing){0};
+	pars.sp = true;
+	while (*str)
 	{
-		printf("ne reviens jamais\n");
-		return (NULL);
+		update_struct(*str, &pars);
+		if (!pars.sp && !pars.in_dquote && !pars.in_squote && ft_isspace(*str))
+			pars.sp = true;
+		if (pars.sp && !ft_isspace(*str))
+		{
+			pars.sp = false;
+			i++;
+		}
+		str++;
 	}
-	ac = count_args(str);
-	pars = ft_calloc(sizeof(char *), ac + 1);
-	split_args(pars, str);
-	print_array(pars);
-	return (pars);
+	return (i);
 }

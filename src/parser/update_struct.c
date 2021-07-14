@@ -1,39 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   update_struct.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/14 00:16:35 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/14 06:25:33 by bledda           ###   ########.fr       */
+/*   Created: 2021/07/14 06:23:22 by bledda            #+#    #+#             */
+/*   Updated: 2021/07/14 06:25:39 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/parser.h"
 
-void	print_array(char **arr)
+void	update_struct(char c, t_parsing *parsing)
 {
-	while (*arr)
+	if (!parsing->inibiteur)
 	{
-		printf("%s\n", *arr);
-		arr++;
+		if (c == '\\')
+			parsing->inibiteur = true;
+		if (c == '"')
+			parsing->in_dquote = !parsing->in_dquote;
+		if (c == '\'' && !parsing->in_dquote)
+			parsing->in_squote = !parsing->in_squote;
 	}
-}
-
-char	**parsing(char *str)
-{
-	char	**pars;
-	int		ac;
-
-	if (!is_valid(str))
+	if (parsing->inibiteur)
+		parsing->i++;
+	if (parsing->i == 2)
 	{
-		printf("ne reviens jamais\n");
-		return (NULL);
+		parsing->inibiteur = false;
+		parsing->i = 0;
 	}
-	ac = count_args(str);
-	pars = ft_calloc(sizeof(char *), ac + 1);
-	split_args(pars, str);
-	print_array(pars);
-	return (pars);
 }

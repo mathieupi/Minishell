@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+         #
+#    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/14 00:40:20 by mmehran          ###   ########.fr        #
+#    Updated: 2021/07/14 06:28:17 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,13 @@ SRCS_INC			= pwd.c \
 						unset.c \
 
 SRCS_PARSER			= parser.c \
+						update_struct.c \
+						is_valid.c \
+						add_char.c \
+						count_args.c \
+						ft_isutil.c \
+						add_arg.c \
+						split_args.c
 
 SRC					= $(addprefix ${FOLDER},${SRCS})
 SRC_INC				= $(addprefix ${FOLDER_INC},${SRCS_INC})
