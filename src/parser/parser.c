@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 00:16:35 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/14 01:48:11 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/14 05:39:25 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,21 +71,56 @@ bool	is_valid(char *str)
 	return (!parsing.in_dquote && !parsing.in_squote && !parsing.inibiteur);
 }
 
+void	add_char(char **str, char c)
+{
+	char	*tmp;
+	char	*tmp_c;
+
+	tmp_c = ft_calloc(sizeof(char), 2);
+	tmp_c[0] = c;
+	tmp = ft_strjoin(*str, tmp_c);
+	free(*str);
+	free(tmp_c);
+	*str = tmp;
+}
+
 int	count_args(char *str)
 {
-	t_parsing	parsing;
-	int			i;
+    t_parsing	parsing;
+    int			i;
+    bool		sea;
 
-	i = 1;
-	parsing = (t_parsing){0};
-	while (*str)
+    i = 0;
+    parsing = (t_parsing){0};
+    sea = true;
+    while (*str)
+    {
+        update_struct(*str, &parsing);
+        if (!sea && !parsing.in_dquote && !parsing.in_squote && *str == ' ')
+            sea = true;
+        if (sea && *str != ' ')
+        {
+            sea = false;
+            i++;
+        }
+        str++;
+    }
+    return (i);
+}
+
+int ft_isutil(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i] != 0)
 	{
-		update_struct(*str, &parsing);
-		if (!parsing.in_dquote && !parsing.in_squote && *str == ' ')
+		if (ft_isspace(str[i]))
 			i++;
-		str++;
+		else
+			return (1);
 	}
-	return (i);
+	return (0);
 }
 
 char	**split_args(char *str, int ac)
@@ -93,45 +128,42 @@ char	**split_args(char *str, int ac)
 	char		**args;
 	t_parsing	parsing;
 	int			i;
-	int			j;
-	int			tj;
+	char		*tmp;
+	bool		sea;
 
-	args = ft_calloc((ac + 1), sizeof(char *));
+	sea = true;
+	tmp = 0;
+	args = ft_calloc(sizeof(char *), ac + 1);
 	i = 0;
-	j = 0;
-	tj = 0;
 	parsing = (t_parsing){0};
-	while (str[j])
+	while (*str)
 	{
-		update_struct(str[j], &parsing);
-		if (!parsing.in_dquote && !parsing.in_squote && str[j] == ' ')
+		update_struct(*str, &parsing);
+        if (!sea && !parsing.in_dquote && !parsing.in_squote && *str == ' ')
+        {
+        	if (ft_isutil(tmp))
+        	{
+				args[i] = ft_strdup(tmp);
+				free(tmp);
+				tmp = 0;
+	            sea = true;
+	            i++;
+	        }
+        }
+        if (sea && *str != ' ')
+            sea = false;
+        add_char(&tmp, *str);
+		str++;
+		if (*str == 0 && ft_streql(args[i], tmp) == false)
 		{
-			args[i] = ft_calloc(tj + 1, sizeof(char));
-			i++;
-			tj = 0;
+			if (ft_isutil(tmp))
+        	{
+			 	args[i] = ft_strdup(tmp);
+			 	free(tmp);
+			 	tmp = 0;
+			}
 		}
-		tj++;
-		j++;
 	}
-	i = 0;
-	j = 0;
-	tj = 0;
-	parsing = (t_parsing){0};
-	while (str[j])
-	{
-		update_struct(str[j], &parsing);
-		if (!parsing.in_dquote && !parsing.in_squote && str[j] == ' ')
-		{
-			i++;
-			//printf("%c", '\n');
-			tj = 0;
-		}
-		args[i][tj] = str[j];
-		//printf("%c",  str[j]);
-		tj++;
-		j++;
-	}
-	printf("%c", '\n');
 	return (args);
 }
 
@@ -147,5 +179,6 @@ char	**parsing(char *str)
 	}
 	ac = count_args(str);
 	pars = split_args(str, ac);
+	print_array(pars);
 	return (pars);
 }
