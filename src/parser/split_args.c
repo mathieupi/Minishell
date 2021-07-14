@@ -6,11 +6,38 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 06:24:19 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/14 06:25:53 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/14 07:29:50 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/parser.h"
+
+static int	step_first(t_parsing *pars, char str_c, char **tmp, char **arg)
+{
+	if (!pars->sp && !pars->in_dquote && !pars->in_squote && ft_isspace(str_c))
+	{
+		if (ft_isutil(*tmp))
+		{
+			add_arg(arg, tmp);
+			pars->sp = true;
+			return (1);
+		}
+		else
+			free(tmp);
+	}
+	return (0);
+}
+
+static void	step_end(char str_c, char **arg, char **tmp)
+{
+	if (str_c == 0 && ft_streql(*arg, *tmp) == false)
+	{
+		if (ft_isutil(*tmp))
+			add_arg(arg, tmp);
+		else
+			free(*tmp);
+	}
+}
 
 void	split_args(char **args, char *str)
 {
@@ -25,18 +52,12 @@ void	split_args(char **args, char *str)
 	while (*str)
 	{
 		update_struct(*str, &pars);
-		if (!pars.sp && !pars.in_dquote && !pars.in_squote
-			&& ft_isspace(*str) && ft_isutil(tmp))
-		{
-			add_arg(&args[i], &tmp);
-			pars.sp = true;
+		if (step_first(&pars, *str, &tmp, &args[i]))
 			i++;
-		}
 		if (pars.sp && !ft_isspace(*str))
 			pars.sp = false;
 		add_char(&tmp, *str);
 		str++;
-		if (*str == 0 && ft_streql(args[i], tmp) == false && ft_isutil(tmp))
-			add_arg(&args[i], &tmp);
+		step_end(*str, &args[i], &tmp);
 	}
 }
