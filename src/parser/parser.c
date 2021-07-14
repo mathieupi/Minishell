@@ -21,35 +21,63 @@ void	print_array(char **arr)
 	}
 }
 
-void	clean_arg(char **arg)
+void	ft_replace_str(char **argp, char *env_name, char *env_value)
 {
+	char	*arg;
 	char	*tmp;
-	int		i;
+	char	*pre;
+	char	*post;
 
-	tmp = ft_strtrim(*arg, " ");
-	free(*arg);
-	*arg = ft_strdup(tmp);
-	free(tmp);
-	tmp = 0;
-	if (*arg[0] == '"' && *arg[ft_strlen(*arg) - 1] == '"'
-		&& ft_count_char(*arg, '$') > 0)
+	arg = *argp;
+	tmp = ft_strnstr(arg, env_name, ft_strlen(arg));
+	pre = ft_substr(arg, 0, tmp - arg - 1);
+	post = ft_substr(tmp, ft_strlen(env_name),
+			ft_strlen(tmp) - ft_strlen(env_name));
+	add_value(&pre, env_value);
+	add_value(&pre, post);
+	free(*argp);
+	*argp = ft_strdup(pre);
+	free(pre);
+	free(env_value);
+	free(post);
+}
+
+void	sub_env(char **argp)
+{
+	char	*arg;
+	char	*tmp;
+	char	*env_name;
+
+	arg = *argp;
+	env_name = 0;
+	if (arg[0] != '\'' && ft_count_char(arg, '$') > 0)
 	{
-		i = 0;
-		while (*arg[i] != '$')
-			i++;
-		if (*arg[i] == '$')
+		while (1)
 		{
-			i++;
-			while (ft_isspace(*arg[i]) == 0)
+			tmp = ft_strchr(arg, '$');
+			if (!tmp)
+				break ;
+			tmp++;
+			if (ft_isalnum(*tmp))
 			{
-				add_char(&tmp, *arg[i])
-				i++;
+				while (ft_isalnum(*tmp) && !ft_isspace(*tmp))
+				{
+					add_char(&env_name, *tmp);
+					tmp++;
+				}
+				ft_replace_str(&arg, env_name, ft_getenv(env_name));
 			}
-			if (ft_strlen(tmp) > 1)
-				ft_replace_str(arg, tmp, ft_getenv(tmp));
-			free(tmp);
 		}
 	}
+}
+
+void	trim_arg(char **arg)
+{
+	char	*tmp;
+
+	tmp = ft_strtrim(*arg, " \t\n\v\f\r");
+	free(*arg);
+	*arg = tmp;
 }
 
 char	**parsing(char *str)
@@ -68,7 +96,10 @@ char	**parsing(char *str)
 	split_args(pars, str);
 	i = -1;
 	while (pars[++i])
-		clean_arg(&pars[i]);
+	{
+		trim_arg(&pars[i]);
+		sub_env(&pars[i]);
+	}
 	print_array(pars);
 	return (pars);
 }
