@@ -17,5 +17,6 @@ int		ft_clean_input(char **in);
 void	try_exec(char **argv);
 int		ft_strisalnum(const char *str);
 char	*ft_getenv(char *str);
+void	ft_safe_free(void **p);
 
 #endif

@@ -36,6 +36,7 @@ typedef struct s_parsing
 	bool	inibiteur;
 	bool	in_squote;
 	bool	in_dquote;
+	bool	sp;
 }	t_parsing;
 
 void	update_struct(char c, t_parsing *parsing)
@@ -86,85 +87,67 @@ void	add_char(char **str, char c)
 
 int	count_args(char *str)
 {
-    t_parsing	parsing;
-    int			i;
-    bool		sea;
-
-    i = 0;
-    parsing = (t_parsing){0};
-    sea = true;
-    while (*str)
-    {
-        update_struct(*str, &parsing);
-        if (!sea && !parsing.in_dquote && !parsing.in_squote && *str == ' ')
-            sea = true;
-        if (sea && *str != ' ')
-        {
-            sea = false;
-            i++;
-        }
-        str++;
-    }
-    return (i);
-}
-
-int ft_isutil(char *str)
-{
-	int i;
-
-	i = 0;
-	while (str[i] != 0)
-	{
-		if (ft_isspace(str[i]))
-			i++;
-		else
-			return (1);
-	}
-	return (0);
-}
-
-char	**split_args(char *str, int ac)
-{
-	char		**args;
-	t_parsing	parsing;
+	t_parsing	pars;
 	int			i;
-	char		*tmp;
-	bool		sea;
 
-	sea = true;
-	tmp = 0;
-	args = ft_calloc(sizeof(char *), ac + 1);
 	i = 0;
-	parsing = (t_parsing){0};
+	pars = (t_parsing){0};
+	pars.sp = true;
 	while (*str)
 	{
-		update_struct(*str, &parsing);
-        if (!sea && !parsing.in_dquote && !parsing.in_squote && *str == ' ')
-        {
-        	if (ft_isutil(tmp))
-        	{
-				args[i] = ft_strdup(tmp);
-				free(tmp);
-				tmp = 0;
-	            sea = true;
-	            i++;
-	        }
-        }
-        if (sea && *str != ' ')
-            sea = false;
-        add_char(&tmp, *str);
-		str++;
-		if (*str == 0 && ft_streql(args[i], tmp) == false)
+		update_struct(*str, &pars);
+		if (!pars.sp && !pars.in_dquote && !pars.in_squote && ft_isspace(*str))
+			pars.sp = true;
+		if (pars.sp && !ft_isspace(*str))
 		{
-			if (ft_isutil(tmp))
-        	{
-			 	args[i] = ft_strdup(tmp);
-			 	free(tmp);
-			 	tmp = 0;
-			}
+			pars.sp = false;
+			i++;
 		}
+		str++;
 	}
-	return (args);
+	return (i);
+}
+
+bool	ft_isutil(char *str)
+{
+	while (ft_isspace(*str))
+		str++;
+	return (*str);
+}
+
+void	add_arg(char **arg, char **tmp)
+{
+	*arg = ft_strdup(*tmp);
+	ft_safe_free((void **)tmp);
+}
+
+void	split_args(char **args, char *str)
+{
+	t_parsing	pars;
+	int			i;
+	char		*tmp;
+
+	tmp = 0;
+	i = 0;
+	pars = (t_parsing){0};
+	pars.sp = true;
+	while (*str)
+	{
+		update_struct(*str, &pars);
+		if (!pars.sp && !pars.in_dquote && !pars.in_squote
+			&& ft_isspace(*str) && ft_isutil(tmp))
+		{
+			add_arg(&args[i], &tmp);
+			pars.sp = true;
+			i++;
+		}
+		if (pars.sp && !ft_isspace(*str))
+			pars.sp = false;
+		add_char(&tmp, *str);
+		str++;
+		if (*str == 0 && ft_streql(args[i], tmp) == false && ft_isutil(tmp))
+			add_arg(&args[i], &tmp);
+	}
 }
 
 char	**parsing(char *str)
@@ -178,7 +161,8 @@ char	**parsing(char *str)
 		return (NULL);
 	}
 	ac = count_args(str);
-	pars = split_args(str, ac);
+	pars = ft_calloc(sizeof(char *), ac + 1);
+	split_args(pars, str);
 	print_array(pars);
 	return (pars);
 }

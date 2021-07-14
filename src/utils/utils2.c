@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 04:10:50 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/13 23:59:44 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/14 06:03:34 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,13 @@ int	ft_strisalnum(const char *str)
 			return (0);
 	}
 	return (1);
+}
+
+void	ft_safe_free(void **p)
+{
+	if (*p)
+	{
+		free(*p);
+		*p = NULL;
+	}
 }
