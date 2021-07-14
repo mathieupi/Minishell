@@ -31,32 +31,39 @@ int	exec(char **argv)
 	return (1);
 }
 
+void	error_code(int code, char *cmd)
+{
+	if (code == 126)
+		ft_error(cmd, "command not found");
+}
+
 void	try_exec2(char **argv)
 {
 	int		i;
 	char	**splitted;
-	char	*saved;
+	char	*program_name;
 	int		code;
+	char	*save;
 
 	splitted = ft_split(getenv("PATH"), ':');
-	saved = argv[0];
-	i = 0;
-	code = 1;
-	while (splitted[i])
+	program_name = ft_strdup(argv[0]);
+	i = -1;
+	while (splitted[++i])
 	{
-		add_value(&splitted[i], "/");
-		add_value(&splitted[i], argv[0]);
-		argv[0] = splitted[i];
+		save = ft_strdup(splitted[i]);
+		add_value(&save, "/");
+		add_value(&save, argv[0]);
+		free(argv[0]);
+		argv[0] = save;
 		code = exec(argv);
 		if (code != 126)
 			break ;
 		free(argv[0]);
-		argv[0] = saved;
-		i++;
+		argv[0] = ft_strdup(program_name);
 	}
-	free(splitted);
-	if (code == 126)
-		ft_error(argv[0], "command not found");
+	free_array(splitted);
+	error_code(code, program_name);
+	free(program_name);
 }
 
 void	try_exec(char **argv)
