@@ -22,5 +22,5 @@ bool	is_valid(char *str)
 		update_struct(*str, &parsing);
 		str++;
 	}
-	return (!parsing.in_dquote && !parsing.in_squote && !parsing.inibiteur);
+	return (!parsing.in_dquote && !parsing.in_squote && !parsing.inhibited);
 }
