@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/15 17:19:23 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/15 17:36:58 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/15 18:34:22 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 void	handle(int sig)
 {
-	//printf("\b\b  \b\b");
 	if (sig == SIGINT)
 	{
-		printf("\n");
+		rl_on_new_line();
+		rl_redisplay();
+		printf("  \b\b\n");
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
@@ -26,8 +27,7 @@ void	handle(int sig)
 	{
 		rl_on_new_line();
 		rl_redisplay();
-		printf("\b\b  \b\b");
-		//printf("\r");
+		printf("  \b\b");
 	}
 }
 
