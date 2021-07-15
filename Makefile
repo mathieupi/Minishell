@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/15 11:56:07 by bledda           ###   ########.fr        #
+#    Updated: 2021/07/15 17:15:19 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,10 +66,25 @@ CC					= gcc
 CFLAGS  			= -Wall -Wextra -Werror
 RM					= rm -f
 LIBS				= -L ./libft -lft -lreadline
+LIBS_MAC			= -L/Users/$(USER)/.brew/Cellar/readline/8.1/lib/
+
+COMPIL_LINE_LINUX	= $(CC) $(CFLAGS) $(LIBS) ${OBJ} -o $(NAME)
+COMPIL_LINE_MAC		= $(CC) $(CFLAGS) $(LIBS) $(LIBS_MAC) ${OBJ} -o $(NAME)
+
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Linux)
+    CCFLAGS 	= $(COMPIL_LINE_LINUX)
+    READLINE	= @printf "I don't mother"
+endif
+ifeq ($(UNAME_S),Darwin)
+    CCFLAGS		= $(COMPIL_LINE_MAC)
+    READLINE	= brew reinstall readline
+endif
 
 $(NAME):	${OBJ}
 			make -C ./libft
-			$(CC) $(CFLAGS) ${OBJ} $(LIBS) -o $(NAME)
+			$(READLINE)
+			$(CCFLAGS)
 			@printf "\e[1;34m---------------------------\n"
 			@printf "\e[1;35mYour best shell is ready ✅\n"
 			@printf "\e[1;36m---------------------------\e[0m\n"

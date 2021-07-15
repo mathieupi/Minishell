@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 14:11:20 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/13 09:42:05 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/15 17:17:45 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,20 @@
 
 void	handle(int sig)
 {
-	printf("\b\b  \b\b");
+	//printf("\b\b  \b\b");
 	if (sig == SIGINT)
 	{
-		rl_on_new_line();
 		printf("\n");
+		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
+	}
+	else if (sig == SIGQUIT)
+	{
+		rl_on_new_line();
+    	rl_redisplay();
+    	printf("\b\b  \b\b");
+    	//printf("\r");
 	}
 }
 
@@ -40,4 +47,5 @@ int	main(int ac, char **av, char **envp)
 	signal(SIGINT, handle);
 	signal(SIGQUIT, handle);
 	minishell();
+	return (0);
 }
