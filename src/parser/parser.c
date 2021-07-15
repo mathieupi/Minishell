@@ -21,6 +21,25 @@ void	print_array(char **arr)
 	}
 }
 
+void	trim_arg(char **arg, const char *set)
+{
+	char	*tmp;
+
+	tmp = ft_strtrim(*arg, set);
+	free(*arg);
+	*arg = tmp;
+}
+
+bool	is_inhibited(const char *str, int char_index)
+{
+	if (char_index <= 0)
+		return (false);
+	if (ft_strlen(str) >= (unsigned int) char_index)
+		return (false);
+	return (str[char_index - 1] == '\\');
+}
+
+//to remake
 void	ft_replace_str(char **arg, char *env_name, char *env_value)
 {
 	char	*tmp;
@@ -42,6 +61,7 @@ void	ft_replace_str(char **arg, char *env_name, char *env_value)
 	free(env_name);
 }
 
+//to remake
 void	sub_env(char **arg)
 {
 	char	*tmp;
@@ -68,15 +88,6 @@ void	sub_env(char **arg)
 	}
 }
 
-void	trim_arg(char **arg)
-{
-	char	*tmp;
-
-	tmp = ft_strtrim(*arg, " \t\n\v\f\r");
-	free(*arg);
-	*arg = tmp;
-}
-
 char	**parsing(char *str)
 {
 	char	**pars;
@@ -94,7 +105,7 @@ char	**parsing(char *str)
 	i = -1;
 	while (pars[++i])
 	{
-		trim_arg(&pars[i]);
+		trim_arg(&pars[i], " \t\n\v\f\r");
 		sub_env(&pars[i]);
 	}
 	print_array(pars);
