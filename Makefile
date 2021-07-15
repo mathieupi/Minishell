@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/15 19:48:43 by bledda           ###   ########.fr        #
+#    Updated: 2021/07/15 20:14:54 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,11 +75,17 @@ RM					= rm -f
 LIBS				= -L ./libft -lft -lreadline
 LIBS_MAC			= -L/Users/$(USER)/.brew/Cellar/readline/8.1/lib/
 
-READLINE =
-
 COMPIL_LINE_LINUX	= $(CC) $(CFLAGS) ${OBJ} $(LIBS) -o $(NAME)
 COMPIL_LINE_MAC		= $(CC) $(CFLAGS) ${OBJ} $(LIBS) $(LIBS_MAC) -o $(NAME)
-COMPILE =
+
+#
+#	LIGNE QUI VISIBLEMENT NE SERVENT A RIEN
+#
+READLINE 			=
+COMPILE 			=
+#
+#	END LIGNE QUI VISIBLEMENT NE SERVENT A RIEN
+#
 
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
@@ -88,39 +94,43 @@ ifeq ($(UNAME_S),Linux)
 endif
 ifeq ($(UNAME_S),Darwin)
 	COMPILE			= $(COMPIL_LINE_MAC)
-	READLINE		= brew reinstall readline
+	READLINE		= @brew reinstall readline
 	CROSS			= $(OBJS_MAC)
 endif
 
 OBJ					= ${OBJS} ${OBJS_INC} ${OBJS_UTILS} ${OBJS_PARSER} ${CROSS}
 
 $(NAME):	${OBJ}
-			make -C ./libft
+			@printf "\e[1;34m------------------\n"
+			@printf "\e[1;35mCompiling SHELL 🔨\n"
+			@printf "\e[1;36m------------------\e[0m\n"
+			@make -C ./libft
 			$(READLINE)
-			$(COMPILE)
+			@$(COMPILE)
 			@printf "\e[1;34m---------------------------\n"
 			@printf "\e[1;35mYour best shell is ready ✅\n"
 			@printf "\e[1;36m---------------------------\e[0m\n"
 
+
 all:		${NAME}
 
 %.o: %.c	$(HEADERS)
-			$(CC) -c $(CFLAGS) -o $@ $<
+			@$(CC) -c $(CFLAGS) -o $@ $<
 
 re: 		fclean all
 
 clean:
-			make -C ./libft clean
-			${RM} ${OBJ}
+			@make -C ./libft clean
+			@${RM} ${OBJ}
 			@printf "\e[1;34m---------------------------------\n"
 			@printf "\e[1;35mObject files have been deleted 🚮\n"
 			@printf "\e[1;36m---------------------------------\e[0m\n"
 
 fclean:
-			make -C ./libft fclean
-			${RM} ${OBJ} $(NAME)
+			@make -C ./libft fclean
+			@${RM} ${OBJ} $(NAME)
 			@printf "\e[1;34m--------------------------\n"
 			@printf "\e[1;35mYour folder is now clean 🧹\n"
 			@printf "\e[1;36m---------------------------\e[0m\n"
 
-.PHONY: 	all clean fclean re
+.PHONY: 	obj_msg all clean fclean re
