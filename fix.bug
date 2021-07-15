@@ -1,2 +1,4 @@
 export.c
 	Quand afficher les error ?
+
+Test les try exec en majuscule ENV / env
