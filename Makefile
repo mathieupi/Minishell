@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/15 20:14:54 by bledda           ###   ########.fr        #
+#    Updated: 2021/07/15 20:20:54 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,18 +94,21 @@ ifeq ($(UNAME_S),Linux)
 endif
 ifeq ($(UNAME_S),Darwin)
 	COMPILE			= $(COMPIL_LINE_MAC)
-	READLINE		= @brew reinstall readline
+	READLINE		= @brew install readline
 	CROSS			= $(OBJS_MAC)
 endif
 
 OBJ					= ${OBJS} ${OBJS_INC} ${OBJS_UTILS} ${OBJS_PARSER} ${CROSS}
 
 $(NAME):	${OBJ}
-			@printf "\e[1;34m------------------\n"
-			@printf "\e[1;35mCompiling SHELL 🔨\n"
-			@printf "\e[1;36m------------------\e[0m\n"
+			@printf "\e[1;34m--------------\n"
+			@printf "\e[1;35mStart build 🔨\n"
+			@printf "\e[1;36m---------------\e[0m\n"
 			@make -C ./libft
 			$(READLINE)
+			@printf "\e[1;34m-----------------\n"
+			@printf "\e[1;35mCompiling SHELL🔨\n"
+			@printf "\e[1;36m------------------\e[0m\n"
 			@$(COMPILE)
 			@printf "\e[1;34m---------------------------\n"
 			@printf "\e[1;35mYour best shell is ready ✅\n"
