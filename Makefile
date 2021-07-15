@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/16 00:20:01 by bledda           ###   ########.fr        #
+#    Updated: 2021/07/16 00:41:03 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,7 +76,7 @@ OBJS_MAC			= ${SRC_MAC:.c=.o}
 CC					= gcc
 CFLAGS  			= -Wall -Wextra -Werror
 RM					= rm -f
-MAKE_EXT			= @make --no-print-directory -C
+MAKE_EXT			= @make -s --no-print-directory -C
 LIBS				= -L ./libft -lft -lreadline
 LIBS_MAC			= -L/Users/$(USER)/.brew/Cellar/readline/8.1/lib/
 
@@ -119,7 +119,6 @@ $(NAME):	${OBJ}
 			@printf "\e[1;35mYour best shell is ready ✅\n"
 			@printf "\e[1;36m---------------------------\e[0m\n"
 
-
 all:		${NAME}
 
 %.o: %.c	$(HEADERS)
@@ -141,4 +140,14 @@ fclean:		clean
 			@printf "\e[1;35mYour folder is now clean 🧹\n"
 			@printf "\e[1;36m--------------------------\e[0m\n"
 
-.PHONY: 	all clean fclean re
+help:
+			@printf "\e[1;35m------------------------------------------------\n"
+			@printf "\e[1;35m| make or all or minishell : compile minishell |\n"
+			@printf "\e[1;35m| help                     : print help        |\n"
+			@printf "\e[1;35m| clean                    : delete object file|\n"
+			@printf "\e[1;35m| fclean                   : delete object file|\n"
+			@printf "\e[1;35m|                            and binarie       |\n"
+			@printf "\e[1;35m| re                       : fclean + all      |\n"
+			@printf "\e[1;35m------------------------------------------------\n"
+
+.PHONY: 	all clean fclean re help
