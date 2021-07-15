@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   handle_mac.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/15 17:19:23 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/15 19:39:35 by bledda           ###   ########.fr       */
+/*   Created: 2021/07/15 19:40:21 by bledda            #+#    #+#             */
+/*   Updated: 2021/07/15 19:47:48 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/minishell.h"
+#include "../../header/minishell.h"
 
-int	main(int ac, char **av, char **envp)
+void	handle(int sig)
 {
-	int	i;
-
-	(void)ac;
-	(void)av;
-	i = 0;
-	g_environ = ft_calloc(sizeof(char *), count_array(envp) + 1);
-	while (envp[i])
+	if (sig == SIGINT)
 	{
-		g_environ[i] = ft_strdup(envp[i]);
-		i++;
+		rl_on_new_line();
+		rl_redisplay();
+		printf("  \b\b\n");
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();
 	}
-	signal(SIGINT, handle);
-	signal(SIGQUIT, handle);
-	minishell();
-	return (0);
+	else if (sig == SIGQUIT)
+	{
+		rl_on_new_line();
+		rl_redisplay();
+		printf("  \b\b");
+	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 11:28:54 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/15 17:51:00 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/15 19:42:28 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,6 @@ void	rl_replace_line(const char *buffer, int something);
 char	**g_environ;
 
 void	minishell(void);
+void	handle(int sig);
 
 #endif

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+         #
+#    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/15 17:54:22 by mmehran          ###   ########.fr        #
+#    Updated: 2021/07/15 19:48:43 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ FOLDER_INC			= src/inc/
 FOLDER_UTILS		= src/utils/
 FOLDER_PARSER		= src/parser/
 FOLDER_HEADER		= header/
+FOLDER_CROSS		= src/cross_platform/
 
 SRCS				= minishell.c \
 						main.c \
@@ -38,7 +39,11 @@ SRCS_INC			= pwd.c \
 						env.c \
 						exit.c \
 						export.c \
-						unset.c \
+						unset.c
+
+SRCS_LINUX			= handle_linux.c
+
+SRCS_MAC			= handle_mac.c
 
 SRCS_PARSER			= parser.c \
 						update_struct.c \
@@ -54,13 +59,15 @@ SRC_INC				= $(addprefix ${FOLDER_INC},${SRCS_INC})
 SRC_UTILS			= $(addprefix ${FOLDER_UTILS},${SRCS_UTILS})
 SRC_PARSER			= $(addprefix ${FOLDER_PARSER},${SRCS_PARSER})
 HEADERS				= $(addprefix ${FOLDER_HEADER},${HEADER_FILE})
+SRC_LINUX			= $(addprefix ${FOLDER_CROSS},${SRCS_LINUX})
+SRC_MAC				= $(addprefix ${FOLDER_CROSS},${SRCS_MAC})
 
 OBJS				= ${SRC:.c=.o}
 OBJS_INC			= ${SRC_INC:.c=.o}
 OBJS_UTILS			= ${SRC_UTILS:.c=.o}
 OBJS_PARSER			= ${SRC_PARSER:.c=.o}
-
-OBJ					= ${OBJS} ${OBJS_INC} ${OBJS_UTILS} ${OBJS_PARSER}
+OBJS_LINUX			= ${SRC_LINUX:.c=.o}
+OBJS_MAC			= ${SRC_MAC:.c=.o}
 
 CC					= gcc
 CFLAGS  			= -Wall -Wextra -Werror
@@ -76,12 +83,16 @@ COMPILE =
 
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
-	COMPILE 	= $(COMPIL_LINE_LINUX)
+	COMPILE 		= $(COMPIL_LINE_LINUX)
+	CROSS			= $(OBJS_LINUX)
 endif
 ifeq ($(UNAME_S),Darwin)
-	COMPILE		= $(COMPIL_LINE_MAC)
-	READLINE	= brew reinstall readline
+	COMPILE			= $(COMPIL_LINE_MAC)
+	READLINE		= brew reinstall readline
+	CROSS			= $(OBJS_MAC)
 endif
+
+OBJ					= ${OBJS} ${OBJS_INC} ${OBJS_UTILS} ${OBJS_PARSER} ${CROSS}
 
 $(NAME):	${OBJ}
 			make -C ./libft
