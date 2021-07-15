@@ -6,7 +6,7 @@
 #    By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/15 17:52:39 by mmehran          ###   ########.fr        #
+#    Updated: 2021/07/15 17:54:22 by mmehran          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,7 +86,7 @@ endif
 $(NAME):	${OBJ}
 			make -C ./libft
 			$(READLINE)
-			$(COMPIL_LINE_LINUX)
+			$(COMPILE)
 			@printf "\e[1;34m---------------------------\n"
 			@printf "\e[1;35mYour best shell is ready ✅\n"
 			@printf "\e[1;36m---------------------------\e[0m\n"
