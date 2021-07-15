@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/14 06:28:17 by bledda           ###   ########.fr        #
+#    Updated: 2021/07/15 11:56:07 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,9 +70,9 @@ LIBS				= -L ./libft -lft -lreadline
 $(NAME):	${OBJ}
 			make -C ./libft
 			$(CC) $(CFLAGS) ${OBJ} $(LIBS) -o $(NAME)
-			@echo "\e[1;34m---------------------------"
-			@echo "\e[1;35mYour best shell is ready ✅"
-			@echo "\e[1;36m---------------------------\e[0m"
+			@printf "\e[1;34m---------------------------\n"
+			@printf "\e[1;35mYour best shell is ready ✅\n"
+			@printf "\e[1;36m---------------------------\e[0m\n"
 
 all:		${NAME}
 
@@ -84,15 +84,15 @@ re: 		fclean all
 clean:
 			make -C ./libft clean
 			${RM} ${OBJ}
-			@echo "\e[1;34m---------------------------------"
-			@echo "\e[1;35mObject files have been deleted 🚮"
-			@echo "\e[1;36m---------------------------------\e[0m"
+			@printf "\e[1;34m---------------------------------\n"
+			@printf "\e[1;35mObject files have been deleted 🚮\n"
+			@printf "\e[1;36m---------------------------------\e[0m\n"
 
 fclean:
 			make -C ./libft fclean
 			${RM} ${OBJ} $(NAME)
-			@echo "\e[1;34m---------------------------"
-			@echo "\e[1;35mYour folder is now clean 🧹"
-			@echo "\e[1;36m---------------------------\e[0m"
+			@printf "\e[1;34m--------------------------\n"
+			@printf "\e[1;35mYour folder is now clean 🧹\n"
+			@printf "\e[1;36m---------------------------\e[0m\n"
 
 .PHONY: 	all clean fclean re
