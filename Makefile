@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/16 00:51:42 by bledda           ###   ########.fr        #
+#    Updated: 2021/07/16 01:05:09 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,6 @@ HEADER_FILE 		= minishell.h \
 						utils.h \
 						inc.h \
 						parser.h
-
-LOGDATE 			= $(shell date --iso=seconds)
 
 FOLDER				= src/
 FOLDER_INC			= src/inc/
@@ -82,10 +80,12 @@ MAKE_EXT			= @make -s --no-print-directory -C
 LIBS				= -L ./libft -lft -lreadline
 LIBS_MAC			= -L/Users/$(USER)/.brew/Cellar/readline/8.1/lib/
 
+UNAME_S				= $(shell uname -s)
+LOGDATE 			= $(shell date --iso=seconds)
+
 COMPIL_LINE_LINUX	= $(CC) $(CFLAGS) ${OBJ} $(LIBS) -o $(NAME)
 COMPIL_LINE_MAC		= $(CC) $(CFLAGS) ${OBJ} $(LIBS) $(LIBS_MAC) -o $(NAME)
 
-UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
 	COMPILE 		= $(COMPIL_LINE_LINUX)
 	CROSS			= $(OBJS_LINUX)
@@ -113,9 +113,9 @@ $(NAME):	${OBJ}
 			@printf "\e[1;36m--------------\e[0m\n"
 			$(MAKE_EXT) ./libft
 			$(READLINE)
-			@printf "\e[1;34m-------------------\n"
+			@printf "\e[1;34m---------------------\n"
 			@printf "\e[1;35mCompiling minishell🔨\n"
-			@printf "\e[1;36m-------------------\e[0m\n"
+			@printf "\e[1;36m----------------------\e[0m\n"
 			@$(COMPILE)
 			@printf "\e[1;34m---------------------------\n"
 			@printf "\e[1;35mYour best shell is ready ✅\n"
