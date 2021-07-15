@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
+#    By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/15 17:15:19 by bledda           ###   ########.fr        #
+#    Updated: 2021/07/15 17:52:39 by mmehran          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,23 +68,25 @@ RM					= rm -f
 LIBS				= -L ./libft -lft -lreadline
 LIBS_MAC			= -L/Users/$(USER)/.brew/Cellar/readline/8.1/lib/
 
-COMPIL_LINE_LINUX	= $(CC) $(CFLAGS) $(LIBS) ${OBJ} -o $(NAME)
-COMPIL_LINE_MAC		= $(CC) $(CFLAGS) $(LIBS) $(LIBS_MAC) ${OBJ} -o $(NAME)
+READLINE =
+
+COMPIL_LINE_LINUX	= $(CC) $(CFLAGS) ${OBJ} $(LIBS) -o $(NAME)
+COMPIL_LINE_MAC		= $(CC) $(CFLAGS) ${OBJ} $(LIBS) $(LIBS_MAC) -o $(NAME)
+COMPILE =
 
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
-    CCFLAGS 	= $(COMPIL_LINE_LINUX)
-    READLINE	= @printf "I don't mother"
+	COMPILE 	= $(COMPIL_LINE_LINUX)
 endif
 ifeq ($(UNAME_S),Darwin)
-    CCFLAGS		= $(COMPIL_LINE_MAC)
-    READLINE	= brew reinstall readline
+	COMPILE		= $(COMPIL_LINE_MAC)
+	READLINE	= brew reinstall readline
 endif
 
 $(NAME):	${OBJ}
 			make -C ./libft
 			$(READLINE)
-			$(CCFLAGS)
+			$(COMPIL_LINE_LINUX)
 			@printf "\e[1;34m---------------------------\n"
 			@printf "\e[1;35mYour best shell is ready ✅\n"
 			@printf "\e[1;36m---------------------------\e[0m\n"

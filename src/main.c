@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/15 17:19:23 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/15 17:22:28 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/15 17:36:58 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void	handle(int sig)
 	else if (sig == SIGQUIT)
 	{
 		rl_on_new_line();
-    	rl_redisplay();
-    	printf("\b\b  \b\b");
-    	//printf("\r");
+		rl_redisplay();
+		printf("\b\b  \b\b");
+		//printf("\r");
 	}
 }
 
