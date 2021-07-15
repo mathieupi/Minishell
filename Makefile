@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/15 20:20:54 by bledda           ###   ########.fr        #
+#    Updated: 2021/07/15 21:28:07 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -136,4 +136,4 @@ fclean:
 			@printf "\e[1;35mYour folder is now clean 🧹\n"
 			@printf "\e[1;36m---------------------------\e[0m\n"
 
-.PHONY: 	obj_msg all clean fclean re
+.PHONY: 	all clean fclean re
