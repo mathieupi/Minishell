@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/15 21:28:07 by bledda           ###   ########.fr        #
+#    Updated: 2021/07/15 22:35:19 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,8 @@ SRCS_UTILS			= utils.c \
 						utils2.c \
 						ft_error.c \
 						try_exec.c \
-						ft_getenv.c
+						ft_getenv.c \
+						print_array.c
 
 SRCS_INC			= pwd.c \
 						echo.c \
@@ -52,7 +53,10 @@ SRCS_PARSER			= parser.c \
 						count_args.c \
 						ft_isutil.c \
 						add_arg.c \
-						split_args.c
+						split_args.c \
+						is_inhibited.c \
+						trim_arg.c \
+						sub_env.c
 
 SRC					= $(addprefix ${FOLDER},${SRCS})
 SRC_INC				= $(addprefix ${FOLDER_INC},${SRCS_INC})
@@ -102,7 +106,7 @@ OBJ					= ${OBJS} ${OBJS_INC} ${OBJS_UTILS} ${OBJS_PARSER} ${CROSS}
 
 $(NAME):	${OBJ}
 			@printf "\e[1;34m--------------\n"
-			@printf "\e[1;35mStart build 🔨\n"
+			@printf "\e[1;35mStart build ⏳\n"
 			@printf "\e[1;36m---------------\e[0m\n"
 			@make -C ./libft
 			$(READLINE)

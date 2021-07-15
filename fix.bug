@@ -2,3 +2,7 @@ export.c
 	Quand afficher les error ?
 
 Test les try exec en majuscule ENV / env
+
+src/parser/sub_env.c
+	a remake
+	gerer le proble de \$ + segfault ${}
