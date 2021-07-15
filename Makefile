@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/15 22:35:19 by bledda           ###   ########.fr        #
+#    Updated: 2021/07/16 00:20:01 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,20 +76,12 @@ OBJS_MAC			= ${SRC_MAC:.c=.o}
 CC					= gcc
 CFLAGS  			= -Wall -Wextra -Werror
 RM					= rm -f
+MAKE_EXT			= @make --no-print-directory -C
 LIBS				= -L ./libft -lft -lreadline
 LIBS_MAC			= -L/Users/$(USER)/.brew/Cellar/readline/8.1/lib/
 
 COMPIL_LINE_LINUX	= $(CC) $(CFLAGS) ${OBJ} $(LIBS) -o $(NAME)
 COMPIL_LINE_MAC		= $(CC) $(CFLAGS) ${OBJ} $(LIBS) $(LIBS_MAC) -o $(NAME)
-
-#
-#	LIGNE QUI VISIBLEMENT NE SERVENT A RIEN
-#
-READLINE 			=
-COMPILE 			=
-#
-#	END LIGNE QUI VISIBLEMENT NE SERVENT A RIEN
-#
 
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
@@ -105,14 +97,23 @@ endif
 OBJ					= ${OBJS} ${OBJS_INC} ${OBJS_UTILS} ${OBJS_PARSER} ${CROSS}
 
 $(NAME):	${OBJ}
+			@printf "\e[1;34m################################################\n"
+			@printf "#          :::      ::::::::                   #\n"
+			@printf "#        :+:      :+:    :+:      mmehran      #\n"
+			@printf "#      +:+ +:+         +:+          and        #\n"
+			@printf "#    +#+  +:+       +#+            bledda      #\n"
+			@printf "#  +#+#+#+#+#+   +#+                 as        #\n"
+			@printf "#       #+#    #+#                Minishell    #\n"
+			@printf "#      ###   ########                          #\n"
+			@printf "################################################\e[0m\n"
 			@printf "\e[1;34m--------------\n"
 			@printf "\e[1;35mStart build ⏳\n"
-			@printf "\e[1;36m---------------\e[0m\n"
-			@make -C ./libft
+			@printf "\e[1;36m--------------\e[0m\n"
+			$(MAKE_EXT) ./libft
 			$(READLINE)
-			@printf "\e[1;34m-----------------\n"
-			@printf "\e[1;35mCompiling SHELL🔨\n"
-			@printf "\e[1;36m------------------\e[0m\n"
+			@printf "\e[1;34m-------------------\n"
+			@printf "\e[1;35mCompiling minishell🔨\n"
+			@printf "\e[1;36m-------------------\e[0m\n"
 			@$(COMPILE)
 			@printf "\e[1;34m---------------------------\n"
 			@printf "\e[1;35mYour best shell is ready ✅\n"
@@ -127,17 +128,17 @@ all:		${NAME}
 re: 		fclean all
 
 clean:
-			@make -C ./libft clean
+			$(MAKE_EXT) ./libft clean
 			@${RM} ${OBJ}
 			@printf "\e[1;34m---------------------------------\n"
 			@printf "\e[1;35mObject files have been deleted 🚮\n"
 			@printf "\e[1;36m---------------------------------\e[0m\n"
 
-fclean:
-			@make -C ./libft fclean
-			@${RM} ${OBJ} $(NAME)
+fclean:		clean
+			$(MAKE_EXT) ./libft fclean
+			@${RM} $(NAME)
 			@printf "\e[1;34m--------------------------\n"
 			@printf "\e[1;35mYour folder is now clean 🧹\n"
-			@printf "\e[1;36m---------------------------\e[0m\n"
+			@printf "\e[1;36m--------------------------\e[0m\n"
 
 .PHONY: 	all clean fclean re
