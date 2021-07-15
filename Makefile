@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/16 00:41:03 by bledda           ###   ########.fr        #
+#    Updated: 2021/07/16 00:50:41 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,8 @@ HEADER_FILE 		= minishell.h \
 						utils.h \
 						inc.h \
 						parser.h
+
+LOGDATE 			= $(shell date --iso=seconds)
 
 FOLDER				= src/
 FOLDER_INC			= src/inc/
@@ -140,14 +142,36 @@ fclean:		clean
 			@printf "\e[1;35mYour folder is now clean 🧹\n"
 			@printf "\e[1;36m--------------------------\e[0m\n"
 
+pull:		fclean
+			@printf "\e[1;34m--------------------------\n"
+			@printf "\e[1;35mGit pull in progress 🐱‍👓\n"
+			@printf "\e[1;36m--------------------------\e[0m\n"
+			@git pull
+
+push:		fclean
+			@printf "\e[1;34m----------------\n"
+			@printf "\e[1;35mAdd all files 🐱‍👓\n"
+			@printf "\e[1;36m----------------\e[0m\n"
+			@git add .
+			@printf "\e[1;34m--------------------\n"
+			@printf "\e[1;35mCommit adding date 🐱‍👓\n"
+			@printf "\e[1;36m--------------------\e[0m\n"
+			@git commit -m "$(LOGDATE)"
+			@printf "\e[1;34m------------\n"
+			@printf "\e[1;35mGit push 🐱‍👓\n"
+			@printf "\e[1;36m------------\e[0m\n"
+			@git push
+
 help:
 			@printf "\e[1;35m------------------------------------------------\n"
-			@printf "\e[1;35m| make or all or minishell : compile minishell |\n"
-			@printf "\e[1;35m| help                     : print help        |\n"
-			@printf "\e[1;35m| clean                    : delete object file|\n"
-			@printf "\e[1;35m| fclean                   : delete object file|\n"
-			@printf "\e[1;35m|                            and binarie       |\n"
-			@printf "\e[1;35m| re                       : fclean + all      |\n"
+			@printf "\e[1;35m| make or all or minishell : compile minishell  |\n"
+			@printf "\e[1;35m| help                     : print help         |\n"
+			@printf "\e[1;35m| clean                    : delete object file |\n"
+			@printf "\e[1;35m| fclean                   : delete object file |\n"
+			@printf "\e[1;35m|                            and binarie        |\n"
+			@printf "\e[1;35m| pull                     : fclean + update rep|\n"
+			@printf "\e[1;35m| push                     : fclean + upload rep|\n"
+			@printf "\e[1;35m| re                       : fclean + all       |\n"
 			@printf "\e[1;35m------------------------------------------------\n"
 
-.PHONY: 	all clean fclean re help
+.PHONY: 	all clean fclean re help pull push
