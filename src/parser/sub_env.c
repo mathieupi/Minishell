@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/15 22:34:11 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/16 10:15:41 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/16 10:35:59 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,17 @@ static void	ft_replace_str(char **arg, unsigned int start_index,
 	char	*pre;
 	char	*post;
 
-	if (start_index >= end_index)
+	if (start_index > end_index)
 		return ;
 	if (start_index >= ft_strlen(*arg) || end_index >= ft_strlen(*arg))
 		return ;
 	pre = ft_substr(*arg, 0, start_index);
-	post = ft_substr(*arg, end_index, ft_strlen(*arg));
+	post = ft_substr(*arg, end_index + 1, ft_strlen(*arg));
 	add_value(&pre, value);
 	add_value(&pre, post);
 	free(*arg);
 	*arg = ft_strdup(pre);
 	free(pre);
-	if (value != 0)
-		free(value);
 	free(post);
 }
 
@@ -56,6 +54,7 @@ void	sub_env(char **arg)
 {
 	char	*tmp;
 	char	*env_name;
+	char	*env_value;
 
 	tmp = ft_strchr(*arg, '$');
 	if (!tmp)
@@ -66,8 +65,12 @@ void	sub_env(char **arg)
 		env_name = extract_env_name(tmp);
 		if (env_name)
 		{
-			printf("%s\n", ft_getenv(env_name));
-			ft_replace_str(arg, tmp - *arg, tmp - *arg + ft_strlen(env_name) + 1, ft_getenv(env_name));
+			env_value = ft_getenv(env_name);
+			printf("%s\n", env_value);
+			ft_replace_str(arg, tmp - *arg, tmp - *arg + ft_strlen(env_name),
+				 env_value);
+			free(env_name);
+			free(env_value);
 		}
 	}
 }
