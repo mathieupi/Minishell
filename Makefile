@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/16 14:39:25 by bledda           ###   ########.fr        #
+#    Updated: 2021/07/16 15:27:29 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,8 @@ SRCS_PARSER			= parser.c \
 						is_inhibited.c \
 						trim_arg.c \
 						sub_env.c \
-						remove_backslash.c
+						remove_backslash.c \
+						remove_quote.c
 
 SRC					= $(addprefix ${FOLDER},${SRCS})
 SRC_INC				= $(addprefix ${FOLDER_INC},${SRCS_INC})

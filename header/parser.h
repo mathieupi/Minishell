@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 00:18:53 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/16 14:19:38 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/16 15:27:12 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ bool	is_inhibited(const char *str, int char_index);
 void	trim_arg(char **arg, const char *set);
 void	sub_env(char **arg);
 void	remove_backslash(char **arg);
+void	remove_quote(char **arg);
 
 #endif

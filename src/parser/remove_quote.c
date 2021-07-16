@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   remove_backslash.c                                 :+:      :+:    :+:   */
+/*   remove_quote.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/16 14:19:10 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/16 15:28:20 by bledda           ###   ########.fr       */
+/*   Created: 2021/07/16 15:26:55 by bledda            #+#    #+#             */
+/*   Updated: 2021/07/16 15:28:36 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/parser.h"
 
-void	remove_backslash(char **arg)
+void	remove_quote(char **arg)
 {
 	int		i;
 	int		j;
