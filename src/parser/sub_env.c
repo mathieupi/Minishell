@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/15 22:34:11 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/16 10:35:59 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/16 13:36:49 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,21 +56,24 @@ void	sub_env(char **arg)
 	char	*env_name;
 	char	*env_value;
 
-	tmp = ft_strchr(*arg, '$');
-	if (!tmp)
-		return ;
-	if (*arg[0] != '\'' && !is_inhibited(*arg, tmp - *arg))
+	tmp = *arg;
+	while (1)
 	{
-		printf("%s\n", "try extract");
-		env_name = extract_env_name(tmp);
-		if (env_name)
+		tmp = ft_strchr(tmp, '$');
+		if (!tmp)
+			return ;
+		if (*arg[0] != '\'' && !is_inhibited(*arg, tmp - *arg))
 		{
-			env_value = ft_getenv(env_name);
-			printf("%s\n", env_value);
-			ft_replace_str(arg, tmp - *arg, tmp - *arg + ft_strlen(env_name),
-				 env_value);
-			free(env_name);
-			free(env_value);
+			env_name = extract_env_name(tmp);
+			if (env_name)
+			{
+				env_value = ft_getenv(env_name);
+				ft_replace_str(arg, tmp - *arg,
+					tmp - *arg + ft_strlen(env_name), env_value);
+				free(env_name);
+				free(env_value);
+			}
 		}
+		tmp++;
 	}
 }
