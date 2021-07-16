@@ -1,12 +1,5 @@
 export.c
 	Quand afficher les error ?
-	faire le _
-
-Test les try exec en majuscule ENV / env
-
-src/parser/sub_env.c
-	a remake
-	gerer le proble de \$ + segfault ${}
 
 unset.c
 	ne pas dire error quand env_name contient _

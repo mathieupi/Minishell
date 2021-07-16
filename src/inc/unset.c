@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 21:42:23 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/13 09:25:48 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/16 14:12:24 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	ft_unset(char **av)
 		while (av[++i])
 		{
 			i_env = 0;
-			if (ft_strisalnum(av[i]) == 0)
+			if (ft_strcheckunset(av[i]) == 0)
 			{
 				ft_error2("unset", av[i], "not a valid identifier");
 				return ;

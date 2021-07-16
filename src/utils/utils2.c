@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 04:10:50 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/16 10:14:54 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/16 14:12:19 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,23 @@ char	*get_pwd(void)
 	return (ft_strdup(buffer));
 }
 
-int	ft_strisalnum(const char *str)
+int	ft_checkunset(char c)
+{
+	if (ft_isalpha(c) || ft_isdigit(c))
+		return (1);
+	else if (c == '_')
+		return (1);
+	return (0);
+}
+
+int	ft_strcheckunset(const char *str)
 {
 	int	i;
 
 	i = 0;
 	while (str[i])
 	{
-		if (ft_isalnum(str[i]))
+		if (ft_checkunset(str[i]))
 			i++;
 		else
 			return (0);
