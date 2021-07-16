@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+         #
+#    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/16 11:59:00 by mmehran          ###   ########.fr        #
+#    Updated: 2021/07/16 14:20:09 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,8 @@ SRCS_PARSER			= parser.c \
 						split_args.c \
 						is_inhibited.c \
 						trim_arg.c \
-						sub_env.c
+						sub_env.c \
+						remove_backslash.c
 
 SRC					= $(addprefix ${FOLDER},${SRCS})
 SRC_INC				= $(addprefix ${FOLDER_INC},${SRCS_INC})

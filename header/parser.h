@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 00:18:53 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/16 08:48:21 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/16 14:19:38 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ void	split_args(char **args, char *str);
 bool	is_inhibited(const char *str, int char_index);
 void	trim_arg(char **arg, const char *set);
 void	sub_env(char **arg);
+void	remove_backslash(char **arg);
 
 #endif
