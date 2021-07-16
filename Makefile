@@ -6,7 +6,7 @@
 #    By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/16 11:59:00 by mmehran          ###   ########.fr        #
+#    Updated: 2021/07/16 14:36:32 by mmehran          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,7 +75,7 @@ OBJS_MAC			= ${SRC_MAC:.c=.o}
 
 CC					= gcc
 CFLAGS  			= -Wall -Wextra -Werror
-RM					= rm -f
+RM					= rm -rf
 MAKE_EXT			= @make -s --no-print-directory -C
 LIBS				= -L ./libft -lft -lreadline
 LIBS_MAC			= -L/Users/$(USER)/.brew/Cellar/readline/8.1/lib/
@@ -150,6 +150,7 @@ pull:		fclean
 			@git pull
 
 push:		pull
+			@${RM} $(NAME).dSYM
 			@printf "\e[1;34m----------------\n"
 			@printf "\e[1;35mAdd all files 🐱‍👓\n"
 			@printf "\e[1;36m----------------\e[0m\n"
