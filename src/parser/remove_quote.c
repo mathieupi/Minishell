@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   remove_quote.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 15:26:55 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/16 16:39:21 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/16 17:17:38 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,51 +35,28 @@ void	remove_quote(char **arg)
 		j = 0;
 		while ((*arg)[i] != 0)
 		{
+			update_struct((*arg)[i], &parsing);
 			if ((*arg)[i] == '\\')
 			{
-				if (parsing.in_dquote == false && parsing.in_squote == false)
-					parsing.inhibited = true;
-			 	tmp[j] = (*arg)[i];
-			 	j++;
+				tmp[j] = (*arg)[i];
+				j++;
 				i++;
 			}
-			if ((*arg)[i] != '\'' || (*arg)[i] != '"')
+			if ((*arg)[i] != '\'' && (*arg)[i] != '"')
 			{
 				tmp[j] = (*arg)[i];
-			 	j++;
+				j++;
 			}
-			else if (parsing.inhibited == false && (*arg)[i] == '\'' && parsing.in_squote == true && parsing.in_dquote == false)
-			{
-				parsing.in_squote = false;
-				//i++;
-			}
-			else if (parsing.inhibited == false && (*arg)[i] == '"'  && parsing.in_squote == false && parsing.in_dquote == true)
-			{
-				parsing.in_dquote = false;
-				//i++;
-			}
-			else if (parsing.inhibited == false && (*arg)[i] == '\'' && parsing.in_squote == false && parsing.in_dquote == false)
-			{
-				parsing.in_squote = true;
-				//i++;
-			}
-			else if (parsing.inhibited == false && (*arg)[i] == '"'  && parsing.in_squote == false && parsing.in_dquote == false)
-			{
-				parsing.in_dquote = true;
-				//i++;
-			}
-
 			if ((*arg)[i] == '\'' || (*arg)[i] == '"')
 			{
 				if (parsing.inhibited
 					|| ((*arg)[i] == '\'' && parsing.in_dquote)
-			 			|| ((*arg)[i] == '"' && parsing.in_squote))
+						|| ((*arg)[i] == '"' && parsing.in_squote))
 				{
 					tmp[j] = (*arg)[i];
-			 		j++;
-			 	}
-		 	}
-
+					j++;
+				}
+			}
 			parsing.inhibited = false;
 			i++;
 		}
