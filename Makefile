@@ -6,7 +6,7 @@
 #    By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/16 11:57:36 by mmehran          ###   ########.fr        #
+#    Updated: 2021/07/16 11:59:00 by mmehran          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -149,7 +149,7 @@ pull:		fclean
 			@printf "\e[1;36m--------------------------\e[0m\n"
 			@git pull
 
-push:		fclean
+push:		pull
 			@printf "\e[1;34m----------------\n"
 			@printf "\e[1;35mAdd all files 🐱‍👓\n"
 			@printf "\e[1;36m----------------\e[0m\n"
