@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   remove_backslash.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 14:19:10 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/16 15:28:20 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/16 17:34:58 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,14 @@ void	remove_backslash(char **arg)
 	int		j;
 	char	*tmp;
 
-	if (ft_strlen(*arg) == 1 && (*arg)[0] == '\\')
-		(*arg)[0] = ' ';
-	else if (ft_count_char(*arg, '\\') > 0)
+	if (ft_count_char(*arg, '\\') > 0)
 	{
 		tmp = ft_calloc(sizeof(char), ft_strlen(*arg) + 1);
 		i = 0;
 		j = 0;
 		while ((*arg)[i] != 0)
 		{
-			if ((*arg)[i] != '\\')
+			if (is_inhibited(*arg, i) || (*arg)[i] != '\\')
 			{
 				tmp[j] = (*arg)[i];
 				j++;

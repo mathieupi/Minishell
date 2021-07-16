@@ -32,7 +32,7 @@ char	**parsing(char *str)
 		trim_arg(&pars[i], " \t\n\v\f\r");
 		sub_env(&pars[i]);
 		remove_quote(&pars[i]);
-		//remove_backslash(&pars[i]);
+		remove_backslash(&pars[i]);
 	}
 	print_array(pars);
 	return (pars);
