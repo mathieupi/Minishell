@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_inhibited.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/15 22:32:58 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/15 22:33:15 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/16 09:11:24 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,19 @@
 
 bool	is_inhibited(const char *str, int char_index)
 {
+	int	i;
+	int	count;
+
 	if (char_index <= 0)
 		return (false);
-	if (ft_strlen(str) >= (unsigned int) char_index)
+	if (ft_strlen(str) <= (unsigned int) char_index)
 		return (false);
-	return (str[char_index - 1] == '\\');
+	count = 0;
+	i = char_index - 1;
+	while (i >= 0 && str[i] == '\\')
+	{
+		count++;
+		i--;
+	}
+	return (count % 2);
 }
