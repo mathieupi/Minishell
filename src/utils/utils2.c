@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 04:10:50 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/16 10:03:10 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/16 10:14:54 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,4 @@ void	ft_safe_free(void **p)
 		free(*p);
 		*p = NULL;
 	}
-}
-
-bool	ft_issnake(char c)
-{
-	return (ft_isalpha(c) || c == '_');
 }

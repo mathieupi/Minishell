@@ -19,6 +19,5 @@ int		ft_strisalnum(const char *str);
 char	*ft_getenv(char *str);
 void	ft_safe_free(void **p);
 void	print_array(char **arr);
-bool	ft_issnake(char c);
 
 #endif

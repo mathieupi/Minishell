@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/15 22:34:11 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/16 10:07:03 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/16 10:15:41 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	*extract_env_name(const char *str)
 	if (*str == 0)
 		return (NULL);
 	i = 0;
-	while (ft_issnake(str[i]))
+	while (ft_isalnum(str[i]) || str[i] == '_')
 		i++;
 	if (!i)
 		return (NULL);
