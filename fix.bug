@@ -1,6 +1,17 @@
 export.c
 	Quand afficher les error ?
+
 exec
 	try_exec les programs du pwd
 
-ENV PWD OLDPWD doit etre actualiser
+UPDATE ENV // void	update_env(char *env, char *new_value)
+	PWD_______ok
+	OLDPWD----ok
+	_= a faire
+
+Logique a avoir pour le parsing des args
+	tester in si il y a des chevron ou pipe non proteger
+	si pas le cas faire comme on fait
+	sinon
+	faire plusieur paquet argiment avant de les envoyer dans le splitter
+	"Logique de etudiant qui ma donner astuce pour clear"

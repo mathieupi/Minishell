@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/16 15:27:29 by bledda           ###   ########.fr        #
+#    Updated: 2021/07/16 21:51:23 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ SRCS_UTILS			= utils.c \
 						ft_error.c \
 						try_exec.c \
 						ft_getenv.c \
-						print_array.c
+						print_array.c \
+						update_env.c
 
 SRCS_INC			= pwd.c \
 						echo.c \

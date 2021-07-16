@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 04:36:22 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/11 18:11:22 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/16 22:00:58 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	try_chdir(char *tmp, char *saved_pwd, char **av)
 {
 	struct stat	buffer;
 	int			status;
+	char		*pwd;
 
 	if (chdir(tmp) == -1)
 	{
@@ -27,6 +28,10 @@ int	try_chdir(char *tmp, char *saved_pwd, char **av)
 			ft_error("cd", "Not a directory");
 		return (1);
 	}
+	pwd = get_pwd();
+	update_env("PWD", pwd);
+	update_env("OLDPWD", saved_pwd);
+	free(pwd);
 	return (0);
 }
 
