@@ -3,29 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   remove_quote.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 15:26:55 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/16 17:38:15 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/16 17:40:47 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/parser.h"
 
-// typedef struct s_parsing
-// {
-// 	bool	inhibited;
-// 	bool	in_squote;
-// 	bool	in_dquote;
-// 	bool	sp;
-// }	t_parsing;
-
 void	remove_quote(char **arg)
 {
-	t_parsing parsing;
-	int		i;
-	int		j;
-	char	*tmp;
+	t_parsing	parsing;
+	int			i;
+	int			j;
+	char		*tmp;
 
 	parsing = (t_parsing){0};
 	if (ft_strlen(*arg) >= 2)

@@ -2,3 +2,5 @@ export.c
 	Quand afficher les error ?
 exec
 	try_exec les programs du pwd
+
+ENV PWD OLDPWD doit etre actualiser

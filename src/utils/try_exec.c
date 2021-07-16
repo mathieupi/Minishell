@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 18:18:53 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/13 09:41:18 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/16 18:30:38 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	exec(char **argv)
 	pid = fork();
 	if (pid == 0)
 	{
-		execve(argv[0], argv, NULL);
+		execve(argv[0], argv, g_environ);
 		exit(126);
 	}
 	else if (pid > 0)
