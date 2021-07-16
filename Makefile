@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
+#    By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/16 01:05:09 by bledda           ###   ########.fr        #
+#    Updated: 2021/07/16 11:57:36 by mmehran          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,7 +81,6 @@ LIBS				= -L ./libft -lft -lreadline
 LIBS_MAC			= -L/Users/$(USER)/.brew/Cellar/readline/8.1/lib/
 
 UNAME_S				= $(shell uname -s)
-LOGDATE 			= $(shell date --iso=seconds)
 
 COMPIL_LINE_LINUX	= $(CC) $(CFLAGS) ${OBJ} $(LIBS) -o $(NAME)
 COMPIL_LINE_MAC		= $(CC) $(CFLAGS) ${OBJ} $(LIBS) $(LIBS_MAC) -o $(NAME)
@@ -89,11 +88,13 @@ COMPIL_LINE_MAC		= $(CC) $(CFLAGS) ${OBJ} $(LIBS) $(LIBS_MAC) -o $(NAME)
 ifeq ($(UNAME_S),Linux)
 	COMPILE 		= $(COMPIL_LINE_LINUX)
 	CROSS			= $(OBJS_LINUX)
+	LOGDATE 		= $(shell date --iso=seconds)
 endif
 ifeq ($(UNAME_S),Darwin)
 	COMPILE			= $(COMPIL_LINE_MAC)
 	READLINE		= @brew install readline
 	CROSS			= $(OBJS_MAC)
+	LOGDATE 		= $(shell date)
 endif
 
 OBJ					= ${OBJS} ${OBJS_INC} ${OBJS_UTILS} ${OBJS_PARSER} ${CROSS}
