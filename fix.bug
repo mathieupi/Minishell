@@ -1,9 +1,6 @@
 export.c
 	Quand afficher les error ?
 
-exec
-	try_exec les programs du pwd
-
 UPDATE ENV // void	update_env(char *env, char *new_value)
 	PWD_______ok
 	OLDPWD----ok
