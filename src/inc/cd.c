@@ -6,13 +6,13 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 04:36:22 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/16 22:00:58 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/17 18:23:10 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/inc.h"
 
-int	try_chdir(char *tmp, char *saved_pwd, char **av)
+static int	try_chdir(char *tmp, char *saved_pwd, char **av)
 {
 	struct stat	buffer;
 	int			status;
@@ -35,7 +35,7 @@ int	try_chdir(char *tmp, char *saved_pwd, char **av)
 	return (0);
 }
 
-bool	is_arg_count_valid(char **av)
+static bool	is_arg_count_valid(char **av)
 {
 	char	*saved_pwd;
 
@@ -55,6 +55,14 @@ bool	is_arg_count_valid(char **av)
 	return (true);
 }
 
+static void	is_slash(char **temp, char **splitted)
+{
+	*temp = ft_strdup("/");
+	add_value(temp, *splitted);
+	free(*splitted);
+	*splitted = *temp;
+}
+
 void	ft_cd(char **av)
 {
 	char	**splitted;
@@ -64,30 +72,20 @@ void	ft_cd(char **av)
 	char	*home;
 
 	av++;
-	i = 0;
+	i = -1;
 	if (!is_arg_count_valid(av))
 		return ;
 	saved_pwd = get_pwd();
 	splitted = ft_split(*av, '/');
+	home = ft_getenv("HOME");
 	if (count_array(splitted) == 0)
-	{
-		home = ft_getenv("HOME");
 		try_chdir(home, saved_pwd, av);
-		free(home);
-	}
-	while (splitted[i])
-	{
-		if (i == 0 && av[0][0] == '/')
-		{
-			temp = ft_strdup("/");
-			add_value(&temp, splitted[i]);
-			free(splitted[i]);
-			splitted[i] = temp;
-		}
+	if (av[0][0] == '/')
+		is_slash(&temp, &splitted[0]);
+	while (splitted[++i])
 		if (try_chdir(splitted[i], saved_pwd, av))
 			break ;
-		i++;
-	}
+	free(home);
 	free(saved_pwd);
 	free_array(splitted);
 }
