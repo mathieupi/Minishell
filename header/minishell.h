@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 11:28:54 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/17 18:26:54 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/17 20:49:58 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include "utils.h"
 # include "inc.h"
 # include "parser.h"
+# include "redirection.h"
 
 # ifdef __linux__
 #  include <readline/readline.h>

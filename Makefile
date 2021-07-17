@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/17 18:27:01 by bledda           ###   ########.fr        #
+#    Updated: 2021/07/17 20:52:46 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ HEADER_FILE 		= minishell.h \
 						utils.h \
 						inc.h \
 						parser.h \
-						color.h
+						color.h \
+						redirection.h
 
 FOLDER				= src/
 FOLDER_INC			= src/inc/
@@ -27,6 +28,7 @@ FOLDER_CROSS		= src/cross_platform/
 
 SRCS				= minishell.c \
 						main.c \
+						redirection.c
 
 SRCS_UTILS			= utils.c \
 						utils2.c \
