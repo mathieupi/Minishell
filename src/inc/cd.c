@@ -44,7 +44,8 @@ bool	is_arg_count_valid(char **av)
 		ft_error("cd", "too many arguments");
 		return (false);
 	}
-	else if (count_array(av) == 1 && ft_streql(av[0], "/"))
+	else if (count_array(av) == 1
+		&& ft_count_char(av[0], '/') == ft_strlen(av[0]))
 	{
 		saved_pwd = get_pwd();
 		try_chdir("/", saved_pwd, av);
@@ -83,7 +84,6 @@ void	ft_cd(char **av)
 			free(splitted[i]);
 			splitted[i] = temp;
 		}
-		printf("%s\n", splitted[i]);
 		if (try_chdir(splitted[i], saved_pwd, av))
 			break ;
 		i++;

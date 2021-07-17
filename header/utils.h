@@ -10,7 +10,7 @@ void	ft_error2(char *msg, char *msg2, char *error_msg);
 void	add_value(char **str, char *new_value);
 int		count_array(char **arr);
 void	free_array(char **arr);
-int		ft_count_char(const char *str, char c);
+size_t	ft_count_char(const char *str, char c);
 char	*get_pwd(void);
 void	ft_prompt(char **prompt);
 int		ft_clean_input(char **in);

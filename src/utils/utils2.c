@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 04:10:50 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/16 14:12:19 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/17 18:02:14 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/utils.h"
 
-int	ft_count_char(const char *str, char c)
+size_t	ft_count_char(const char *str, char c)
 {
 	int	j;
 
