@@ -1,11 +1,6 @@
 export.c
 	Quand afficher les error ?
 
-UPDATE ENV // void	update_env(char *env, char *new_value)
-	PWD_______ok
-	OLDPWD----ok
-	_= a faire
-
 replace
 	$?
 
