@@ -37,20 +37,34 @@ void	error_code(int code, char *cmd)
 		ft_error(cmd, "command not found");
 }
 
+char	**get_exec_paths(bool only_pwd)
+{
+	char	**paths;
+
+	if (only_pwd)
+	{
+		paths = ft_calloc(2, sizeof(char *));
+		paths[0] = get_pwd();
+	}
+	else
+		paths = ft_split(ft_getenv("PATH"), ':');
+	return (paths);
+}
+
 void	try_exec2(char **argv)
 {
 	int		i;
-	char	**splitted;
+	char	**paths;
 	char	*program_name;
 	int		code;
 	char	*save;
 
-	splitted = ft_split(getenv("PATH"), ':');
 	program_name = ft_strdup(argv[0]);
+	paths = get_exec_paths(ft_strncmp(program_name, "./", 2) == 0);
 	i = -1;
-	while (splitted[++i])
+	while (paths[++i])
 	{
-		save = ft_strdup(splitted[i]);
+		save = ft_strdup(paths[i]);
 		add_value(&save, "/");
 		add_value(&save, argv[0]);
 		free(argv[0]);
@@ -61,7 +75,7 @@ void	try_exec2(char **argv)
 		free(argv[0]);
 		argv[0] = ft_strdup(program_name);
 	}
-	free_array(splitted);
+	free_array(paths);
 	error_code(code, program_name);
 	free(program_name);
 }
