@@ -40,6 +40,7 @@ void	error_code(int code, char *cmd)
 char	**get_exec_paths(bool only_pwd)
 {
 	char	**paths;
+	char	*tmp;
 
 	if (only_pwd)
 	{
@@ -47,7 +48,11 @@ char	**get_exec_paths(bool only_pwd)
 		paths[0] = get_pwd();
 	}
 	else
-		paths = ft_split(ft_getenv("PATH"), ':');
+	{
+		tmp = ft_getenv("PATH");
+		paths = ft_split(tmp, ':');
+		free(tmp);
+	}
 	return (paths);
 }
 
