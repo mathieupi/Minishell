@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 00:16:35 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/17 21:26:33 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/17 23:41:04 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,5 @@ char	**parsing(char *str)
 		remove_quote(&pars[i]);
 		remove_backslash(&pars[i]);
 	}
-	//print_array(pars);
 	return (pars);
 }

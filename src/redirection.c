@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 20:51:30 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/17 23:35:22 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/17 23:42:12 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	isredirection(char *str)
 {
-	char *tmp;
+	char	*tmp;
 
 	tmp = ft_strdup(str);
 	trim_arg(&tmp, " \t\n\v\f\r");
@@ -53,7 +53,7 @@ t_redirection	**cmds(char *str)
 	int				ac;
 	int				i;
 	int				j;
-	t_redirection 	**redict;
+	t_redirection	**redict;
 
 	ac = count_args(str);
 	tmp = ft_calloc(sizeof(char *), ac + 1);
