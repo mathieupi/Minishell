@@ -2,7 +2,6 @@ export.c
 	Quand afficher les error ?
 
 UPDATE ENV // void	update_env(char *env, char *new_value)
-	/////// si la variable n'existe pas ça segfault :/
 	PWD_______ok
 	OLDPWD----ok
 	_= a faire
