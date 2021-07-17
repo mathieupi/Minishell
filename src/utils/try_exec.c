@@ -104,5 +104,5 @@ void	try_exec(char **argv)
 	else if (ft_streql(argv[0], "cd"))
 		ft_cd(argv);
 	else
-		try_exec2(argv);
+		exec(argv);
 }

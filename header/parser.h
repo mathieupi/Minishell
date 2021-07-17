@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 00:18:53 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/16 15:27:12 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/17 15:04:30 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,8 @@ void	trim_arg(char **arg, const char *set);
 void	sub_env(char **arg);
 void	remove_backslash(char **arg);
 void	remove_quote(char **arg);
+void	ft_replace_str(char **arg, unsigned int start_index,
+			unsigned int end_index, char *value);
+void	sub_tilde(char **arg);
 
 #endif
