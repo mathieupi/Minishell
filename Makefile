@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+         #
+#    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/17 14:22:13 by mmehran          ###   ########.fr        #
+#    Updated: 2021/07/17 18:27:01 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ NAME				= minishell
 HEADER_FILE 		= minishell.h \
 						utils.h \
 						inc.h \
-						parser.h
+						parser.h \
+						color.h
 
 FOLDER				= src/
 FOLDER_INC			= src/inc/
