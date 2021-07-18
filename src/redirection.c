@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 20:51:30 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/18 03:00:01 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/18 03:13:35 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,22 @@ static int	isredirection(char *str)
 	return (i);
 }
 
+static int	size_args(char **str)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (str[i])
+	{
+		if (isredirection(str[i]) != 0)
+			j++;
+		i++;
+	}
+	return (j);
+}
+
 t_redirection	**cmds(char *str)
 {
 	char			**tmp;
@@ -45,31 +61,19 @@ t_redirection	**cmds(char *str)
 	ac = count_args(str);
 	tmp = ft_calloc(sizeof(char *), ac + 1);
 	split_args(tmp, str);
-	i = 0;
-	j = 0;
-	while (tmp[i])
-	{
-		if (isredirection(tmp[i]) != 0)
-			j++;
-		i++;
-	}
-	redict = ft_calloc(sizeof(t_redirection), j + 1);
-	i = 0;
+	redict = ft_calloc(sizeof(t_redirection), size_args(tmp) + 1);
+	i = -1;
 	j = 0;
 	redict[j] = ft_calloc(sizeof(t_redirection), 1);
-	while (tmp[i])
-	{
+	while (tmp[++i])
 		if (isredirection(tmp[i]) == 0)
 			add_value(&redict[j]->value, tmp[i]);
-		else
-		{
-			j++;
-			redict[j] = ft_calloc(sizeof(t_redirection), 1);
-			redict[j]->type = isredirection(tmp[i]);
-		}
-		free(tmp[i]);
-		i++;
+	else
+	{
+		j++;
+		redict[j] = ft_calloc(sizeof(t_redirection), 1);
+		redict[j]->type = isredirection(tmp[i]);
 	}
-	free(tmp);
+	free_array(tmp);
 	return (redict);
 }
