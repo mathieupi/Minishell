@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 14:24:07 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/18 03:26:52 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/18 03:37:21 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,24 @@
 static void	try_cmds(t_redirection	**redict)
 {
 	char	**argv;
-	int		j;
+	int		i;
 
-	j = 0;
-	while (redict[j])
+	i = 0;
+	while (redict[i])
 	{
-		printf("Type : %d\n", redict[j]->type);
-		if (redict[j]->value)
+		while (redict[i] && redict[i]->value == NULL)
+			i++;
+		printf("Type : %d\n", redict[i]->type);
+		if (redict[i]->value)
 		{
-			argv = parsing(redict[j]->value);
+			argv = parsing(redict[i]->value);
 			if (count_array(argv) > 0)
 				update_env("_", argv[count_array(argv) - 1]);
 			try_exec(argv);
 			free_array(argv);
-			free(redict[j]->value);
+			free(redict[i]->value);
 		}
-		j++;
-		if (redict[j] && redict[j]->value == NULL)
-			break ;
+		i++;
 	}
 	free_array((char **)redict);
 }
