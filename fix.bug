@@ -1,14 +1,9 @@
 replace
 	$?
 
+finir la logique de $_ quand ont l'aurant trouver
+
 Mathieu doit faire exec
 
-Logique a avoir pour le parsing des args
-	tester in si il y a des chevron ou pipe non proteger
-	si pas le cas faire comme on fait
-	sinon
-	faire plusieur paquet argiment avant de les envoyer dans le splitter
-	"Logique de etudiant qui ma donner astuce pour clear"
-
-bug norminette 68 a 77 redirection.c
+bug norminette 68 a 77 > redirection.c
 on le signal ?
