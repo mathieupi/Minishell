@@ -78,13 +78,16 @@ void	ft_cd(char **av)
 	saved_pwd = get_pwd();
 	splitted = ft_split(*av, '/');
 	home = ft_getenv("HOME");
-	if (count_array(splitted) == 0)
+	if (!splitted || count_array(splitted) == 0)
 		try_chdir(home, saved_pwd, av);
-	if (av[0][0] == '/')
-		is_slash(&temp, &splitted[0]);
-	while (splitted[++i])
-		if (try_chdir(splitted[i], saved_pwd, av))
-			break ;
+	else
+	{
+		if (av[0][0] == '/')
+			is_slash(&temp, &splitted[0]);
+		while (splitted[++i])
+			if (try_chdir(splitted[i], saved_pwd, av))
+				break ;
+	}
 	free(home);
 	free(saved_pwd);
 	free_array(splitted);
