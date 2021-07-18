@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 20:51:30 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/18 14:03:26 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/18 15:17:34 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,11 @@ static int	count_cmds(char **str)
 	int	i;
 	int	j;
 
-	i = 0;
+	i = -1;
 	j = 0;
-	while (str[i])
-	{
+	while (str[++i])
 		if (isredirection(str[i]) != 0)
 			j++;
-		i++;
-	}
 	return (j);
 }
 
