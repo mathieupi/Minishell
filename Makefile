@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
+#    By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/17 20:52:46 by bledda           ###   ########.fr        #
+#    Updated: 2021/07/18 12:38:06 by mmehran          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,8 @@ SRCS_UTILS			= utils.c \
 						try_exec.c \
 						ft_getenv.c \
 						print_array.c \
-						update_env.c
+						update_env.c \
+						utils3.c
 
 SRCS_INC			= pwd.c \
 						echo.c \

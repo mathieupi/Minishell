@@ -21,5 +21,6 @@ void	print_array(char **arr);
 int		ft_strcheckunset(const char *str);
 int		ft_checkunset(char c);
 void	update_env(char *env, char *new_value);
+char	**ft_get_paths(void);
 
 #endif
