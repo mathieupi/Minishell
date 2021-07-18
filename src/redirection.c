@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 20:51:30 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/18 02:43:10 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/18 03:00:01 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,36 +15,23 @@
 static int	isredirection(char *str)
 {
 	char	*tmp;
+	int		i;
 
+	i = 0;
 	tmp = ft_strdup(str);
 	trim_arg(&tmp, " \t\n\v\f\r");
 	if (ft_streql(tmp, ">>"))
-	{
-		free(tmp);
-		return (DOUBLE_RIGHT);
-	}
-	if (ft_streql(tmp, ">"))
-	{
-		free(tmp);
-		return (SIMPLE_RIGHT);
-	}
-	if (ft_streql(tmp, "<<"))
-	{
-		free(tmp);
-		return (DOUBLE_LEFT);
-	}
-	if (ft_streql(tmp, "<"))
-	{
-		free(tmp);
-		return (SIMPLE_LEFT);
-	}
-	if (ft_streql(tmp, "|"))
-	{
-		free(tmp);
-		return (PIPE);
-	}
+		i = DOUBLE_RIGHT;
+	else if (ft_streql(tmp, ">"))
+		i = SIMPLE_RIGHT;
+	else if (ft_streql(tmp, "<<"))
+		i = DOUBLE_LEFT;
+	else if (ft_streql(tmp, "<"))
+		i = SIMPLE_LEFT;
+	else if (ft_streql(tmp, "|"))
+		i = PIPE;
 	free(tmp);
-	return (0);
+	return (i);
 }
 
 t_redirection	**cmds(char *str)
