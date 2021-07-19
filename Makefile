@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/20 00:40:50 by bledda           ###   ########.fr        #
+#    Updated: 2021/07/20 01:13:05 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -197,6 +197,113 @@ push:		pull
 			@printf $(reset)
 			@git push
 
+apple:
+			@printf $(bg_white)
+			@printf $(cyan)
+			@printf "                #      "
+			@printf $(reset)
+			@printf "\n"
+			@printf $(bg_white)
+			@printf $(cyan)
+			@printf "              ###      "
+			@printf $(reset)
+			@printf "\n"
+			@printf $(bg_white)
+			@printf $(cyan)
+			@printf "             ####      "
+			@printf $(reset)
+			@printf "\n"
+			@printf $(bg_white)
+			@printf $(cyan)
+			@printf "            ####       "
+			@printf $(reset)
+			@printf "\n"
+			@printf $(bg_white)
+			@printf $(cyan)
+			@printf "            ##         "
+			@printf $(reset)
+			@printf "\n"
+			@printf $(bg_white)
+			@printf $(green)
+			@printf "     ######   ######   "
+			@printf $(reset)
+			@printf "\n"
+			@printf $(bg_white)
+			@printf $(green)
+			@printf "   ##################  "
+			@printf $(reset)
+			@printf "\n"
+			@printf $(bg_white)
+			@printf $(green)
+			@printf "  #################### "
+			@printf $(reset)
+			@printf "\n"
+			@printf $(bg_white)
+			@printf $(green)
+			@printf " ####################  "
+			@printf $(reset)
+			@printf "\n"
+			@printf $(bg_white)
+			@printf $(yellow)
+			@printf "###################    "
+			@printf $(reset)
+			@printf "\n"
+			@printf $(bg_white)
+			@printf $(yellow)
+			@printf "###################    "
+			@printf $(reset)
+			@printf "\n"
+			@printf $(bg_white)
+			@printf $(yellow)
+			@printf "###################    "
+			@printf $(reset)
+			@printf "\n"
+			@printf $(bg_white)
+			@printf $(yellow)
+			@printf "###################    "
+			@printf $(reset)
+			@printf "\n"
+			@printf $(bg_white)
+			@printf $(red)
+			@printf "####################   "
+			@printf $(reset)
+			@printf "\n"
+			@printf $(bg_white)
+			@printf $(red)
+			@printf "#####################  "
+			@printf $(reset)
+			@printf "\n"
+			@printf $(bg_white)
+			@printf $(red)
+			@printf " ##################### "
+			@printf $(reset)
+			@printf "\n"
+			@printf $(bg_white)
+			@printf $(red)
+			@printf " ######################"
+			@printf $(reset)
+			@printf "\n"
+			@printf $(bg_white)
+			@printf $(magenta)
+			@printf "  #################### "
+			@printf $(reset)
+			@printf "\n"
+			@printf $(bg_white)
+			@printf $(magenta)
+			@printf "   ################### "
+			@printf $(reset)
+			@printf "\n"
+			@printf $(bg_white)
+			@printf $(magenta)
+			@printf "    #################  "
+			@printf $(reset)
+			@printf "\n"
+			@printf $(bg_white)
+			@printf $(magenta)
+			@printf "     ######    #####   \n"
+			@printf $(bg_black)
+			@printf $(reset)
+
 help:
 			@printf $(magenta)
 			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
@@ -207,11 +314,12 @@ help:
 			@printf "|                            and binarie        |\n"
 			@printf "| pull                     : fclean + update rep|\n"
 			@printf "| push                     : fclean + upload rep|\n"
+			@printf "| apple                    : printf apple brand |\n"
 			@printf "| re                       : fclean + all       |\n"
 			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
 			@printf $(reset)
 
-.PHONY: 	all clean fclean re help pull push
+.PHONY: 	all clean fclean re help pull push apple
 #################################################################################
 
 #	COLOR SETTING	#############################################################
