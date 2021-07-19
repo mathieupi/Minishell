@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+         #
+#    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/18 12:38:06 by mmehran          ###   ########.fr        #
+#    Updated: 2021/07/19 22:06:32 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -109,7 +109,8 @@ endif
 OBJ					= ${OBJS} ${OBJS_INC} ${OBJS_UTILS} ${OBJS_PARSER} ${CROSS}
 
 $(NAME):	${OBJ}
-			@printf "\e[1;34m################################################\n"
+			@printf $(blue)
+			@printf "################################################\n"
 			@printf "#          :::      ::::::::                   #\n"
 			@printf "#        :+:      :+:    :+:      mmehran      #\n"
 			@printf "#      +:+ +:+         +:+          and        #\n"
@@ -117,19 +118,25 @@ $(NAME):	${OBJ}
 			@printf "#  +#+#+#+#+#+   +#+                 as        #\n"
 			@printf "#       #+#    #+#                Minishell    #\n"
 			@printf "#      ###   ########nice.fr                   #\n"
-			@printf "################################################\e[0m\n"
-			@printf "\e[1;34m--------------\n"
-			@printf "\e[1;35mStart build ⏳\n"
-			@printf "\e[1;36m--------------\e[0m\n"
+			@printf "################################################\n"
+			@printf "➖➖➖➖➖➖➖\n"
+			@printf $(magenta)
+			@printf "Start build ⏳\n"
+			@printf "➖➖➖➖➖➖➖\n"
+			@printf $(reset)
 			$(MAKE_EXT) ./libft
 			$(READLINE)
-			@printf "\e[1;34m---------------------\n"
-			@printf "\e[1;35mCompiling minishell🔨\n"
-			@printf "\e[1;36m----------------------\e[0m\n"
+			@printf "➖➖➖➖➖➖➖➖➖➖➖\n"
+			@printf $(magenta)
+			@printf "Compiling minishell🔨\n"
+			@printf "➖➖➖➖➖➖➖➖➖➖➖\n"
+			@printf $(reset)
 			@$(COMPILE)
-			@printf "\e[1;34m---------------------------\n"
-			@printf "\e[1;35mYour best shell is ready ✅\n"
-			@printf "\e[1;36m---------------------------\e[0m\n"
+			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
+			@printf $(magenta)
+			@printf "Your best shell is ready ✅\n"
+			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
+			@printf $(reset)
 
 all:		${NAME}
 
@@ -141,48 +148,85 @@ re: 		fclean all
 clean:
 			$(MAKE_EXT) ./libft clean
 			@${RM} ${OBJ}
-			@printf "\e[1;34m---------------------------------\n"
-			@printf "\e[1;35mObject files have been deleted 🚮\n"
-			@printf "\e[1;36m---------------------------------\e[0m\n"
+			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
+			@printf $(magenta)
+			@printf "Object files have been deleted 🚮\n"
+			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
+			@printf $(reset)
 
 fclean:		clean
 			$(MAKE_EXT) ./libft fclean
 			@${RM} $(NAME)
-			@printf "\e[1;34m--------------------------\n"
-			@printf "\e[1;35mYour folder is now clean 🧹\n"
-			@printf "\e[1;36m--------------------------\e[0m\n"
+			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
+			@printf $(magenta)
+			@printf "Your folder is now clean 🧹\n"
+			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
+			@printf $(reset)
 
 pull:		fclean
-			@printf "\e[1;34m--------------------------\n"
-			@printf "\e[1;35mGit pull in progress 🐱‍👓\n"
-			@printf "\e[1;36m--------------------------\e[0m\n"
+			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
+			@printf $(magenta)
+			@printf "Git pull in progress 🐱‍👓\n"
+			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
+			@printf $(reset)
 			@git pull
 
 push:		pull
 			@${RM} $(NAME).dSYM
-			@printf "\e[1;34m----------------\n"
-			@printf "\e[1;35mAdd all files 🐱‍👓\n"
-			@printf "\e[1;36m----------------\e[0m\n"
+			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
+			@printf $(magenta)
+			@printf "Add all files 🐱‍👓\n"
+			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
+			@printf $(reset)
 			@git add .
-			@printf "\e[1;34m--------------------\n"
-			@printf "\e[1;35mCommit adding date 🐱‍👓\n"
-			@printf "\e[1;36m--------------------\e[0m\n"
+			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
+			@printf $(magenta)
+			@printf "Commit adding date 🐱‍👓\n"
+			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
+			@printf $(reset)
 			@git commit -m "$(LOGDATE)"
-			@printf "\e[1;34m------------\n"
-			@printf "\e[1;35mGit push 🐱‍👓\n"
-			@printf "\e[1;36m------------\e[0m\n"
+			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
+			@printf $(magenta)
+			@printf "Git push 🐱‍👓\n"
+			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
+			@printf $(reset)
 			@git push
 
 help:
-			@printf "\e[1;35m------------------------------------------------\n"
-			@printf "\e[1;35m| make or all or minishell : compile minishell  |\n"
-			@printf "\e[1;35m| help                     : print help         |\n"
-			@printf "\e[1;35m| clean                    : delete object file |\n"
-			@printf "\e[1;35m| fclean                   : delete object file |\n"
-			@printf "\e[1;35m|                            and binarie        |\n"
-			@printf "\e[1;35m| pull                     : fclean + update rep|\n"
-			@printf "\e[1;35m| push                     : fclean + upload rep|\n"
-			@printf "\e[1;35m| re                       : fclean + all       |\n"
-			@printf "\e[1;35m------------------------------------------------\n"
+			@printf $(magenta)
+			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
+			@printf "| make or all or minishell : compile minishell  |\n"
+			@printf "| help                     : print help         |\n"
+			@printf "| clean                    : delete object file |\n"
+			@printf "| fclean                   : delete object file |\n"
+			@printf "|                            and binarie        |\n"
+			@printf "| pull                     : fclean + update rep|\n"
+			@printf "| push                     : fclean + upload rep|\n"
+			@printf "| re                       : fclean + all       |\n"
+			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
+			@printf $(reset)
 
 .PHONY: 	all clean fclean re help pull push
+
+
+#	COLOR SETTING	############
+black 				= "\e[1;30m"
+red 				= "\e[1;31m"
+green 				= "\e[1;32m"
+yellow 				= "\e[1;33m"
+blue 				= "\e[1;34m"
+magenta 			= "\e[1;35m"
+cyan 				= "\e[1;36m"
+white 				= "\e[1;37m"
+
+bg_black 			= "\e[40m"
+bg_red 				= "\e[41m"
+bg_green 			= "\e[42m"
+bg_yellow 			= "\e[43m"
+bg_blue 			= "\e[44m"
+bg_magenta 			= "\e[45m"
+bg_cyan 			= "\e[46m"
+bg_white 			= "\e[47m"
+
+reset 				= "\e[0m"
+################################
