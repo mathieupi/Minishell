@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/20 01:32:34 by bledda           ###   ########.fr        #
+#    Updated: 2021/07/20 01:34:10 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -305,6 +305,7 @@ apple:
 			@printf $(reset)
 
 tea:
+			@printf $(red)
 			@printf "            .------.____\n"
 			@printf "         .-'       \\ ___)\n"
 			@printf "      .-'         \\\\\\n"
@@ -325,6 +326,7 @@ tea:
 			@printf "              |#.  .##|\n"
 			@printf "              |#######|\n"
 			@printf "              |#######|\n"
+			@printf $(reset)
 
 help:
 			@printf $(magenta)
