@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/28 20:33:58 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/20 00:36:16 by bledda           ###   ########.fr        #
+#    Updated: 2021/07/20 00:37:25 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,9 +90,9 @@ clean:
 fclean: 	clean
 			@$(RM) $(NAME)
 
-re: clean all
+re: 		clean all
 
-.PHONY: all clean fclean re
+.PHONY: 	all clean fclean re
 
 #	COLOR SETTING	############
 black 				= "\e[1;30m"
