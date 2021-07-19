@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/20 01:13:05 by bledda           ###   ########.fr        #
+#    Updated: 2021/07/20 01:32:34 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -304,22 +304,44 @@ apple:
 			@printf $(bg_black)
 			@printf $(reset)
 
+tea:
+			@printf "            .------.____\n"
+			@printf "         .-'       \\ ___)\n"
+			@printf "      .-'         \\\\\\n"
+			@printf "   .-'        ___  \\\\)\n"
+			@printf ".-'          /  (\\  |)\n"
+			@printf "         __  \  ( | |\n"
+			@printf "        /  \  \__'| |\n"
+			@printf "       /    \____).-'\n"
+			@printf "     .'       /   |\n"
+			@printf "    /     .  /    |\n"
+			@printf "  .'     / \\/     |\n"
+			@printf " /      /   \\     |\n"
+			@printf "       /    /    _|_\n"
+			@printf "       \\   /    /\\ /\\ \n"
+			@printf "        \\ /    /__v__\\ \n"
+			@printf "         '    |       |\n"
+			@printf "              |     .#|\n"
+			@printf "              |#.  .##|\n"
+			@printf "              |#######|\n"
+			@printf "              |#######|\n"
+
 help:
 			@printf $(magenta)
-			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
-			@printf "| make or all or minishell : compile minishell  |\n"
-			@printf "| help                     : print help         |\n"
-			@printf "| clean                    : delete object file |\n"
-			@printf "| fclean                   : delete object file |\n"
-			@printf "|                            and binarie        |\n"
-			@printf "| pull                     : fclean + update rep|\n"
-			@printf "| push                     : fclean + upload rep|\n"
-			@printf "| apple                    : printf apple brand |\n"
-			@printf "| re                       : fclean + all       |\n"
-			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
+			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
+			@printf "| make, make all, make minishell : compile minishell  |\n"
+			@printf "| help                           : print help         |\n"
+			@printf "| clean                          : delete object file |\n"
+			@printf "| fclean                         : delete object file |\n"
+			@printf "|                                  and binarie        |\n"
+			@printf "| pull                           : fclean + update rep|\n"
+			@printf "| push                           : fclean + upload rep|\n"
+			@printf "| apple, tea                     : suprises           |\n"
+			@printf "| re                             : fclean + all       |\n"
+			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
 			@printf $(reset)
 
-.PHONY: 	all clean fclean re help pull push apple
+.PHONY: 	all clean fclean re help pull push apple tea cofee
 #################################################################################
 
 #	COLOR SETTING	#############################################################
