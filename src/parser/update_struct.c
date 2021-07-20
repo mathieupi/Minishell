@@ -20,7 +20,7 @@ void	update_struct(char c, t_parsing *parsing)
 	{
 		if (c == '\\')
 			parsing->inhibited = true;
-		if (c == '"')
+		if (c == '"' && !parsing->in_squote)
 			parsing->in_dquote = !parsing->in_dquote;
 		if (c == '\'' && !parsing->in_dquote)
 			parsing->in_squote = !parsing->in_squote;
