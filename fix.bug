@@ -4,3 +4,6 @@ replace
 finir la logique de $_ quand ont l'aurant trouver
 
 fix remove_backslash and remove_quote :(
+
+add history in file, reload in start shell, remove for push (Bryan)
+
