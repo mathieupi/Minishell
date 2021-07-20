@@ -20,7 +20,7 @@ char	**parsing(char *str)
 
 	if (!is_valid(str))
 	{
-		printf("Comes back in 7.5 million years 🕰\n");
+		printf("Comeback in 7.5 million years 🕰\n");
 		return (NULL);
 	}
 	ac = count_args(str);
@@ -32,7 +32,9 @@ char	**parsing(char *str)
 		trim_arg(&pars[i], " \t\n\v\f\r");
 		sub_env(&pars[i]);
 		sub_tilde(&pars[i]);
+		remove_backslash(&pars[i]);
 		remove_quote(&pars[i]);
+		remove_backslash2(&pars[i]);
 	}
 	return (pars);
 }

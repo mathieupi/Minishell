@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 14:19:10 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/20 22:06:39 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/20 23:13:49 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,40 @@ void	remove_backslash(char **arg)
 	if (ft_count_char(*arg, '\\') > 0)
 	{
 		tmp = ft_calloc(sizeof(char), ft_strlen(*arg) + 1);
-		i = 0;
+		i = -1;
 		j = 0;
-		while ((*arg)[i] != 0)
+		while ((*arg)[++i] != 0)
 		{
 			if (is_inhibited(*arg, i) || (*arg)[i] != '\\')
 			{
 				tmp[j] = (*arg)[i];
 				j++;
 			}
-			i++;
+		}
+		free(*arg);
+		*arg = ft_strdup(tmp);
+		free(tmp);
+	}
+}
+
+void	remove_backslash2(char **arg)
+{
+	int		i;
+	int		j;
+	char	*tmp;
+
+	if (ft_count_char(*arg, '\\') > 0)
+	{
+		tmp = ft_calloc(sizeof(char), ft_strlen(*arg) + 1);
+		i = -1;
+		j = 0;
+		while ((*arg)[++i] != 0)
+		{
+			if (is_inhibited(*arg, i) || (*arg)[i] != '\\')
+			{
+				tmp[j] = (*arg)[i];
+				j++;
+			}
 		}
 		free(*arg);
 		*arg = ft_strdup(tmp);

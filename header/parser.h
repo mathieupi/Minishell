@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 00:18:53 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/17 15:04:30 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/20 23:14:16 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ bool	is_inhibited(const char *str, int char_index);
 void	trim_arg(char **arg, const char *set);
 void	sub_env(char **arg);
 void	remove_backslash(char **arg);
+void	remove_backslash2(char **arg);
 void	remove_quote(char **arg);
 void	ft_replace_str(char **arg, unsigned int start_index,
 			unsigned int end_index, char *value);
