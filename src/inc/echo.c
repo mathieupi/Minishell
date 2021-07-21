@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 03:51:29 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/21 19:47:06 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/21 20:22:07 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_echo(char **argv)
 
 	argv++;
 	option = false;
-	while (ft_option(*argv))
+	while (*argv && ft_option(*argv))
 	{
 		option = true;
 		argv++;

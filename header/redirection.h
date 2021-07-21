@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 20:49:17 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/17 23:41:44 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/21 20:12:18 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ typedef struct s_redirection
 }	t_redirection;
 
 t_redirection	**cmds(char *str);
+void			try_cmds(t_redirection	**redict);
 
 #endif
