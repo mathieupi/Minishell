@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 15:26:55 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/21 18:16:39 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/21 18:36:41 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,13 @@ void	remove_quote(char **arg)
 	while ((*arg)[++i] != 0)
 	{
 		update_struct2((*arg)[i], &parsing);
-		if (!parsing.inhibited)
-		{
-			if ((*arg)[i] == '"' && !parsing.in_squote)
-				continue ;
-			if ((*arg)[i] == '\'' && !parsing.in_dquote)
-				continue ;
-			if ((*arg)[i] == '\\' && !parsing.in_squote
-				&& ((*arg)[i + 1] == '\\' || (*arg)[i + 1] == '"'))
-				continue ;
-		}
+		if (!parsing.inhibited && (*arg)[i] == '"' && !parsing.in_squote)
+			continue ;
+		if (!parsing.inhibited && (*arg)[i] == '\'' && !parsing.in_dquote)
+			continue ;
+		if (!parsing.inhibited && (*arg)[i] == '\\' && !parsing.in_squote
+			&& ((*arg)[i + 1] == '\\' || (*arg)[i + 1] == '"'))
+			continue ;
 		tmp[j++] = (*arg)[i];
 	}
 	free(*arg);
