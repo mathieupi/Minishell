@@ -26,3 +26,29 @@ void	update_struct(char c, t_parsing *parsing)
 			parsing->in_squote = !parsing->in_squote;
 	}
 }
+
+void	update_struct2(char c, t_parsing *parsing)
+{
+	static bool	is_inhiber = false;
+	static bool	is_simple = false;
+	static bool	is_double = false;
+
+
+	parsing->in_squote = is_simple;
+	parsing->in_dquote = is_double;
+
+	if (parsing->inhibited)
+		parsing->inhibited = false;
+	else if (is_inhiber)
+	{
+		parsing->inhibited = true;
+		is_inhiber = false;
+	}
+	if (c == '\\' && !parsing->in_squote)
+		is_inhiber = true;
+
+	if (c == '\'' && !is_double)
+		is_simple = !is_simple;
+	if (c == '"' && !is_simple)
+		is_double = !is_double;
+}

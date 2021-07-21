@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 14:19:10 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/21 15:18:45 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/21 17:06:53 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	remove_backslash(char **arg) //env, double bashslash,
 		j = 0;
 		while ((*arg)[++i] != 0)
 		{
-			update_struct((*arg)[i], &parsing);
-			if (!is_inhibited(*arg, i))
+			update_struct2((*arg)[i], &parsing);
+			if (!parsing.inhibited)
 			{
 				if (!parsing.in_dquote && !parsing.in_squote && (*arg)[i] == '\\'
 					&& (*arg)[i + 1] != '\\' &&  (*arg)[i + 1] != '\'' && (*arg)[i + 1] != '\"')
