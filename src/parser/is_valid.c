@@ -23,5 +23,6 @@ bool	is_valid(char *str)
 		printf("%c %d %d %d\n", *str, parsing.inhibited, parsing.in_squote, parsing.in_dquote);
 		str++;
 	}
+	//printf("%c %d %d %d\n", *str, parsing.inhibited, parsing.in_squote, parsing.in_dquote);
 	return (!parsing.in_dquote && !parsing.in_squote && !parsing.inhibited);
 }
