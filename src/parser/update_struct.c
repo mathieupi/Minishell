@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 06:23:22 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/21 17:41:04 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/21 18:50:15 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	update_struct2(char c, t_parsing *parsing)
 		parsing->inhibited = true;
 		parsing->is_inhiber = false;
 	}
-	if (c == '\\' && !parsing->in_squote)
+	if (c == '\\' && !parsing->in_squote && !parsing->inhibited)
 		parsing->is_inhiber = true;
 	if (c == '\'' && !parsing->in_dquote)
 		parsing->is_simple = !parsing->is_simple;
