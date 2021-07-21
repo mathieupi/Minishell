@@ -3,7 +3,7 @@ replace
 
 finir la logique de $_ quand ont l'aurant trouver
 
-fix remove_backslash and remove_quote :(
+fix echo '\'\'
 
-add history in file, reload in start shell, remove for push (Bryan)
-
+echo -n -n (skip les autre option)
+echo -nnnnnnnnnnnnnnnn (skip les repetition)

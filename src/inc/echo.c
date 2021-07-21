@@ -6,13 +6,13 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 03:51:29 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/11 17:56:33 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/21 19:47:06 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/inc.h"
 
-void	ft_putargs(char **av)
+static void	ft_putargs(char **av)
 {
 	while (*av)
 	{
@@ -23,13 +23,29 @@ void	ft_putargs(char **av)
 	}
 }
 
+static bool	ft_option(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (str[i] && str[i] == '-')
+		i++;
+	while (str[i])
+	{
+		if (str[i] != 'n' && str[i] != 'e' && str[i] != 'E')
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
 void	ft_echo(char **argv)
 {
 	bool	option;
 
 	argv++;
 	option = false;
-	if (ft_streql(*argv, "-n"))
+	while (ft_option(*argv))
 	{
 		option = true;
 		argv++;
