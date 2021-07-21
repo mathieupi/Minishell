@@ -4,3 +4,5 @@ replace
 finir la logique de $_ quand ont l'aurant trouver
 
 fix echo '\'\'
+
+t_redirection	**cmds(char *str) // retravailler les splits cmds echo coucou&&echo chien et add ;
