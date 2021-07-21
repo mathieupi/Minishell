@@ -34,7 +34,6 @@ char	**parsing(char *str)
 		sub_tilde(&pars[i]);
 		remove_backslash(&pars[i]);
 		remove_quote(&pars[i]);
-		remove_backslash2(&pars[i]);
 	}
 	return (pars);
 }

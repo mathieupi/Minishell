@@ -20,6 +20,7 @@ bool	is_valid(char *str)
 	while (*str)
 	{
 		update_struct(*str, &parsing);
+		printf("%c %d %d %d\n", *str, parsing.inhibited, parsing.in_squote, parsing.in_dquote);
 		str++;
 	}
 	return (!parsing.in_dquote && !parsing.in_squote && !parsing.inhibited);

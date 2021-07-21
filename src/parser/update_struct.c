@@ -18,7 +18,7 @@ void	update_struct(char c, t_parsing *parsing)
 		parsing->inhibited = false;
 	else
 	{
-		if (c == '\\')
+		if (c == '\\' && parsing->in_squote)
 			parsing->inhibited = true;
 		if (c == '"' && !parsing->in_squote)
 			parsing->in_dquote = !parsing->in_dquote;
