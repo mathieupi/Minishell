@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 14:24:07 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/18 18:39:38 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/21 14:02:06 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	minishell(void)
 	char			*prompt;
 	t_redirection	**redict;
 
+	ft_load_history();
 	while (1)
 	{
 		ft_prompt(&prompt);
@@ -53,7 +54,7 @@ void	minishell(void)
 		if (!in)
 			ft_exit();
 		if (in[0])
-			add_history(in);
+			ft_add_history(in);
 		redict = cmds(in);
 		free(in);
 		try_cmds(redict);

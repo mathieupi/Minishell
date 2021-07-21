@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/20 01:34:10 by bledda           ###   ########.fr        #
+#    Updated: 2021/07/21 14:08:48 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ HEADER_FILE 		= minishell.h \
 						inc.h \
 						parser.h \
 						color.h \
-						redirection.h
+						redirection.h \
+						history.h
 
 FOLDER				= src/
 FOLDER_INC			= src/inc/
@@ -29,7 +30,8 @@ FOLDER_CROSS		= src/cross_platform/
 
 SRCS				= minishell.c \
 						main.c \
-						redirection.c
+						redirection.c \
+						history.c
 
 SRCS_UTILS			= utils.c \
 						utils2.c \
@@ -92,6 +94,7 @@ MAKE_EXT			= @make -s --no-print-directory -C
 LIBS				= -L ./libft -lft -lreadline
 LIBS_MAC			= -L/Users/$(USER)/.brew/Cellar/readline/8.1/lib/
 
+HISTORY_FILE		= $(HOME)/.minishell_history
 UNAME_S				= $(shell uname -s)
 
 COMPIL_LINE_LINUX	= $(CC) $(CFLAGS) ${OBJ} $(LIBS) -o $(NAME)
@@ -161,7 +164,7 @@ clean:
 
 fclean:		clean
 			$(MAKE_EXT) ./libft fclean
-			@${RM} $(NAME)
+			@${RM} $(NAME) $(HISTORY_FILE)
 			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
 			@printf $(magenta)
 			@printf "Your folder is now clean 🧹\n"
