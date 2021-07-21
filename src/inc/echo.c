@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 03:51:29 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/21 20:22:07 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/21 20:58:35 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,17 @@ static bool	ft_option(char *str)
 
 	i = 0;
 	if (str[i] && str[i] == '-')
-		i++;
-	while (str[i])
 	{
-		if (str[i] != 'n' && str[i] != 'e' && str[i] != 'E')
-			return (false);
 		i++;
+		while (str[i])
+		{
+			if (str[i] != 'n' && str[i] != 'e' && str[i] != 'E')
+				return (false);
+			i++;
+		}
+		return (true);
 	}
-	return (true);
+	return (false);
 }
 
 void	ft_echo(char **argv)
