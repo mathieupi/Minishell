@@ -29,31 +29,19 @@ void	update_struct(char c, t_parsing *parsing)
 
 void	update_struct2(char c, t_parsing *parsing)
 {
-	static bool	is_inhiber = false;
-	static bool	is_simple = false;
-	static bool	is_simple2 = false;
-	static bool	is_double = false;
-	static bool	is_double2 = false;
-
+	parsing->in_squote = parsing->is_simple;
+	parsing->in_dquote = parsing->is_double;
 	if (parsing->inhibited)
 		parsing->inhibited = false;
-	else if (is_inhiber)
+	else if (parsing->is_inhiber)
 	{
 		parsing->inhibited = true;
-		is_inhiber = false;
+		parsing->is_inhiber = false;
 	}
-
 	if (c == '\\' && !parsing->in_squote)
-		is_inhiber = true;
-
-	parsing->in_squote = is_simple2;
-	parsing->in_dquote = is_double2;
-
-	if (c == '\'' && !is_double)
-		is_simple = !is_simple;
-	else if (c == '"' && !is_simple)
-		is_double = !is_double;
-	
-	is_simple2 = is_simple;
-	is_double2 = is_double;
+		parsing->is_inhiber = true;
+	if (c == '\'' && !parsing->in_dquote)
+		parsing->is_simple = !parsing->is_simple;
+	if (c == '"' && !parsing->in_squote)
+		parsing->is_double = !parsing->is_double;
 }

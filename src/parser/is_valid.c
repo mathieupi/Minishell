@@ -15,12 +15,16 @@
 bool	is_valid(char *str)
 {
 	t_parsing	parsing;
+	t_parsing	parsing2;
 
 	parsing = (t_parsing){0};
+	parsing2 = (t_parsing){0};
 	while (*str)
 	{
 		update_struct(*str, &parsing);
+		update_struct2(*str, &parsing2);
 		// printf("%c %d %d %d\n", *str, parsing.inhibited, parsing.in_squote, parsing.in_dquote);
+		printf("%c %d %d %d\n", *str, parsing2.inhibited, parsing2.in_squote, parsing2.in_dquote);
 		str++;
 	}
 	//printf("%c %d %d %d\n", *str, parsing.inhibited, parsing.in_squote, parsing.in_dquote);

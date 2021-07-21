@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 00:18:53 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/21 16:45:17 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/21 17:55:54 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ typedef struct s_parsing
 	bool	in_squote;
 	bool	in_dquote;
 	bool	sp;
+	bool	is_inhiber;
+	bool	is_simple;
+	bool	is_double;
 }	t_parsing;
 
 char	**parsing(char *str);
