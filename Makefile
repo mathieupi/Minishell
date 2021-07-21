@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/21 14:08:48 by bledda           ###   ########.fr        #
+#    Updated: 2021/07/21 14:16:40 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -201,108 +201,108 @@ push:		pull
 			@git push
 
 apple:
-			@printf $(bg_white)
-			@printf $(cyan)
+			@printf $(bg_cyan)
+			@printf $(white)
 			@printf "                #      "
 			@printf $(reset)
 			@printf "\n"
-			@printf $(bg_white)
-			@printf $(cyan)
+			@printf $(bg_cyan)
+			@printf $(white)
 			@printf "              ###      "
 			@printf $(reset)
 			@printf "\n"
-			@printf $(bg_white)
-			@printf $(cyan)
+			@printf $(bg_cyan)
+			@printf $(white)
 			@printf "             ####      "
 			@printf $(reset)
 			@printf "\n"
-			@printf $(bg_white)
-			@printf $(cyan)
+			@printf $(bg_cyan)
+			@printf $(white)
 			@printf "            ####       "
 			@printf $(reset)
 			@printf "\n"
-			@printf $(bg_white)
-			@printf $(cyan)
+			@printf $(bg_cyan)
+			@printf $(white)
 			@printf "            ##         "
 			@printf $(reset)
 			@printf "\n"
-			@printf $(bg_white)
-			@printf $(green)
+			@printf $(bg_green)
+			@printf $(white)
 			@printf "     ######   ######   "
 			@printf $(reset)
 			@printf "\n"
-			@printf $(bg_white)
-			@printf $(green)
+			@printf $(bg_green)
+			@printf $(white)
 			@printf "   ##################  "
 			@printf $(reset)
 			@printf "\n"
-			@printf $(bg_white)
-			@printf $(green)
+			@printf $(bg_green)
+			@printf $(white)
 			@printf "  #################### "
 			@printf $(reset)
 			@printf "\n"
-			@printf $(bg_white)
-			@printf $(green)
+			@printf $(bg_green)
+			@printf $(white)
 			@printf " ####################  "
 			@printf $(reset)
 			@printf "\n"
-			@printf $(bg_white)
-			@printf $(yellow)
+			@printf $(bg_yellow)
+			@printf $(white)
 			@printf "###################    "
 			@printf $(reset)
 			@printf "\n"
-			@printf $(bg_white)
-			@printf $(yellow)
+			@printf $(bg_yellow)
+			@printf $(white)
 			@printf "###################    "
 			@printf $(reset)
 			@printf "\n"
-			@printf $(bg_white)
-			@printf $(yellow)
+			@printf $(bg_yellow)
+			@printf $(white)
 			@printf "###################    "
 			@printf $(reset)
 			@printf "\n"
-			@printf $(bg_white)
-			@printf $(yellow)
+			@printf $(bg_yellow)
+			@printf $(white)
 			@printf "###################    "
 			@printf $(reset)
 			@printf "\n"
-			@printf $(bg_white)
-			@printf $(red)
+			@printf $(bg_red)
+			@printf $(white)
 			@printf "####################   "
 			@printf $(reset)
 			@printf "\n"
-			@printf $(bg_white)
-			@printf $(red)
+			@printf $(bg_red)
+			@printf $(white)
 			@printf "#####################  "
 			@printf $(reset)
 			@printf "\n"
-			@printf $(bg_white)
-			@printf $(red)
+			@printf $(bg_red)
+			@printf $(white)
 			@printf " ##################### "
 			@printf $(reset)
 			@printf "\n"
-			@printf $(bg_white)
-			@printf $(red)
+			@printf $(bg_red)
+			@printf $(white)
 			@printf " ######################"
 			@printf $(reset)
 			@printf "\n"
-			@printf $(bg_white)
-			@printf $(magenta)
+			@printf $(bg_magenta)
+			@printf $(white)
 			@printf "  #################### "
 			@printf $(reset)
 			@printf "\n"
-			@printf $(bg_white)
-			@printf $(magenta)
+			@printf $(bg_magenta)
+			@printf $(white)
 			@printf "   ################### "
 			@printf $(reset)
 			@printf "\n"
-			@printf $(bg_white)
-			@printf $(magenta)
+			@printf $(bg_magenta)
+			@printf $(white)
 			@printf "    #################  "
 			@printf $(reset)
 			@printf "\n"
-			@printf $(bg_white)
-			@printf $(magenta)
+			@printf $(bg_magenta)
+			@printf $(white)
 			@printf "     ######    #####   \n"
 			@printf $(bg_black)
 			@printf $(reset)
