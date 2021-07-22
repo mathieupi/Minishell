@@ -53,25 +53,25 @@ t_redirection	**split_cmds(char *str)
 	int				ac;
 	int				i;
 	int				j;
-	t_redirection	**redict;
+	t_redirection	**redir;
 
 	ac = count_args(str);
 	tmp = ft_calloc(sizeof(char *), ac + 1);
 	split_args(tmp, str);
-	redict = ft_calloc(sizeof(t_redirection), count_cmds(tmp) + 1);
+	redir = ft_calloc(sizeof(t_redirection), count_cmds(tmp) + 1);
 	i = -1;
 	j = 0;
-	redict[j] = ft_calloc(sizeof(t_redirection), 1);
+	redir[j] = ft_calloc(sizeof(t_redirection), 1);
 	while (tmp[++i])
 	{
 		if (isredirection(tmp[i]) == 0)
-			add_value(&redict[j]->value, tmp[i]);
+			add_value(&redir[j]->value, tmp[i]);
 		else
 		{
-			redict[++j] = ft_calloc(sizeof(t_redirection), 1);
-			redict[j]->type = isredirection(tmp[i]);
+			redir[++j] = ft_calloc(sizeof(t_redirection), 1);
+			redir[j]->type = isredirection(tmp[i]);
 		}
 	}
 	free_array(tmp);
-	return (redict);
+	return (redir);
 }

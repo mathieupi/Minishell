@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/15 17:19:23 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/22 16:39:12 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/22 16:41:00 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static bool	is_comment(char *str)
 
 static bool	run_sh(int ac, char **av)
 {
-	t_redirection	**redict;
+	t_redirection	**redir;
 	char			*line;
 	int				fd;
 
@@ -41,8 +41,8 @@ static bool	run_sh(int ac, char **av)
 		{
 			if (!is_comment(line))
 			{
-				redict = split_cmds(line);
-				try_cmds(redict);
+				redir = split_cmds(line);
+				try_cmds(redir);
 			}
 			free(line);
 		}

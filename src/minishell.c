@@ -6,45 +6,45 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 14:24:07 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/22 16:38:43 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/22 16:40:36 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
 
-void	try_cmds(t_redirection	**redict)
+void	try_cmds(t_redirection	**redir)
 {
 	char	**argv;
 	int		i;
 
 	i = 0;
-	while (redict[i])
+	while (redir[i])
 	{
-		if (redict[i]->value)
+		if (redir[i]->value)
 		{
-			argv = parsing(redict[i]->value);
+			argv = parsing(redir[i]->value);
 			if (count_array(argv) > 0)
 				update_env("_", argv[count_array(argv) - 1]);
 			try_exec(argv);
 			free_array(argv);
-			free(redict[i]->value);
-			if (redict[i] && redict[i]->value == NULL)
+			free(redir[i]->value);
+			if (redir[i] && redir[i]->value == NULL)
 			{
-				while (redict[i] && redict[i]->value == NULL)
-					free(redict[i++]->value);
+				while (redir[i] && redir[i]->value == NULL)
+					free(redir[i++]->value);
 				break ;
 			}
 		}
 		i++;
 	}
-	free_array((char **)redict);
+	free_array((char **)redir);
 }
 
 void	minishell(void)
 {
 	char			*in;
 	char			*prompt;
-	t_redirection	**redict;
+	t_redirection	**redir;
 
 	ft_load_history();
 	while (1)
@@ -55,9 +55,9 @@ void	minishell(void)
 			ft_exit();
 		if (in[0])
 			ft_add_history(in);
-		redict = split_cmds(in);
+		redir = split_cmds(in);
 		free(in);
-		try_cmds(redict);
+		try_cmds(redir);
 		free(prompt);
 	}
 }
