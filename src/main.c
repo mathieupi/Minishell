@@ -6,37 +6,51 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/15 17:19:23 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/21 20:44:53 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/22 03:16:31 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
 
-static int	run_sh(int ac, char **av)
+static bool	is_comment(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (ft_isspace(str[i]))
+		i++;
+	if (str[i] == '#')
+		return (true);
+	return (false);
+}
+
+static bool	run_sh(int ac, char **av)
 {
 	t_redirection	**redict;
 	char			*line;
 	int				fd;
 
-	if (ac >= 2)
+	if (ac > 2)
+		return (true);
+	else if (ac == 2 && is_suffix(av[1], ".sh"))
 	{
-		if (ac == 2 && is_suffix(av[1], ".sh"))
+		fd = open(av[1], O_RDWR);
+		if (fd == -1)
+			return (true);
+		while (get_next_line(fd, &line) > 0)
 		{
-			fd = open(av[1], O_RDWR);
-			if (fd == -1)
-				return (1);
-			while (get_next_line(fd, &line) > 0)
+			if (!is_comment(line))
 			{
 				redict = cmds(line);
-				free(line);
 				try_cmds(redict);
 			}
-			close(fd);
-			printf("\n\n");
+			free(line);
 		}
-		return (1);
+		close(fd);
+		printf("\n\n");
+		return (true);
 	}
-	return (0);
+	return (false);
 }
 
 int	main(int ac, char **av, char **envp)
