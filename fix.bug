@@ -8,5 +8,4 @@ fix echo '\'\'
 t_redirection	**cmds(char *str) // retravailler les splits cmds echo coucou&&echo chien et add ;
 
 BUG DETECTER VIA LE SCRIPT DE AMYPLANT
-	add in cd le - // cd - renvoie cd $OLDPWD
 	$$ renvoie un int j'ai pas encore compris la valeur

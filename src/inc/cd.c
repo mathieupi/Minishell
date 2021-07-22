@@ -35,33 +35,39 @@ int	try_chdir(char *tmp, char *saved_pwd, char **av)
 	return (0);
 }
 
-bool	is_arg_count_valid(char **av)
+static void	go(char *env_name, char **av)
 {
 	char	*saved_pwd;
+	char	*env_value;
 
+	saved_pwd = get_pwd();
+	env_value = ft_getenv(env_name);
+	try_chdir(env_value, saved_pwd, av);
+	free(saved_pwd);
+	free(env_value);
+}
+
+bool	is_arg_count_valid(char **av)
+{
 	if (count_array(av) > 1)
 	{
 		ft_error("cd", "too many arguments");
 		return (false);
 	}
-	else if (count_array(av) == 1
-		&& ft_count_char(av[0], '/') == ft_strlen(av[0]))
+	else if (count_array(av) == 1)
 	{
-		saved_pwd = get_pwd();
-		try_chdir("/", saved_pwd, av);
-		free(saved_pwd);
-		return (false);
+		if (ft_count_char(av[0], '/') == ft_strlen(av[0]))
+		{
+			go("HOME", av);
+			return (false);
+		}
+		if (ft_streql(av[0], "-"))
+		{
+			go("OLDPWD", av);
+			return (false);
+		}
 	}
 	return (true);
-}
-
-void	go_home(char *saved_pwd, char **av)
-{
-	char	*home;
-
-	home = ft_getenv("HOME");
-	try_chdir(home, saved_pwd, av);
-	free(home);
 }
 
 void	add_prefix(char **str, char *prefix)
@@ -84,10 +90,10 @@ void	ft_cd(char **av)
 	i = -1;
 	if (!is_arg_count_valid(av))
 		return ;
-	saved_pwd = get_pwd();
 	splitted = ft_split(*av, '/');
 	if (!splitted || count_array(splitted) == 0)
-		go_home(saved_pwd, av);
+		go("HOME", av);
+	saved_pwd = get_pwd();
 	while (splitted[++i])
 	{
 		if (i == 0 && av[0][0] == '/')
