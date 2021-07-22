@@ -3,14 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   remove_quote.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 15:26:55 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/21 19:31:51 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/22 18:09:03 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/parser.h"
+
+static bool	to_skip(char c, char next_c, t_parsing *parsing)
+{
+	if (!parsing->inhibited && c == '"' && !parsing->in_squote)
+		return (true);
+	if (!parsing->inhibited && c == '\'' && !parsing->in_dquote)
+		return (true);
+	if (!parsing->inhibited && c == '\\' && !parsing->in_squote
+		&& (next_c == '\\' || next_c == '"'))
+		return (true);
+	if (!parsing->inhibited && c == '\\' && !parsing->in_dquote
+		&& !parsing->in_squote && next_c == '\'')
+		return (true);
+	return (false);
+}
 
 void	remove_quote(char **arg)
 {
@@ -26,12 +41,7 @@ void	remove_quote(char **arg)
 	while ((*arg)[++i] != 0)
 	{
 		update_struct2((*arg)[i], &parsing);
-		if (!parsing.inhibited && (*arg)[i] == '"' && !parsing.in_squote)
-			continue ;
-		if (!parsing.inhibited && (*arg)[i] == '\'' && !parsing.in_dquote)
-			continue ;
-		if (!parsing.inhibited && (*arg)[i] == '\\' && !parsing.in_squote
-			&& ((*arg)[i + 1] == '\\' || (*arg)[i + 1] == '"'))
+		if (to_skip((*arg)[i], (*arg)[i + 1], &parsing))
 			continue ;
 		tmp[j++] = (*arg)[i];
 	}
