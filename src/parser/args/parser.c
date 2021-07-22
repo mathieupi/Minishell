@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/parser.h"
+#include "../../../header/parser.h"
 
 char	**parsing(char *str)
 {

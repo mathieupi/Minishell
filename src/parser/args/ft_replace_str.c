@@ -6,11 +6,11 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 14:20:29 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/17 14:20:57 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/22 20:05:22 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/parser.h"
+#include "../../../header/parser.h"
 
 void	ft_replace_str(char **arg, unsigned int start_index,
 	unsigned int end_index, char *value)

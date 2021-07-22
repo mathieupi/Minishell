@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_valid.c                                         :+:      :+:    :+:   */
+/*   add_arg.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/14 06:23:30 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/21 18:53:59 by bledda           ###   ########.fr       */
+/*   Created: 2021/07/14 06:24:12 by bledda            #+#    #+#             */
+/*   Updated: 2021/07/14 06:25:12 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/parser.h"
+#include "../../../header/parser.h"
 
-bool	is_valid(char *str)
+void	add_arg(char **arg, char **tmp)
 {
-	t_parsing	parsing;
-
-	parsing = (t_parsing){0};
-	while (*str)
-	{
-		update_struct(*str, &parsing);
-		str++;
-	}
-	return (!parsing.in_dquote && !parsing.in_squote && !parsing.inhibited);
+	*arg = ft_strdup(*tmp);
+	ft_safe_free((void **)tmp);
 }

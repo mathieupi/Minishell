@@ -6,11 +6,11 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/15 22:34:11 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/17 14:20:45 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/22 20:05:31 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/parser.h"
+#include "../../../header/parser.h"
 
 char	*extract_env_name(const char *str)
 {

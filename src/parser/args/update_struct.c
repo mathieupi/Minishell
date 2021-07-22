@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/parser.h"
+#include "../../../header/parser.h"
 
 void	update_struct(char c, t_parsing *parsing)
 {

@@ -6,11 +6,11 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/15 22:32:58 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/16 09:11:24 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/22 20:05:22 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/parser.h"
+#include "../../../header/parser.h"
 
 bool	is_inhibited(const char *str, int char_index)
 {

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
+#    By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/21 14:16:40 by bledda           ###   ########.fr        #
+#    Updated: 2021/07/22 20:13:01 by mmehran          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,19 +18,18 @@ HEADER_FILE 		= minishell.h \
 						inc.h \
 						parser.h \
 						color.h \
-						redirection.h \
 						history.h
 
 FOLDER				= src/
 FOLDER_INC			= src/inc/
 FOLDER_UTILS		= src/utils/
-FOLDER_PARSER		= src/parser/
+FOLDER_PARSER_ARGS	= src/parser/args/
+FOLDER_PARSER_CMDS	= src/parser/cmds/
 FOLDER_HEADER		= header/
 FOLDER_CROSS		= src/cross_platform/
 
 SRCS				= minishell.c \
 						main.c \
-						redirection.c \
 						history.c
 
 SRCS_UTILS			= utils.c \
@@ -54,7 +53,7 @@ SRCS_LINUX			= handle_linux.c
 
 SRCS_MAC			= handle_mac.c
 
-SRCS_PARSER			= parser.c \
+SRCS_PARSER_ARGS	= parser.c \
 						update_struct.c \
 						is_valid.c \
 						add_char.c \
@@ -70,10 +69,13 @@ SRCS_PARSER			= parser.c \
 						sub_tilde.c \
 						ft_replace_str.c
 
+SRCS_PARSER_CMDS		= redirection.c
+
 SRC					= $(addprefix ${FOLDER},${SRCS})
 SRC_INC				= $(addprefix ${FOLDER_INC},${SRCS_INC})
 SRC_UTILS			= $(addprefix ${FOLDER_UTILS},${SRCS_UTILS})
-SRC_PARSER			= $(addprefix ${FOLDER_PARSER},${SRCS_PARSER})
+SRC_PARSER_ARGS		= $(addprefix ${FOLDER_PARSER_ARGS},${SRCS_PARSER_ARGS})
+SRC_PARSER_CMDS		= $(addprefix ${FOLDER_PARSER_CMDS},${SRCS_PARSER_CMDS})
 HEADERS				= $(addprefix ${FOLDER_HEADER},${HEADER_FILE})
 SRC_LINUX			= $(addprefix ${FOLDER_CROSS},${SRCS_LINUX})
 SRC_MAC				= $(addprefix ${FOLDER_CROSS},${SRCS_MAC})
@@ -81,7 +83,8 @@ SRC_MAC				= $(addprefix ${FOLDER_CROSS},${SRCS_MAC})
 OBJS				= ${SRC:.c=.o}
 OBJS_INC			= ${SRC_INC:.c=.o}
 OBJS_UTILS			= ${SRC_UTILS:.c=.o}
-OBJS_PARSER			= ${SRC_PARSER:.c=.o}
+OBJS_PARSER_ARGS	= ${SRC_PARSER_ARGS:.c=.o}
+OBJS_PARSER_CMDS	= ${SRC_PARSER_CMDS:.c=.o}
 OBJS_LINUX			= ${SRC_LINUX:.c=.o}
 OBJS_MAC			= ${SRC_MAC:.c=.o}
 ####################################################################################
@@ -112,7 +115,7 @@ ifeq ($(UNAME_S),Darwin)
 	LOGDATE 		= $(shell date)
 endif
 
-OBJ					= ${OBJS} ${OBJS_INC} ${OBJS_UTILS} ${OBJS_PARSER} ${CROSS}
+OBJ					= ${OBJS} ${OBJS_INC} ${OBJS_UTILS} ${OBJS_PARSER_ARGS} ${OBJS_PARSER_CMDS} ${CROSS}
 #####################################################################################
 
 #	RULES	#########################################################################

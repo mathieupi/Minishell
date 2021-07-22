@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_arg.c                                          :+:      :+:    :+:   */
+/*   ft_isutil.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/14 06:24:12 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/14 06:25:12 by bledda           ###   ########.fr       */
+/*   Created: 2021/07/14 06:24:05 by bledda            #+#    #+#             */
+/*   Updated: 2021/07/14 06:25:07 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/parser.h"
+#include "../../../header/parser.h"
 
-void	add_arg(char **arg, char **tmp)
+bool	ft_isutil(char *str)
 {
-	*arg = ft_strdup(*tmp);
-	ft_safe_free((void **)tmp);
+	while (ft_isspace(*str))
+		str++;
+	return (*str);
 }

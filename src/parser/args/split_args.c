@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/parser.h"
+#include "../../../header/parser.h"
 
 // +!pars->inhibited
 static int	step_first(t_parsing *pars, char str_c, char **tmp, char **arg)

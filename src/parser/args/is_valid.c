@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isutil.c                                        :+:      :+:    :+:   */
+/*   is_valid.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/14 06:24:05 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/14 06:25:07 by bledda           ###   ########.fr       */
+/*   Created: 2021/07/14 06:23:30 by bledda            #+#    #+#             */
+/*   Updated: 2021/07/21 18:53:59 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/parser.h"
+#include "../../../header/parser.h"
 
-bool	ft_isutil(char *str)
+bool	is_valid(char *str)
 {
-	while (ft_isspace(*str))
+	t_parsing	parsing;
+
+	parsing = (t_parsing){0};
+	while (*str)
+	{
+		update_struct(*str, &parsing);
 		str++;
-	return (*str);
+	}
+	return (!parsing.in_dquote && !parsing.in_squote && !parsing.inhibited);
 }

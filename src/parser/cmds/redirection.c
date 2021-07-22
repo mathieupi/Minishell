@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/redirection.h"
+#include "../../../header/parser.h"
 
 static int	isredirection(char *str)
 {
@@ -53,25 +53,25 @@ t_redirection	**split_cmds(char *str)
 	int				ac;
 	int				i;
 	int				j;
-	t_redirection	**redir;
+	t_redirection	**redict;
 
 	ac = count_args(str);
 	tmp = ft_calloc(sizeof(char *), ac + 1);
 	split_args(tmp, str);
-	redir = ft_calloc(sizeof(t_redirection), count_cmds(tmp) + 1);
+	redict = ft_calloc(sizeof(t_redirection), count_cmds(tmp) + 1);
 	i = -1;
 	j = 0;
-	redir[j] = ft_calloc(sizeof(t_redirection), 1);
+	redict[j] = ft_calloc(sizeof(t_redirection), 1);
 	while (tmp[++i])
 	{
 		if (isredirection(tmp[i]) == 0)
-			add_value(&redir[j]->value, tmp[i]);
+			add_value(&redict[j]->value, tmp[i]);
 		else
 		{
-			redir[++j] = ft_calloc(sizeof(t_redirection), 1);
-			redir[j]->type = isredirection(tmp[i]);
+			redict[++j] = ft_calloc(sizeof(t_redirection), 1);
+			redict[j]->type = isredirection(tmp[i]);
 		}
 	}
 	free_array(tmp);
-	return (redir);
+	return (redict);
 }

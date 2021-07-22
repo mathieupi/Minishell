@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sub_tilde.c                                        :+:      :+:    :+:   */
+/*   trim_arg.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/17 14:19:51 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/17 17:29:38 by mmehran          ###   ########.fr       */
+/*   Created: 2021/07/15 22:32:44 by bledda            #+#    #+#             */
+/*   Updated: 2021/07/22 20:05:37 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/parser.h"
+#include "../../../header/parser.h"
 
-void	sub_tilde(char **arg)
+void	trim_arg(char **arg, const char *set)
 {
 	char	*tmp;
 
-	if ((*arg)[0] == 0 || (*arg)[0] == '\'' || (*arg)[0] == '"')
-		return ;
-	if ((*arg)[0] == '~' && (*arg)[1] != '~')
-	{
-		tmp = ft_getenv("HOME");
-		ft_replace_str(arg, 0, 0, tmp);
-		free(tmp);
-	}
+	tmp = ft_strtrim(*arg, set);
+	free(*arg);
+	*arg = tmp;
 }

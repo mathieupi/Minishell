@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 11:28:54 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/21 20:10:30 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/22 20:11:43 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # include "utils.h"
 # include "inc.h"
 # include "parser.h"
-# include "redirection.h"
 # include "history.h"
 
 # ifdef __linux__

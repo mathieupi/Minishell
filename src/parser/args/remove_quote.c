@@ -6,11 +6,11 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 15:26:55 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/22 18:09:03 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/22 20:05:20 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/parser.h"
+#include "../../../header/parser.h"
 
 static bool	to_skip(char c, char next_c, t_parsing *parsing)
 {
