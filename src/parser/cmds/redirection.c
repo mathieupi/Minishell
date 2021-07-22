@@ -23,26 +23,23 @@
 // 	return (true);
 // }
 
-static void	add_calloc(t_cmd **cmds)
+static void	add_calloc(t_cmd ***cmdsp)
 {
 	int		count;
 	t_cmd	**tmp;
+	t_cmd	**cmds;
 
+	cmds = *cmdsp;
 	count = -1;
 	while (cmds[++count])
 		;
 	tmp = ft_calloc(count + 2, sizeof(t_cmd *));
 	count = -1;
 	while (cmds[++count])
-	{
-		tmp[count] = ft_calloc(1, sizeof(t_cmd));
-		tmp[count]->str = cmds[count]->str;
-		tmp[count]->type = cmds[count]->type;
-		free(cmds[count]);
-	}
+		tmp[count] = cmds[count];
 	tmp[count] = ft_calloc(1, sizeof(t_cmd));
 	free(cmds);
-	cmds = tmp;
+	*cmdsp = tmp;
 }
 
 static bool	is_inset(char c, const char *set)
@@ -51,6 +48,7 @@ static bool	is_inset(char c, const char *set)
 	{
 		if (*set == c)
 			return (true);
+		set++;
 	}
 	return (false);
 }
@@ -74,15 +72,16 @@ t_cmd	**split_cmds(char *str)
 	int			type;
 
 	i = 0;
-	cmds = ft_calloc(1, sizeof(t_cmd *));
+	cmds = ft_calloc(2, sizeof(t_cmd *));
 	cmds[i] = ft_calloc(1, sizeof(t_cmd));
+	parsing = (t_parsing){0};
 	while (*str)
 	{
 		update_struct2(*str, &parsing);
 		if (!parsing.inhibited && !parsing.in_squote && !parsing.in_squote
 			&& is_inset(*str, "<>|;&"))
 		{
-			add_calloc(cmds);
+			add_calloc(&cmds);
 			i++;
 			type = *str;
 			if (tam(*str, *(str + 1), "<>|&"))
@@ -91,9 +90,14 @@ t_cmd	**split_cmds(char *str)
 				str++;
 			}
 			cmds[i]->type = type;
+			if (*str)
+				str++;
 		}
-		add_char(&cmds[i]->str, *str);
-		str++;
+		if (*str)
+		{
+			add_char(&cmds[i]->str, *str);
+			str++;
+		}
 	}
 	return (cmds);
 }

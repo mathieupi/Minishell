@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 14:24:07 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/22 20:17:49 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/22 22:37:21 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	minishell(void)
 	char			*prompt;
 	t_cmd			**redir;
 
+	(void)redir;
 	ft_load_history();
 	while (1)
 	{
@@ -57,7 +58,15 @@ void	minishell(void)
 			ft_add_history(in);
 		redir = split_cmds(in);
 		free(in);
-		try_cmds(redir);
+		// try_cmds(redir);
+		int j = -1;
+		while (redir[++j])
+		{
+			printf("%d, %s\n", redir[j]->type, redir[j]->str);
+			free(redir[j]->str);
+			free(redir[j]);
+		}
+		free(redir);
 		free(prompt);
 	}
 }
