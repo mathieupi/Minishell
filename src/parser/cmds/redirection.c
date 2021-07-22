@@ -12,66 +12,88 @@
 
 #include "../../../header/parser.h"
 
-static int	isredirection(char *str)
+// cat chien;echo coucou;
+
+// static bool	is_valid(char *str)
+// {
+// 	while (*str)
+// 	{
+// 		str++;
+// 	}
+// 	return (true);
+// }
+
+static void	add_calloc(t_cmd **cmds)
 {
-	char	*tmp;
-	int		i;
+	int		count;
+	t_cmd	**tmp;
+
+	count = -1;
+	while (cmds[++count])
+		;
+	tmp = ft_calloc(count + 2, sizeof(t_cmd *));
+	count = -1;
+	while (cmds[++count])
+	{
+		tmp[count] = ft_calloc(1, sizeof(t_cmd));
+		tmp[count]->str = cmds[count]->str;
+		tmp[count]->type = cmds[count]->type;
+		free(cmds[count]);
+	}
+	tmp[count] = ft_calloc(1, sizeof(t_cmd));
+	free(cmds);
+	cmds = tmp;
+}
+
+static bool	is_inset(char c, const char *set)
+{
+	while (*set)
+	{
+		if (*set == c)
+			return (true);
+	}
+	return (false);
+}
+
+static bool	tam(char c, char next_c, char *set)
+{
+	while (*set)
+	{
+		if (c == *set && next_c == *set)
+			return (true);
+		set++;
+	}
+	return (false);
+}
+
+t_cmd	**split_cmds(char *str)
+{
+	t_cmd		**cmds;
+	t_parsing	parsing;
+	int			i;
+	int			type;
 
 	i = 0;
-	tmp = ft_strdup(str);
-	trim_arg(&tmp, " \t\n\v\f\r");
-	if (ft_streql(tmp, ">>"))
-		i = DOUBLE_RIGHT;
-	else if (ft_streql(tmp, ">"))
-		i = SIMPLE_RIGHT;
-	else if (ft_streql(tmp, "<<"))
-		i = DOUBLE_LEFT;
-	else if (ft_streql(tmp, "<"))
-		i = SIMPLE_LEFT;
-	else if (ft_streql(tmp, "|"))
-		i = PIPE;
-	free(tmp);
-	return (i);
-}
-
-static int	count_cmds(char **str)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	j = 0;
-	while (str[++i])
-		if (isredirection(str[i]) != 0)
-			j++;
-	return (j);
-}
-
-t_redirection	**split_cmds(char *str)
-{
-	char			**tmp;
-	int				ac;
-	int				i;
-	int				j;
-	t_redirection	**redict;
-
-	ac = count_args(str);
-	tmp = ft_calloc(sizeof(char *), ac + 1);
-	split_args(tmp, str);
-	redict = ft_calloc(sizeof(t_redirection), count_cmds(tmp) + 1);
-	i = -1;
-	j = 0;
-	redict[j] = ft_calloc(sizeof(t_redirection), 1);
-	while (tmp[++i])
+	cmds = ft_calloc(1, sizeof(t_cmd *));
+	cmds[i] = ft_calloc(1, sizeof(t_cmd));
+	while (*str)
 	{
-		if (isredirection(tmp[i]) == 0)
-			add_value(&redict[j]->value, tmp[i]);
-		else
+		update_struct2(*str, &parsing);
+		if (!parsing.inhibited && !parsing.in_squote && !parsing.in_squote
+			&& is_inset(*str, "<>|;&"))
 		{
-			redict[++j] = ft_calloc(sizeof(t_redirection), 1);
-			redict[j]->type = isredirection(tmp[i]);
+			add_calloc(cmds);
+			i++;
+			type = *str;
+			if (tam(*str, *(str + 1), "<>|&"))
+			{
+				type *= 2;
+				str++;
+			}
+			cmds[i]->type = type;
 		}
+		add_char(&cmds[i]->str, *str);
+		str++;
 	}
-	free_array(tmp);
-	return (redict);
+	return (cmds);
 }

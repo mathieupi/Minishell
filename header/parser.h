@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 00:18:53 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/22 20:07:01 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/22 20:17:14 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,13 @@ void			sub_tilde(char **arg);
 # define SIMPLE_LEFT 4
 # define PIPE 5
 
-typedef struct s_redirection
+typedef struct s_cmd
 {
 	int		type;
-	char	*value;
-}	t_redirection;
+	char	*str;
+}	t_cmd;
 
-t_redirection	**split_cmds(char *str);
-void			try_cmds(t_redirection	**redict);
+t_cmd			**split_cmds(char *str);
+void			try_cmds(t_cmd	**redict);
 
 #endif

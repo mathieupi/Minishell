@@ -6,13 +6,13 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 14:24:07 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/22 19:55:18 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/22 20:17:49 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
 
-void	try_cmds(t_redirection	**redir)
+void	try_cmds(t_cmd	**redir)
 {
 	char	**argv;
 	int		i;
@@ -20,18 +20,18 @@ void	try_cmds(t_redirection	**redir)
 	i = 0;
 	while (redir[i])
 	{
-		if (redir[i]->value)
+		if (redir[i]->str)
 		{
-			argv = parsing(redir[i]->value);
+			argv = parsing(redir[i]->str);
 			if (count_array(argv) > 0)
 				update_env("_", argv[count_array(argv) - 1]);
 			try_exec(argv);
 			free_array(argv);
-			free(redir[i]->value);
-			if (redir[i] && redir[i]->value == NULL)
+			free(redir[i]->str);
+			if (redir[i] && redir[i]->str == NULL)
 			{
-				while (redir[i] && redir[i]->value == NULL)
-					free(redir[i++]->value);
+				while (redir[i] && redir[i]->str == NULL)
+					free(redir[i++]->str);
 				break ;
 			}
 		}
@@ -44,7 +44,7 @@ void	minishell(void)
 {
 	char			*in;
 	char			*prompt;
-	t_redirection	**redir;
+	t_cmd			**redir;
 
 	ft_load_history();
 	while (1)
