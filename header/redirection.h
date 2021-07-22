@@ -27,7 +27,7 @@ typedef struct s_redirection
 	char	*value;
 }	t_redirection;
 
-t_redirection	**cmds(char *str);
+t_redirection	**split_cmds(char *str);
 void			try_cmds(t_redirection	**redict);
 
 #endif

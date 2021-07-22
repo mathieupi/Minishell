@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/15 17:19:23 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/22 03:16:31 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/22 16:39:12 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static bool	run_sh(int ac, char **av)
 		{
 			if (!is_comment(line))
 			{
-				redict = cmds(line);
+				redict = split_cmds(line);
 				try_cmds(redict);
 			}
 			free(line);

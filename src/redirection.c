@@ -47,7 +47,7 @@ static int	count_cmds(char **str)
 	return (j);
 }
 
-t_redirection	**cmds(char *str)
+t_redirection	**split_cmds(char *str)
 {
 	char			**tmp;
 	int				ac;
