@@ -6,13 +6,13 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 04:36:22 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/17 18:23:10 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/22 23:42:25 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/inc.h"
 
-int	try_chdir(char *tmp, char *saved_pwd, char **av)
+static int	try_chdir(char *tmp, char *saved_pwd, char **av)
 {
 	struct stat	buffer;
 	int			status;
@@ -47,8 +47,10 @@ static void	go(char *env_name, char **av)
 	free(env_value);
 }
 
-bool	is_arg_count_valid(char **av)
+static bool	is_arg_count_valid(char **av)
 {
+	char	*pwd;
+
 	if (count_array(av) > 1)
 	{
 		ft_error("cd", "too many arguments");
@@ -64,13 +66,16 @@ bool	is_arg_count_valid(char **av)
 		if (ft_streql(av[0], "-"))
 		{
 			go("OLDPWD", av);
+			pwd = get_pwd();
+			printf("%s\n", pwd);
+			free(pwd);
 			return (false);
 		}
 	}
 	return (true);
 }
 
-void	add_prefix(char **str, char *prefix)
+static void	add_prefix(char **str, char *prefix)
 {
 	char	*temp;
 

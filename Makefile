@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+         #
+#    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/22 20:13:01 by mmehran          ###   ########.fr        #
+#    Updated: 2021/07/23 00:10:15 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,7 +69,10 @@ SRCS_PARSER_ARGS	= parser.c \
 						sub_tilde.c \
 						ft_replace_str.c
 
-SRCS_PARSER_CMDS		= redirection.c
+SRCS_PARSER_CMDS	= split_cmds.c \
+						add_calloc.c \
+						isset.c \
+						double_char.c
 
 SRC					= $(addprefix ${FOLDER},${SRCS})
 SRC_INC				= $(addprefix ${FOLDER_INC},${SRCS_INC})

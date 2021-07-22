@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 14:24:07 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/22 22:37:21 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/22 23:01:12 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	try_cmds(t_cmd	**redir)
 	char	**argv;
 	int		i;
 
-	i = 0;
-	while (redir[i])
+	i = -1;
+	while (redir[++i])
 	{
 		if (redir[i]->str)
 		{
@@ -28,16 +28,10 @@ void	try_cmds(t_cmd	**redir)
 			try_exec(argv);
 			free_array(argv);
 			free(redir[i]->str);
-			if (redir[i] && redir[i]->str == NULL)
-			{
-				while (redir[i] && redir[i]->str == NULL)
-					free(redir[i++]->str);
-				break ;
-			}
 		}
-		i++;
+		free(redir[i]);
 	}
-	free_array((char **)redir);
+	free(redir);
 }
 
 void	minishell(void)
@@ -58,15 +52,7 @@ void	minishell(void)
 			ft_add_history(in);
 		redir = split_cmds(in);
 		free(in);
-		// try_cmds(redir);
-		int j = -1;
-		while (redir[++j])
-		{
-			printf("%d, %s\n", redir[j]->type, redir[j]->str);
-			free(redir[j]->str);
-			free(redir[j]);
-		}
-		free(redir);
+		try_cmds(redir);
 		free(prompt);
 	}
 }
