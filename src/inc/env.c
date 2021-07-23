@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 20:52:30 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/13 05:33:47 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/23 14:24:28 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_env(char **argv)
 	char	**env;
 
 	(void)argv;
-	env = g_environ;
+	env = g_global.env;
 	while (*env)
 	{
 		printf("%s\n", *env);

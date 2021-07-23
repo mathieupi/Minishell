@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 11:28:54 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/22 20:11:43 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/23 14:22:08 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,13 @@ void	rl_redisplay(void);
 void	rl_replace_line(const char *buffer, int something);
 # endif
 
-char	**g_environ;
+typedef struct s_global
+{
+	char	**env;
+	int		return_code;
+}			t_global;
+
+t_global	g_global;
 
 void	minishell(void);
 void	handle(int sig);

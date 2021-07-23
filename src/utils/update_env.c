@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 21:34:52 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/17 18:04:47 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/23 14:26:17 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ static int	isset_env(char *env)
 	int	i;
 
 	i = 0;
-	while (g_environ[i] != 0)
+	while (g_global.env[i] != 0)
 	{
-		if (ft_strncmp(g_environ[i], env, ft_strlen(env)) == 0)
+		if (ft_strncmp(g_global.env[i], env, ft_strlen(env)) == 0)
 			return (1);
 		i++;
 	}
@@ -37,11 +37,11 @@ void	update_env(char *env, char *new_value)
 		tmp = ft_strdup(env);
 		add_value(&tmp, "=");
 		add_value(&tmp, new_value);
-		while (g_environ[i]
-			&& ft_strncmp(g_environ[i], env, ft_strlen(env)) != 0)
+		while (g_global.env[i]
+			&& ft_strncmp(g_global.env[i], env, ft_strlen(env)) != 0)
 			i++;
-		free(g_environ[i]);
-		g_environ[i] = ft_strdup(tmp);
+		free(g_global.env[i]);
+		g_global.env[i] = ft_strdup(tmp);
 		free(tmp);
 	}
 }

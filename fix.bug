@@ -2,6 +2,3 @@ replace
 	$?
 
 finir la logique de $_ quand ont l'aurant trouver
-
-BUG DETECTER VIA LE SCRIPT DE AMYPLANT
-	$$ renvoie le PID

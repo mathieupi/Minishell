@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 21:42:23 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/16 14:12:24 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/23 14:25:29 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,25 @@ void	clear_var(int i_env, int i, char **av)
 	int		arg;
 	char	**env;
 
-	if (g_environ[i_env]
-		&& ft_strncmp(g_environ[i_env], av[i], ft_strlen(av[i])) == 0)
+	if (g_global.env[i_env]
+		&& ft_strncmp(g_global.env[i_env], av[i], ft_strlen(av[i])) == 0)
 	{
-		env = ft_calloc(sizeof(char *), count_array(g_environ));
+		env = ft_calloc(sizeof(char *), count_array(g_global.env));
 		arg = 0;
 		while (arg < i_env)
 		{
-			env[arg] = ft_strdup(g_environ[arg]);
+			env[arg] = ft_strdup(g_global.env[arg]);
 			arg++;
 		}
 		i_env++;
-		while (g_environ[i_env])
+		while (g_global.env[i_env])
 		{
-			env[arg] = ft_strdup(g_environ[i_env]);
+			env[arg] = ft_strdup(g_global.env[i_env]);
 			i_env++;
 			arg++;
 		}
-		free_array(g_environ);
-		g_environ = env;
+		free_array(g_global.env);
+		g_global.env = env;
 	}
 }
 
@@ -57,8 +57,8 @@ void	ft_unset(char **av)
 				ft_error2("unset", av[i], "not a valid identifier");
 				return ;
 			}
-			while (g_environ[i_env]
-				&& ft_strncmp(g_environ[i_env], av[i], ft_strlen(av[i])) != 0)
+			while (g_global.env[i_env]
+				&& ft_strncmp(g_global.env[i_env], av[i], ft_strlen(av[i])) != 0)
 				i_env++;
 			clear_var(i_env, i, av);
 		}

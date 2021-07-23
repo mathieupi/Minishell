@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/15 17:19:23 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/22 20:15:56 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/23 14:23:50 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,11 @@ int	main(int ac, char **av, char **envp)
 	int	i;
 
 	i = 0;
-	g_environ = ft_calloc(sizeof(char *), count_array(envp) + 1);
+	g_global = (t_global){0};
+	g_global.env = ft_calloc(sizeof(char *), count_array(envp) + 1);
 	while (envp[i])
 	{
-		g_environ[i] = ft_strdup(envp[i]);
+		g_global.env[i] = ft_strdup(envp[i]);
 		i++;
 	}
 	signal(SIGINT, handle);
