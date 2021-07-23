@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 04:36:22 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/23 15:01:19 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/23 16:07:39 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,9 @@ void	ft_cd(char **av)
 			add_prefix(&splitted[i], "/");
 		if (try_chdir(splitted[i], saved_pwd, av))
 			break ;
+		else
+			g_global.return_code = 0;
 	}
 	free(saved_pwd);
 	free_array(splitted);
-	g_global.return_code = 0;
 }
