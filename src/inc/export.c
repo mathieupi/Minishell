@@ -6,13 +6,13 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 20:52:30 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/23 15:01:26 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/23 15:38:37 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/inc.h"
 
-void	print_var(void)
+static void	print_var(void)
 {
 	int		i;
 	char	*name;
@@ -38,7 +38,7 @@ void	print_var(void)
 	}
 }
 
-void	send_update(int i_env, char **av, int arg, int i)
+static void	send_update(int i_env, char **av, int arg, int i)
 {
 	char	**env;
 
@@ -64,7 +64,7 @@ void	send_update(int i_env, char **av, int arg, int i)
 	}
 }
 
-void	update_var(char **av)
+static void	update_var(char **av)
 {
 	int		i;
 	int		i_env;
@@ -80,11 +80,15 @@ void	update_var(char **av)
 		while (av[arg][i] && av[arg][i] != '=')
 			add_char(&tmp, av[arg][i++]);
 		if (av[arg][i] != '=' || ft_strcheckunset(tmp) == 0)
+		{
 			if (ft_strcheckunset(tmp) == 0)
+			{
 				ft_error2("export", av[arg], "not a valid identifier");
+				free(tmp);
+				return ;
+			}
+		}
 		free(tmp);
-		if (av[arg][i] != '=' || ft_strcheckunset(tmp) == 0)
-			return ;
 		while (g_global.env[i_env]
 			&& ft_strncmp(g_global.env[i_env], av[arg], i) != 0)
 			i_env++;
