@@ -56,4 +56,5 @@ void	ft_echo(char **argv)
 	ft_putargs(argv);
 	if (!option)
 		ft_putchar_fd('\n', 1);
+	g_global.return_code = 0;
 }

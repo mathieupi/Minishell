@@ -14,6 +14,7 @@
 
 void	ft_error(char *msg, char *error_msg)
 {
+	g_global.return_code = 1;
 	ft_putstr_fd("minishell: ", 2);
 	ft_putstr_fd(msg, 2);
 	ft_putstr_fd(": ", 2);
@@ -23,6 +24,7 @@ void	ft_error(char *msg, char *error_msg)
 
 void	ft_error2(char *msg, char *msg2, char *error_msg)
 {
+	g_global.return_code = 1;
 	ft_putstr_fd("minishell: ", 2);
 	ft_putstr_fd(msg, 2);
 	ft_putstr_fd(": ", 2);

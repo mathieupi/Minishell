@@ -19,4 +19,5 @@ void	ft_pwd(void)
 	if (getcwd(buffer, 4096) == 0)
 		exit(EXIT_FAILURE);
 	printf("%s\n", buffer);
+	g_global.return_code = 0;
 }
