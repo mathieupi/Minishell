@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 20:51:30 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/23 01:53:43 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/23 02:00:30 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ static bool	cmds_is_valid(t_cmd	**cmds)
 		if (cmds[i]->type == 0)
 			continue ;
 		if (cmds[i + 1] && cmds[i]->type == ';' && cmds[i + 1]->type == ';'
-			&& ft_streql(cmds[i]->str, " ")
-			&& (ft_streql(cmds[i + 1]->str, " ") || cmds[i + 1]->str == 0))
+			&& !cmds[i]->str
+			&& (ft_streql(cmds[i + 1]->str, " ") || !cmds[i + 1]->str))
 		{
 			ft_error("syntax error near unexpected token", ";;");
 			return (false);
@@ -66,7 +66,7 @@ static bool	cmds_is_valid(t_cmd	**cmds)
 			cmds[i]->type = 0;
 		if (cmds[i + 1] && cmds[i]->type != 0 && cmds[i + 1]->type != 0
 			&& ft_streql(cmds[i]->str, " ")
-			&& (ft_streql(cmds[i + 1]->str, " ") || cmds[i + 1]->str == 0))
+			&& (ft_streql(cmds[i + 1]->str, " ") || !cmds[i + 1]->str))
 		{
 			str_error = string_char(cmds[i + 1]->type);
 			ft_error("syntax error near unexpected token", str_error);
