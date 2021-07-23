@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 20:52:30 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/23 14:30:58 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/23 15:01:26 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,4 +98,5 @@ void	ft_export(char **av)
 		print_var();
 	else if (count_array(av) >= 2)
 		update_var(av);
+	g_global.return_code = 0;
 }

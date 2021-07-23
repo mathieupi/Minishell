@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 21:42:23 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/23 14:31:11 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/23 15:01:31 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,5 @@ void	ft_unset(char **av)
 			clear_var(i_env, i, av);
 		}
 	}
+	g_global.return_code = 0;
 }
