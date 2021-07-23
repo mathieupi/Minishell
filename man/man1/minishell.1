@@ -1,0 +1,79 @@
+.TH MINISHELL 1 "July 23, 2021" "1.0" "minishell man page"
+
+.SH NAME
+minishell - As beautiful as a shell
+
+.SH SYSNOPSIS
+minishell [file]
+
+.SH COPYRIGHT
+Minishell is project 42, (C) 2021 - 2021 mmehran and bledda
+
+.SH YOUR SHELL SOULD
+- Not interpret unclosed quotes or unspecified special characters like \\ or;.
+.fi
+- Not use more than one global variable, think about it and be ready to explain why you do it.
+.fi
+- Show a prompt when waiting for a new commande.
+.fi
+- Hava a working History.
+.fi
+- Search and launch the right executable (based on the PATH variable or by using relative or absolute path)
+
+.SH IT MUST IMPLEMENT THE BUILTINS
+- echo whith option -n
+.fi
+- cd whith only a relative or absolute path
+.fi
+- pwd whith no options
+.fi
+- export with no options
+.fi
+- unset whith no options
+.fi
+- end with no options or arguments
+.fi
+- exit with not options
+
+\' inhibit all interpretation of a sequence of characters
+.fi
+" inhibit all interpretation of a sequence if characters except for $
+
+.SH REDIRECTIONS
+- < should redirect input.
+.fi
+- > should redirect output.
+.fi
+- "<<" read input from the current source until a line containing only the delimiter is seen, it doesn't need to update history!
+.fi
+- ">>" should redirect output with append mode.
+
+Pipes | The output of each command in the pipeline is connected via a pipe to the input of the next command.
+
+Environment variables ($ followed by characters) should expand to their values.
+
+$? should expands to the exit status of the most recently executed foreground pipeline.
+
+crtl-C crtl-D ctrl-\\ should work like in bash
+
+.SH WHEN INTERACTIVE
+- crtl-C print a new prompt on a newline.
+.fi
+- ctrl-D exit the shell.
+.fi
+- ctrl-\\ do nothing.
+
+Anything not asked is not required.
+For every point, if you have any doubt take bash as a reference.
+
+.SH BONUS PART
+if the Mandatory part is not perfect don't even think about bonuses.
+.fi
+&& || with parenthesis for priorities.
+.fi
+the wilcard * should work for the current working directory.
+
+.SH AUTHOR
+mmehran (mmehran@student.42nice.fr)
+.fi
+bledda (bledda@student.42nice.fr)

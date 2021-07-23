@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/23 02:01:57 by bledda           ###   ########.fr        #
+#    Updated: 2021/07/23 03:04:05 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -338,6 +338,9 @@ tea:
 			@printf "              |#######|\n"
 			@printf $(reset)
 
+man:
+			@man ./man/man1/minishell.1
+
 help:
 			@printf $(magenta)
 			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
@@ -349,11 +352,12 @@ help:
 			@printf "| pull                           : fclean + update rep|\n"
 			@printf "| push                           : fclean + upload rep|\n"
 			@printf "| apple, tea                     : suprises           |\n"
+			@printf "| man                            : open man           |\n"
 			@printf "| re                             : fclean + all       |\n"
 			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
 			@printf $(reset)
 
-.PHONY: 	all clean fclean re help pull push apple tea cofee
+.PHONY: 	all clean fclean re help pull push apple tea man
 #################################################################################
 
 #	COLOR SETTING	#############################################################
