@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 20:52:30 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/23 15:44:34 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/23 16:00:52 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,31 +66,27 @@ static void	send_update(int i_env, char **av, int arg, int i)
 
 static void	update_var(char **av)
 {
-	int		i;
-	int		i_env;
-	int		arg;
-	char	*tmp;
+	t_export	var;
 
-	arg = 0;
-	tmp = 0;
-	while (av[++arg])
+	var = (t_export){0};
+	while (av[++var.arg])
 	{
-		i = 0;
-		i_env = 0;
-		while (av[arg][i] && av[arg][i] != '=')
-			add_char(&tmp, av[arg][i++]);
-		if (av[arg][i] != '=' || !ft_strcheckunset(tmp) == 0)
+		var.i = 0;
+		var.i_env = 0;
+		while (av[var.arg][var.i] && av[var.arg][var.i] != '=')
+			add_char(&var.tmp, av[var.arg][var.i++]);
+		if (av[var.arg][var.i] != '=' || !ft_strcheckunset(var.tmp))
 		{
-			if (ft_strcheckunset(tmp) == 0)
-				ft_error2("export", av[arg], "not a valid identifier");
-			free(tmp);
+			if (!ft_strcheckunset(var.tmp))
+				ft_error2("export", av[var.arg], "not a valid identifier");
+			free(var.tmp);
 			return ;
 		}
-		free(tmp);
-		while (g_global.env[i_env]
-			&& ft_strncmp(g_global.env[i_env], av[arg], i) != 0)
-			i_env++;
-		send_update(i_env, av, arg, i);
+		free(var.tmp);
+		while (g_global.env[var.i_env]
+			&& ft_strncmp(g_global.env[var.i_env], av[var.arg], var.i) != 0)
+			var.i_env++;
+		send_update(var.i_env, av, var.arg, var.i);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 17:54:58 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/13 01:22:49 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/23 16:00:05 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,13 @@ void	ft_export(char **argv);
 void	ft_env(char **argv);
 void	ft_cd(char **argv);
 void	ft_unset(char **av);
+
+typedef struct s_export
+{
+	int		i;
+	int		i_env;
+	int		arg;
+	char	*tmp;
+}				t_export;
 
 #endif
