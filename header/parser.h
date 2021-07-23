@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 00:18:53 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/23 00:10:10 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/23 02:01:44 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,6 @@ void	try_cmds(t_cmd	**redict);
 void	add_calloc(t_cmd ***cmdsp);
 bool	isset(char c, const char *set);
 bool	double_char(char c, char next_c, char *set);
+bool	cmds_is_valid(t_cmd	**cmds);
 
 #endif

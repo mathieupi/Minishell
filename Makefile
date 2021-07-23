@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/23 00:10:15 by bledda           ###   ########.fr        #
+#    Updated: 2021/07/23 02:01:57 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,7 +72,8 @@ SRCS_PARSER_ARGS	= parser.c \
 SRCS_PARSER_CMDS	= split_cmds.c \
 						add_calloc.c \
 						isset.c \
-						double_char.c
+						double_char.c \
+						cmds_is_valid.c
 
 SRC					= $(addprefix ${FOLDER},${SRCS})
 SRC_INC				= $(addprefix ${FOLDER_INC},${SRCS_INC})
