@@ -33,6 +33,7 @@ int	exec(char **argv)
 
 void	error_code(int code, char *cmd)
 {
+	g_global.return_code = code;
 	if (code == 126)
 		ft_error(cmd, "command not found");
 }

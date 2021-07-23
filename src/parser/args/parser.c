@@ -30,6 +30,7 @@ char	**parsing(char *str)
 	while (pars[++i])
 	{
 		trim_arg(&pars[i], " \t\n\v\f\r");
+		sub_questionmark(&pars[i]);
 		sub_env(&pars[i]);
 		sub_tilde(&pars[i]);
 		remove_backslash(&pars[i]);

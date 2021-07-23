@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
+#    By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/23 03:04:05 by bledda           ###   ########.fr        #
+#    Updated: 2021/07/23 14:46:07 by mmehran          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,8 @@ SRCS_PARSER_ARGS	= parser.c \
 						remove_backslash.c \
 						remove_quote.c \
 						sub_tilde.c \
-						ft_replace_str.c
+						ft_replace_str.c \
+						sub_questionmark.c
 
 SRCS_PARSER_CMDS	= split_cmds.c \
 						add_calloc.c \
