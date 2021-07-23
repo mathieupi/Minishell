@@ -40,7 +40,7 @@ void	update_struct2(char c, t_parsing *parsing)
 	}
 	if (c == '\\' && !parsing->in_squote && !parsing->inhibited)
 		parsing->is_inhiber = true;
-	if (c == '\'' && !parsing->in_dquote)
+	if (c == '\'' && !parsing->in_dquote && !parsing->inhibited)
 		parsing->is_simple = !parsing->is_simple;
 	if (c == '"' && !parsing->in_squote && !parsing->inhibited)
 		parsing->is_double = !parsing->is_double;
