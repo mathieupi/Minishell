@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 21:42:23 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/23 14:25:29 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/23 14:31:11 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ void	ft_unset(char **av)
 				return ;
 			}
 			while (g_global.env[i_env]
-				&& ft_strncmp(g_global.env[i_env], av[i], ft_strlen(av[i])) != 0)
+				&& ft_strncmp(g_global.env[i_env], av[i],
+					ft_strlen(av[i])) != 0)
 				i_env++;
 			clear_var(i_env, i, av);
 		}

@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 09:27:38 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/23 14:26:06 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/23 14:33:21 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*ft_getenv(char *str)
 		while (g_global.env[i][i_tmp] != '=')
 			i_tmp++;
 		name = ft_calloc(sizeof(char), i_tmp + 1);
-		content = ft_calloc(sizeof(char), ft_strlen(g_global.env[i]) - i_tmp + 1);
+		content = ft_calloc(1, ft_strlen(g_global.env[i]) - i_tmp + 1);
 		ft_strlcpy(name, g_global.env[i], i_tmp + 1);
 		ft_strlcpy(content, g_global.env[i] + i_tmp + 1,
 			ft_strlen(g_global.env[i]) - i_tmp);
