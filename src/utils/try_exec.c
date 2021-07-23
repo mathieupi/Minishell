@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 18:18:53 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/23 14:25:53 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/23 23:21:21 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	error_code(int code, char *cmd)
 {
 	g_global.return_code = code;
 	if (code == 126)
-		ft_error(cmd, "command not found");
+		ft_error(cmd, "command not found", 127);
 }
 
 char	**get_exec_paths(char *program_name)

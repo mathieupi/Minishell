@@ -6,15 +6,15 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 18:00:26 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/23 14:59:32 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/23 23:17:35 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/utils.h"
 
-void	ft_error(char *msg, char *error_msg)
+void	ft_error(char *msg, char *error_msg, int error_code)
 {
-	g_global.return_code = 1;
+	g_global.return_code = error_code;
 	ft_putstr_fd("minishell: ", 2);
 	ft_putstr_fd(msg, 2);
 	ft_putstr_fd(": ", 2);
@@ -22,9 +22,9 @@ void	ft_error(char *msg, char *error_msg)
 	ft_putchar_fd('\n', 2);
 }
 
-void	ft_error2(char *msg, char *msg2, char *error_msg)
+void	ft_error2(char *msg, char *msg2, char *error_msg, int error_code)
 {
-	g_global.return_code = 1;
+	g_global.return_code = error_code;
 	ft_putstr_fd("minishell: ", 2);
 	ft_putstr_fd(msg, 2);
 	ft_putstr_fd(": ", 2);

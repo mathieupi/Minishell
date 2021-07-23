@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 20:52:30 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/23 16:05:49 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/23 23:52:45 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ static int	update_var(char **av)
 	var = (t_export){0};
 	while (av[++var.arg])
 	{
+		if (av[var.arg][var.i] == 0)
+			break ;
 		var.i = 0;
 		var.i_env = 0;
 		while (av[var.arg][var.i] && av[var.arg][var.i] != '=')
@@ -78,7 +80,7 @@ static int	update_var(char **av)
 		if (av[var.arg][var.i] != '=' || !ft_strcheckunset(var.tmp))
 		{
 			if (!ft_strcheckunset(var.tmp))
-				ft_error2("export", av[var.arg], "not a valid identifier");
+				ft_error2("export", av[var.arg], "not a valid identifier", 1);
 			free(var.tmp);
 			return (1);
 		}

@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 02:01:27 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/23 22:12:56 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/23 23:52:58 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static bool	first_is_command(t_cmd **cmds)
 		&& cmds[1]->type != 0)
 	{
 		str_error = string_char(cmds[1]->type);
-		ft_error("syntax error near unexpected token", str_error);
+		ft_error("syntax error near unexpected token", str_error, 2);
 		free(str_error);
 		return (false);
 	}
@@ -54,14 +54,24 @@ static bool	first_is_command(t_cmd **cmds)
 
 static bool	is_double_semicolon(t_cmd **cmds, int i)
 {
+	char	*str_error;
+
 	if (cmds[i + 1] && cmds[i]->type == ';' && cmds[i + 1]->type == ';'
 		&& !cmds[i]->str)
 	{
-		ft_error("syntax error near unexpected token", ";;");
+		ft_error("syntax error near unexpected token", ";;", 2);
 		return (false);
 	}
 	else if (cmds[i]->type == ';')
 		cmds[i]->type = 0;
+	if (cmds[i + 1] && cmds[i]->type == 0 && cmds[i + 1]->type != 0
+		&& (ft_streql(cmds[i]->str, " ") || !cmds[i]->str))
+	{
+		str_error = string_char(cmds[i + 1]->type);
+		ft_error("syntax error near unexpected token", str_error, 2);
+		free(str_error);
+		return (false);
+	}
 	return (true);
 }
 
@@ -73,7 +83,7 @@ static bool	is_double_separator(t_cmd **cmds, int i)
 		&& (ft_streql(cmds[i]->str, " ") || !cmds[i]->str))
 	{
 		str_error = string_char(cmds[i + 1]->type);
-		ft_error("syntax error near unexpected token", str_error);
+		ft_error("syntax error near unexpected token", str_error, 2);
 		free(str_error);
 		return (false);
 	}

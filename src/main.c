@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/15 17:19:23 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/23 14:23:50 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/23 23:52:17 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,19 @@ static bool	run_sh(int ac, char **av)
 	return (false);
 }
 
+static bool	ft_tester(int ac, char **av)
+{
+	t_cmd	**redir;
+
+	if (ac >= 3 && !ft_strncmp(av[1], "-c", 3))
+	{
+		redir = split_cmds(av[2]);
+		try_cmds(redir);
+		return (true);
+	}
+	return (false);
+}
+
 int	main(int ac, char **av, char **envp)
 {
 	int	i;
@@ -67,7 +80,7 @@ int	main(int ac, char **av, char **envp)
 	}
 	signal(SIGINT, handle);
 	signal(SIGQUIT, handle);
-	if (run_sh(ac, av))
+	if (ft_tester(ac, av) || run_sh(ac, av))
 		return (0);
 	minishell();
 	return (0);
