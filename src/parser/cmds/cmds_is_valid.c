@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 02:01:27 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/23 22:07:24 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/23 22:12:56 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static bool	is_double_separator(t_cmd **cmds, int i)
 	char	*str_error;
 
 	if (cmds[i + 1] && cmds[i]->type != 0 && cmds[i + 1]->type != 0
-		&& (ft_streql(cmds[i]->str, " ") || !cmds[i + 1]->str))
+		&& (ft_streql(cmds[i]->str, " ") || !cmds[i]->str))
 	{
 		str_error = string_char(cmds[i + 1]->type);
 		ft_error("syntax error near unexpected token", str_error);
