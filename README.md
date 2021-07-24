@@ -1,7 +1,7 @@
 # Minishell
 [![Team 42Project Score](https://badge42.herokuapp.com/api/project/bledda/minishell)](https://github.com/mathieupi/Minishell)
 [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/mathieupi/Minishell?label=Code%20size&maxAge=3600)](https://github.com/mathieupi/Minishell)
-[![Norminette-CI](https://github.com/mathieupi/Minishell/workflows/Norminette-CI/badge.svg)](https://github.com/mathieupi/Minishell/actions/workflows/norminette.yml)
+[![norminette](https://github.com/mathieupi/Minishell/workflows/norminette/badge.svg)](https://github.com/mathieupi/Minishell/actions/workflows/norm.yml)
 
 ## Le points de minishell
 
