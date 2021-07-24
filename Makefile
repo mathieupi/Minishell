@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/24 07:42:06 by bledda           ###   ########.fr        #
+#    Updated: 2021/07/24 07:43:54 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -188,8 +188,9 @@ pull:		fclean
 			@printf $(magenta)
 			@printf "Git pull in progress 🐱‍👓\n"
 			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
-			@printf $(reset)
+			@printf $(green)
 			@git pull
+			@printf $(reset)
 
 push:		pull
 			@${RM} $(NAME).dSYM
@@ -197,20 +198,20 @@ push:		pull
 			@printf $(magenta)
 			@printf "Add all files 🐱‍👓\n"
 			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
-			@printf $(reset)
+			@printf $(green)
 			@git add .
 			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
 			@printf $(magenta)
 			@printf "Commit adding date 🐱‍👓\n"
 			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
-			@printf $(reset)
+			@printf $(green)
 			@git commit -m "$(LOGDATE)"
 			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
-			@printf $(magenta)
 			@printf "Git push 🐱‍👓\n"
 			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
-			@printf $(reset)
+			@printf $(green)
 			@git push
+			@printf $(reset)
 
 apple:
 			@printf $(bg_cyan)
