@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+         #
+#    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/23 14:46:07 by mmehran          ###   ########.fr        #
+#    Updated: 2021/07/24 07:39:55 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -126,6 +126,7 @@ OBJ					= ${OBJS} ${OBJS_INC} ${OBJS_UTILS} ${OBJS_PARSER_ARGS} ${OBJS_PARSER_CM
 #	RULES	#########################################################################
 $(NAME):	${OBJ}
 			@printf $(blue)
+			@printf "                                                                         \r"
 			@printf "################################################\n"
 			@printf "#          :::      ::::::::                   #\n"
 			@printf "#        :+:      :+:    :+:      mmehran      #\n"
@@ -157,7 +158,10 @@ $(NAME):	${OBJ}
 all:		${NAME}
 
 %.o: %.c	$(HEADERS)
+			@printf $(yellow)
+			@printf "Generating minishell objects... %-33.33s\r" $@
 			@$(CC) -c $(CFLAGS) -o $@ $<
+			@printf $(reset)
 
 re: 		fclean all
 

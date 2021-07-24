@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/28 20:33:58 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/20 00:37:25 by bledda           ###   ########.fr        #
+#    Updated: 2021/07/24 07:40:10 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,6 +67,7 @@ OBJS 		= ft_memset.o \
 				ft_lstmap.o
 
 $(NAME): 	$(OBJS)
+			@printf "                                                                         \r"
 			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
 			@printf $(magenta)
 			@printf "Compiling libft 🔨\n"
@@ -80,7 +81,10 @@ $(NAME): 	$(OBJS)
 			@printf $(reset)
 
 .c.o:
+			@printf $(yellow)
+			@printf "Generating libft objects... %-33.33s\r" $@
 			@$(CC) $(CFLAGS) -c -o $@ $<
+			@printf $(reset)
 
 all: 		$(NAME)
 
