@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/24 07:58:04 by bledda           ###   ########.fr        #
+#    Updated: 2021/07/24 08:01:04 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -368,7 +368,7 @@ help:
 			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
 			@printf $(reset)
 
-.PHONY: 	all clean fclean re help pull push apple tea man
+.PHONY: 	all clean fclean re help pull push apple tea man norm
 #################################################################################
 
 #	COLOR SETTING	#############################################################
