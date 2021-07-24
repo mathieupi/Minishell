@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/24 07:47:05 by bledda           ###   ########.fr        #
+#    Updated: 2021/07/24 07:48:14 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -153,7 +153,7 @@ $(NAME):	${OBJ}
 			@printf $(magenta)
 			@printf "Your best shell is ready ✅\n"
 			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
-			@printf $(reset)
+			@$(MAKE) -s --no-print-directory tea
 
 all:		${NAME}
 
