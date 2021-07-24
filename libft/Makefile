@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/28 20:33:58 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/24 07:40:10 by bledda           ###   ########.fr        #
+#    Updated: 2021/07/24 07:42:14 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -99,23 +99,23 @@ re: 		clean all
 .PHONY: 	all clean fclean re
 
 #	COLOR SETTING	############
-black 				= "\e[1;30m"
-red 				= "\e[1;31m"
-green 				= "\e[1;32m"
-yellow 				= "\e[1;33m"
-blue 				= "\e[1;34m"
-magenta 			= "\e[1;35m"
-cyan 				= "\e[1;36m"
-white 				= "\e[1;37m"
+black 				=	"[1;30m"
+red 				=	"[1;31m"
+green 				=	"[1;32m"
+yellow 				=	"[1;33m"
+blue 				=	"[1;34m"
+magenta 			=	"[1;35m"
+cyan 				=	"[1;36m"
+white 				=	"[1;37m"
 
-bg_black 			= "\e[40m"
-bg_red 				= "\e[41m"
-bg_green 			= "\e[42m"
-bg_yellow 			= "\e[43m"
-bg_blue 			= "\e[44m"
-bg_magenta 			= "\e[45m"
-bg_cyan 			= "\e[46m"
-bg_white 			= "\e[47m"
+bg_black 			=	"[40m"
+bg_red 				=	"[41m"
+bg_green 			=	"[42m"
+bg_yellow 			=	"[43m"
+bg_blue 			=	"[44m"
+bg_magenta 			=	"[45m"
+bg_cyan 			=	"[46m"
+bg_white 			=	"[47m"
 
-reset 				= "\e[0m"
+reset 				=	"[0m"
 ################################
