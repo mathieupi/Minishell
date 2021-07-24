@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/24 07:44:23 by bledda           ###   ########.fr        #
+#    Updated: 2021/07/24 07:47:05 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -348,6 +348,9 @@ tea:
 man:
 			@man ./man/man1/minishell.1
 
+norm:
+			@norminette
+
 help:
 			@printf $(magenta)
 			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
@@ -360,6 +363,7 @@ help:
 			@printf "| push                           : fclean + upload rep|\n"
 			@printf "| apple, tea                     : suprises           |\n"
 			@printf "| man                            : open man           |\n"
+			@printf "| norm                           : check norm         |\n"
 			@printf "| re                             : fclean + all       |\n"
 			@printf "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n"
 			@printf $(reset)
