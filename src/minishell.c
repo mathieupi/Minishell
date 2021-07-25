@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 14:24:07 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/25 22:47:49 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/25 22:57:55 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	minishell(void)
 	char			*prompt;
 	t_cmd			**redir;
 
-	//test norm
 	ft_load_history();
 	while (1)
 	{
