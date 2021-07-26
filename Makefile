@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
+#    By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/24 08:01:04 by bledda           ###   ########.fr        #
+#    Updated: 2021/07/26 07:40:19 by mmehran          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ FOLDER_INC			= src/inc/
 FOLDER_UTILS		= src/utils/
 FOLDER_PARSER_ARGS	= src/parser/args/
 FOLDER_PARSER_CMDS	= src/parser/cmds/
+FOLDER_PARSER_REDI	= src/parser/redirection/
 FOLDER_HEADER		= header/
 FOLDER_CROSS		= src/cross_platform/
 
@@ -76,11 +77,18 @@ SRCS_PARSER_CMDS	= split_cmds.c \
 						double_char.c \
 						cmds_is_valid.c
 
+SRCS_PARSER_REDI	= pipe.c \
+						l_chevron.c \
+						ll_chevron.c \
+						r_chevron.c \
+						rr_chevron.c
+
 SRC					= $(addprefix ${FOLDER},${SRCS})
 SRC_INC				= $(addprefix ${FOLDER_INC},${SRCS_INC})
 SRC_UTILS			= $(addprefix ${FOLDER_UTILS},${SRCS_UTILS})
 SRC_PARSER_ARGS		= $(addprefix ${FOLDER_PARSER_ARGS},${SRCS_PARSER_ARGS})
 SRC_PARSER_CMDS		= $(addprefix ${FOLDER_PARSER_CMDS},${SRCS_PARSER_CMDS})
+SRC_PARSER_REDI		= $(addprefix ${FOLDER_PARSER_REDI},${SRCS_PARSER_REDI})
 HEADERS				= $(addprefix ${FOLDER_HEADER},${HEADER_FILE})
 SRC_LINUX			= $(addprefix ${FOLDER_CROSS},${SRCS_LINUX})
 SRC_MAC				= $(addprefix ${FOLDER_CROSS},${SRCS_MAC})
@@ -90,6 +98,7 @@ OBJS_INC			= ${SRC_INC:.c=.o}
 OBJS_UTILS			= ${SRC_UTILS:.c=.o}
 OBJS_PARSER_ARGS	= ${SRC_PARSER_ARGS:.c=.o}
 OBJS_PARSER_CMDS	= ${SRC_PARSER_CMDS:.c=.o}
+OBJS_PARSER_REDI	= ${SRC_PARSER_REDI:.c=.o}
 OBJS_LINUX			= ${SRC_LINUX:.c=.o}
 OBJS_MAC			= ${SRC_MAC:.c=.o}
 ####################################################################################
@@ -120,7 +129,7 @@ ifeq ($(UNAME_S),Darwin)
 	LOGDATE 		= $(shell date)
 endif
 
-OBJ					= ${OBJS} ${OBJS_INC} ${OBJS_UTILS} ${OBJS_PARSER_ARGS} ${OBJS_PARSER_CMDS} ${CROSS}
+OBJ					= ${OBJS} ${OBJS_INC} ${OBJS_UTILS} ${OBJS_PARSER_ARGS} ${OBJS_PARSER_CMDS} ${OBJS_PARSER_REDI} ${CROSS}
 #####################################################################################
 
 #	RULES	#########################################################################
