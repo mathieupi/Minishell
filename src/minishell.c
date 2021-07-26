@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 14:24:07 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/26 10:55:22 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/26 11:35:58 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,27 @@ bool	redi(t_cmd	**cmds, int *i)
 	j = *i;
 	while (cmds[*i])
 	{
-		while (cmds[*i + 1] && cmds[*i + 1]->type == '>')
+		while (cmds[*i + 1] && (cmds[*i + 1]->type == '>' || cmds[*i + 1]->type == '>' * 4))
 		{
 			argv = parsing(cmds[*i + 1]->str);
-			int fd = open(argv[0], O_CREAT);
+			int fd = open(argv[0], O_CREAT, 0777);
 			if (fd == -1)
+			{
+				printf("ERRRRROR %s\n", argv[0]);
 				return (1);
-			*i++;
+			}
+			close(fd);
+			(*i)++;
 		}
-		r_chevron(cmds[j], cmds[*i]);
-		if (cmds[*i + 1]->type)
+		if (cmds[*i]->type == '>')
+			r_chevron(cmds[j], cmds[*i]);
+		else
+			rr_chevron(cmds[j], cmds[*i]);
+		if (cmds[*i + 1] && cmds[*i + 1]->type)
+		{
 			cmds[*i + 1]->type = 0;
+		}
+		return (0);
 	}
 	return (0);
 }
@@ -43,7 +53,7 @@ void	try_cmds(t_cmd	**cmds)
 	i = -1;
 	while (cmds[++i])
 	{
-		if (cmds[i + 1]->type)
+		if (cmds[i + 1] && cmds[i + 1]->type)
 		{
 			if (redi(cmds, &i))
 			{
