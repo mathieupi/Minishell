@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 02:01:27 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/23 23:52:58 by bledda           ###   ########.fr       */
+/*   Updated: 2021/07/26 03:12:33 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static char	*string_char(int nb)
 {
 	char	*tmp;
 
+	tmp = 0;
 	if (nb == 248)
 		tmp = ft_strdup(">>");
 	else if (nb == 240)
