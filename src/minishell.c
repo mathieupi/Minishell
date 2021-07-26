@@ -6,11 +6,34 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 14:24:07 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/26 08:11:45 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/26 10:55:22 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
+
+bool	redi(t_cmd	**cmds, int *i)
+{
+	int		j;
+	char	**argv;
+
+	j = *i;
+	while (cmds[*i])
+	{
+		while (cmds[*i + 1] && cmds[*i + 1]->type == '>')
+		{
+			argv = parsing(cmds[*i + 1]->str);
+			int fd = open(argv[0], O_CREAT);
+			if (fd == -1)
+				return (1);
+			*i++;
+		}
+		r_chevron(cmds[j], cmds[*i]);
+		if (cmds[*i + 1]->type)
+			cmds[*i + 1]->type = 0;
+	}
+	return (0);
+}
 
 void	try_cmds(t_cmd	**cmds)
 {
@@ -20,7 +43,14 @@ void	try_cmds(t_cmd	**cmds)
 	i = -1;
 	while (cmds[++i])
 	{
-		if (cmds[i]->str)
+		if (cmds[i + 1]->type)
+		{
+			if (redi(cmds, &i))
+			{
+				ft_error("error", "error", 1);
+			}
+		}
+		else if (cmds[i]->str)
 		{
 			argv = parsing(cmds[i]->str);
 			if (count_array(argv) > 0)
