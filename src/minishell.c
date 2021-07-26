@@ -6,39 +6,39 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 14:24:07 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/25 22:57:55 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/26 08:11:45 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
 
-void	try_cmds(t_cmd	**redir)
+void	try_cmds(t_cmd	**cmds)
 {
 	char	**argv;
 	int		i;
 
 	i = -1;
-	while (redir[++i])
+	while (cmds[++i])
 	{
-		if (redir[i]->str)
+		if (cmds[i]->str)
 		{
-			argv = parsing(redir[i]->str);
+			argv = parsing(cmds[i]->str);
 			if (count_array(argv) > 0)
 				update_env("_", argv[count_array(argv) - 1]);
 			try_exec(argv);
 			free_array(argv);
-			free(redir[i]->str);
+			free(cmds[i]->str);
 		}
-		free(redir[i]);
+		free(cmds[i]);
 	}
-	free(redir);
+	free(cmds);
 }
 
 void	minishell(void)
 {
 	char			*in;
 	char			*prompt;
-	t_cmd			**redir;
+	t_cmd			**cmds;
 
 	ft_load_history();
 	while (1)
@@ -49,9 +49,9 @@ void	minishell(void)
 			ft_exit();
 		if (in[0])
 			ft_add_history(in);
-		redir = split_cmds(in);
-		if (redir)
-			try_cmds(redir);
+		cmds = split_cmds(in);
+		if (cmds)
+			try_cmds(cmds);
 		free(in);
 		free(prompt);
 	}

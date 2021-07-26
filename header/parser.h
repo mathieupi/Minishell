@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 00:18:53 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/26 07:46:34 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/26 08:09:59 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ typedef struct s_cmd
 }	t_cmd;
 
 t_cmd	**split_cmds(char *str);
-void	try_cmds(t_cmd	**redict);
+void	try_cmds(t_cmd	**cmds);
 void	add_calloc(t_cmd ***cmdsp);
 bool	isset(char c, const char *set);
 bool	double_char(char c, char next_c, char *set);
