@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   l_chevron.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 07:33:07 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/26 07:38:40 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/26 13:49:50 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	l_chevron(t_cmd *cmd1, t_cmd *cmd_file)
 	pipe(fd1);
 	if ((fork_id = fork()) == 0)
 	{
-		printf("%s LOL\n", cmd1->str);
+		//printf("%s LOL\n", cmd1->str);
 		close(fd1[1]);
 		dup2(fd1[0], 0);
 		close(fd1[0]);
@@ -31,7 +31,7 @@ void	l_chevron(t_cmd *cmd1, t_cmd *cmd_file)
 	}
 	else
 	{
-		printf("%s\n", cmd_file->str);
+		//printf("%s\n", cmd_file->str);
 
 		argv = parsing(cmd_file->str);
 		int fd = open(argv[0], O_RDONLY);
