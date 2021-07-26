@@ -6,11 +6,53 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 14:24:07 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/26 11:35:58 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/26 12:02:12 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
+
+bool thrthrhto(t_cmd	**cmds, int *i)
+{
+	while (cmds[*i + 1] && (cmds[*i + 1]->type == '>' || cmds[*i + 1]->type == '>' * 4))
+	{
+		argv = parsing(cmds[*i + 1]->str);
+		int fd = open(argv[0], O_CREAT, 0777);
+		if (fd == -1)
+		{
+			printf("ERRRRROR %s\n", argv[0]);
+			return (1);
+		}
+		close(fd);
+		(*i)++;
+	}
+	if (cmds[*i]->type == '>')
+		r_chevron(cmds[j], cmds[*i]);
+	else
+		rr_chevron(cmds[j], cmds[*i]);
+	if (cmds[*i + 1] && cmds[*i + 1]->type)
+	{
+		cmds[*i + 1]->type = 0;
+	}
+	return (0);
+}
+
+void multi_pipe(t_cmd	**cmds, int *i)
+{
+	int j = *i;
+	while (cmds[j + 1]->type != '|')
+	{
+		j++;
+	}
+	if (thrthrhto(cmds, &j))
+	{
+		if (cmds[j]->type == '>')
+		{
+
+		}
+		printf()
+	}
+}
 
 bool	redi(t_cmd	**cmds, int *i)
 {
@@ -18,29 +60,13 @@ bool	redi(t_cmd	**cmds, int *i)
 	char	**argv;
 
 	j = *i;
-	while (cmds[*i])
+	if (cmds[*i])
 	{
-		while (cmds[*i + 1] && (cmds[*i + 1]->type == '>' || cmds[*i + 1]->type == '>' * 4))
+		if (cmds[*i + 1]->type == '|')
 		{
-			argv = parsing(cmds[*i + 1]->str);
-			int fd = open(argv[0], O_CREAT, 0777);
-			if (fd == -1)
-			{
-				printf("ERRRRROR %s\n", argv[0]);
-				return (1);
-			}
-			close(fd);
-			(*i)++;
+			multi_pipe(cmds, &i);
 		}
-		if (cmds[*i]->type == '>')
-			r_chevron(cmds[j], cmds[*i]);
-		else
-			rr_chevron(cmds[j], cmds[*i]);
-		if (cmds[*i + 1] && cmds[*i + 1]->type)
-		{
-			cmds[*i + 1]->type = 0;
-		}
-		return (0);
+		return (thrthrhto(cmds, &i));
 	}
 	return (0);
 }
