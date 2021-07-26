@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 00:18:53 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/23 14:45:45 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/26 07:46:34 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,14 @@ void	add_calloc(t_cmd ***cmdsp);
 bool	isset(char c, const char *set);
 bool	double_char(char c, char next_c, char *set);
 bool	cmds_is_valid(t_cmd	**cmds);
+
+/*
+* REDIRECION
+*/
+void	ft_pipe(t_cmd *cmd1, t_cmd *cmd2);
+void	l_chevron(t_cmd *cmd1, t_cmd *cmd_file);
+void	ll_chevron(t_cmd *cmd1, t_cmd *end_keyword);
+void	r_chevron(t_cmd *cmd1, t_cmd *cmd_file);
+void	rr_chevron(t_cmd *cmd1, t_cmd *cmd_file);
 
 #endif

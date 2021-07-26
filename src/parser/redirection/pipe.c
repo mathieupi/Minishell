@@ -6,13 +6,13 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 07:27:49 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/26 07:38:13 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/07/26 07:46:17 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../header/parser.h"
 
-void	pipe_test(t_cmd *cmd1, t_cmd *cmd2)
+void	ft_pipe(t_cmd *cmd1, t_cmd *cmd2)
 {
 	int	fd1[2];
 	int	fork_id;
