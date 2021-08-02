@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 00:18:53 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/26 08:09:59 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/02 10:13:00 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,18 @@ typedef struct s_cmd
 	int		type;
 	char	*str;
 }	t_cmd;
+
+typedef struct s_block
+{
+	char	*str;
+}	t_block;
+
+typedef struct s_cmd2
+{
+	int		fin;
+	int		fout;
+	char	**args;
+}	t_cmd2;
 
 t_cmd	**split_cmds(char *str);
 void	try_cmds(t_cmd	**cmds);

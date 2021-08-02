@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 02:01:27 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/02 09:34:08 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/02 09:50:36 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,15 @@ static char	*string_char(int nb)
 		tmp = ft_strdup("||");
 	else if (nb == 152)
 		tmp = ft_strdup("&&");
-	else if (nb == 124)
+	else if (nb == '|')
 		tmp = ft_strdup("|");
-	else if (nb == 60)
+	else if (nb == '<')
 		tmp = ft_strdup("<");
-	else if (nb == 62)
+	else if (nb == '>')
 		tmp = ft_strdup(">");
-	else if (nb == 59)
+	else if (nb == ';')
 		tmp = ft_strdup(";");
-	else if (nb == 38)
+	else if (nb == '&')
 		tmp = ft_strdup("&");
 	return (tmp);
 }
