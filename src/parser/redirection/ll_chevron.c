@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 07:36:34 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/26 11:40:29 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/03 10:53:37 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void	ll_chevron(t_cmd *cmd1, t_cmd *end_keyword)
 	pipe(fd1);
 	if ((fork_id2 = fork()) == 0)
 	{
-		printf("%s\n", end_keyword->str);
-
 		argv = parsing(end_keyword->str);
 		char *line;
 		while (get_next_line(0, &line) > 0)
@@ -44,7 +42,6 @@ void	ll_chevron(t_cmd *cmd1, t_cmd *end_keyword)
 	waitpid(fork_id2, NULL, 0);
 	if ((fork_id = fork()) == 0)
 	{
-		printf("%s LOL\n", cmd1->str);
 		close(fd1[1]);
 		dup2(fd1[0], 0);
 		close(fd1[0]);

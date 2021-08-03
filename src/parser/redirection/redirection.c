@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 10:36:47 by mmehran           #+#    #+#             */
-/*   Updated: 2021/08/03 10:41:43 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/03 12:18:07 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 
 void	redirection(t_cmd **cmds)
 {
-	(void) cmds;
-	return ;
+	int	i;
+
+	i = -1;
+	while (cmds[++i])
+	{
+	}
 }

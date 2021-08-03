@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   r_chevron.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 07:32:19 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/26 13:49:56 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/03 10:53:52 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void	r_chevron(t_cmd *cmd1, t_cmd *cmd_file)
 	pipe(fd1);
 	if ((fork_id = fork()) == 0)
 	{
-		//printf("%s\n", cmd1->str);
-		//cmd1
 		dup2(fd1[1], 1);
 		close(fd1[0]);
 		close(fd1[1]);
@@ -34,7 +32,6 @@ void	r_chevron(t_cmd *cmd1, t_cmd *cmd_file)
 	}
 	if ((fork_id2 = fork()) == 0)
 	{
-		//printf("%s\n", cmd_file->str);
 		dup2(fd1[0], 0);
 		close(fd1[0]);
 		close(fd1[1]);

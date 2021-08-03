@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 14:24:07 by mmehran           #+#    #+#             */
-/*   Updated: 2021/08/03 10:13:27 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/03 10:51:11 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,10 @@ void	minishell(void)
 			ft_add_history(in);
 		cmds = split_cmds(in);
 		if (cmds)
+		{
+			redirection(cmds);
 			try_cmds(cmds);
+		}
 		free_cmds(cmds);
 		free(in);
 		free(prompt);
