@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 00:18:53 by mmehran           #+#    #+#             */
-/*   Updated: 2021/08/02 10:13:00 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/03 10:41:08 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,23 +54,15 @@ void	sub_tilde(char **arg);
  */
 typedef struct s_cmd
 {
-	int		type;
-	char	*str;
-}	t_cmd;
-
-typedef struct s_block
-{
-	char	*str;
-}	t_block;
-
-typedef struct s_cmd2
-{
 	int		fin;
 	int		fout;
+	int		type;
+	char	*str;
 	char	**args;
-}	t_cmd2;
+}	t_cmd;
 
 t_cmd	**split_cmds(char *str);
+void	free_cmds(t_cmd **cmds);
 void	try_cmds(t_cmd	**cmds);
 void	add_calloc(t_cmd ***cmdsp);
 bool	isset(char c, const char *set);
@@ -80,6 +72,7 @@ bool	cmds_is_valid(t_cmd	**cmds);
 /*
 * REDIRECION
 */
+void	redirection(t_cmd **cmds);
 void	ft_pipe(t_cmd *cmd1, t_cmd *cmd2);
 void	l_chevron(t_cmd *cmd1, t_cmd *cmd_file);
 void	ll_chevron(t_cmd *cmd1, t_cmd *end_keyword);

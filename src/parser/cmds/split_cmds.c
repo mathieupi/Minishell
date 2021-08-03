@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 20:51:30 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/02 09:34:19 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/03 10:08:52 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,20 @@ static bool	try_create_cmd(char **strp, t_parsing *parsing,
 	return (false);
 }
 
+static void	put_args(t_cmd **cmds)
+{
+	int	i;
+
+	if (!cmds)
+		return ;
+	i = -1;
+	while (cmds[++i])
+	{
+		if (cmds[i]->str)
+			cmds[i]->args = parsing(cmds[i]->str);
+	}
+}
+
 t_cmd	**split_cmds(char *str)
 {
 	t_cmd		**cmds;
@@ -53,14 +67,11 @@ t_cmd	**split_cmds(char *str)
 			add_char(&cmds[i]->str, *str);
 		str++;
 	}
-	if (cmds_is_valid(cmds))
-		return (cmds);
-	while (i >= 0)
+	if (!cmds_is_valid(cmds))
 	{
-		if (cmds[i]->str)
-			free(cmds[i]->str);
-		free(cmds[i--]);
+		free_cmds(cmds);
+		return (NULL);
 	}
-	free(cmds);
-	return (0);
+	put_args(cmds);
+	return (cmds);
 }

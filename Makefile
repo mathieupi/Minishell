@@ -6,7 +6,7 @@
 #    By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/07/26 07:40:19 by mmehran          ###   ########.fr        #
+#    Updated: 2021/08/03 10:36:37 by mmehran          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,13 +75,15 @@ SRCS_PARSER_CMDS	= split_cmds.c \
 						add_calloc.c \
 						isset.c \
 						double_char.c \
-						cmds_is_valid.c
+						cmds_is_valid.c \
+						free_cmds.c
 
 SRCS_PARSER_REDI	= pipe.c \
 						l_chevron.c \
 						ll_chevron.c \
 						r_chevron.c \
-						rr_chevron.c
+						rr_chevron.c \
+						redirection.c
 
 SRC					= $(addprefix ${FOLDER},${SRCS})
 SRC_INC				= $(addprefix ${FOLDER_INC},${SRCS_INC})
