@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 20:51:30 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/03 10:50:22 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/04 12:32:22 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static bool	try_create_cmd(char **strp, t_parsing *parsing,
 		type = *str;
 		if (double_char(*str, *(str + 1), "<>|&"))
 		{
-			type *= 4;
+			type *= type;
 			(*strp)++;
 		}
 		(*cmdsp)[*i]->type = type;

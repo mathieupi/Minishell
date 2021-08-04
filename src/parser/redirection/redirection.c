@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 10:36:47 by mmehran           #+#    #+#             */
-/*   Updated: 2021/08/03 12:18:07 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/04 12:45:16 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,6 @@ void	redirection(t_cmd **cmds)
 	i = -1;
 	while (cmds[++i])
 	{
+		printf("[DEBUG] %s %d\n", cmds[i]->str, cmds[i]->type);
 	}
 }

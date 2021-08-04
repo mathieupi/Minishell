@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 02:01:27 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/02 09:50:36 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/04 12:35:44 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ static char	*string_char(int nb)
 	char	*tmp;
 
 	tmp = 0;
-	if (nb == 248)
+	if (nb == CHEVRON_RR)
 		tmp = ft_strdup(">>");
-	else if (nb == 240)
+	else if (nb == CHEVRON_LL)
 		tmp = ft_strdup("<<");
-	else if (nb == 496)
+	else if (nb == PIPE_PIPE)
 		tmp = ft_strdup("||");
-	else if (nb == 152)
+	else if (nb == AND_AND)
 		tmp = ft_strdup("&&");
 	else if (nb == '|')
 		tmp = ft_strdup("|");

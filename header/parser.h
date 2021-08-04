@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 00:18:53 by mmehran           #+#    #+#             */
-/*   Updated: 2021/08/03 10:41:08 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/04 12:35:39 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,10 @@ void	ft_replace_str(char **arg, unsigned int start_index,
 			unsigned int end_index, char *value);
 void	sub_tilde(char **arg);
 
+# define CHEVRON_LL '<' * '<'
+# define CHEVRON_RR '>' * '>'
+# define PIPE_PIPE '|' * '|'
+# define AND_AND '&' * '&'
 /*
  *	PART CMDS
  */
