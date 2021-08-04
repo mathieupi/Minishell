@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 07:27:49 by mmehran           #+#    #+#             */
-/*   Updated: 2021/08/04 16:15:07 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/04 16:19:17 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,12 @@
 static void	ft_exec_redir(t_cmd *cmd)
 {
 	if (cmd->fin != 0)
-	{
 		dup2(cmd->fin, 0);
-		close(cmd->fin);
-	}
 	if (cmd->fout != 1)
-	{
 		dup2(cmd->fout, 1);
-		close(cmd->fout);
-	}
 	try_exec(cmd->args);
+	close(cmd->fin);
+	close(cmd->fout);
 	close(1);
 	close(0);
 	exit(0);
