@@ -5,21 +5,27 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/04 15:57:00 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/04 15:57:37 by bledda           ###   ########.fr       */
+/*   Created: 2021/08/03 10:36:47 by mmehran           #+#    #+#             */
+/*   Updated: 2021/08/04 16:26:18 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../header/parser.h"
 
-// # define CHEVRON_LL '<' * '<'
-// # define CHEVRON_RR '>' * '>'
-// # define PIPE_PIPE '|' * '|'
-// # define AND_AND '&' * '&'
-
-void	redirection(t_cmd **cmds, int *i)
+static bool	ft_create_file(char *str)
 {
-	int save_i;
+	int	fd;
+
+	fd = open(str, O_CREAT);
+	if (fd == -1)
+		return (false);
+	close (fd);
+	return (true);
+}
+
+static void	redirection(t_cmd **cmds, int *i)
+{
+	int	save_i;
 
 	save_i = *i;
 	if (cmds[*i + 1]
@@ -42,9 +48,10 @@ void	redirection(t_cmd **cmds, int *i)
 			&& (cmds[*i + 1]->type == CHEVRON_RR || cmds[*i + 1]->type == '>'))
 		{
 			(*i)++;
-			char *str = "touch ";
-			add_value(&str, cmds[*i]->str);
-			try_exec(&str);
+			if (cmds[*i + 1]
+				&& (cmds[*i + 1]->type == CHEVRON_RR
+					|| cmds[*i + 1]->type == '>'))
+				ft_create_file(cmds[*i]->str);
 		}
 		if (cmds[*i]->type == '>')
 			r_chevron(cmds[save_i], cmds[*i]);
