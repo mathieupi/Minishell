@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/04 17:28:17 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/04 17:34:51 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/04 17:46:50 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,32 @@ static void	red_left(t_cmd **cmds, int *i)
 		ll_chevron(cmds[save_i], cmds[*i]);
 }
 
+static bool	red_right(t_cmd **cmds, int *i)
+{
+	int	save_i;
+
+	save_i = *i;
+	while (cmds[*i + 1]
+		&& (cmds[*i + 1]->type == CHEVRON_RR
+			|| cmds[*i + 1]->type == '>'))
+	{
+		(*i)++;
+		if (cmds[*i + 1]
+			&& (cmds[*i + 1]->type == CHEVRON_RR
+				|| cmds[*i + 1]->type == '>')
+			&& !ft_create_file(cmds[*i]->args[0]))
+		{
+			ft_error(cmds[*i]->str, "Is a directory", 1);
+			return (false);
+		}
+	}
+	if (cmds[*i]->type == '>')
+		r_chevron(cmds[save_i], cmds[*i]);
+	else if (cmds[*i]->type == CHEVRON_RR)
+		rr_chevron(cmds[save_i], cmds[*i]);
+	return (true);
+}
+
 static bool	redirection(t_cmd **cmds, int *i)
 {
 	int	save_i;
@@ -44,31 +70,12 @@ static bool	redirection(t_cmd **cmds, int *i)
 	save_i = *i;
 	if (cmds[*i + 1]
 		&& (cmds[*i + 1]->type == CHEVRON_LL || cmds[*i + 1]->type == '<'))
-	red_left(cmds, i);
+		red_left(cmds, i);
 	else if (cmds[*i + 1] && cmds[*i + 1]->type == '|')
 		ft_pipe(cmds[save_i], cmds[++(*i)]);
 	else if (cmds[*i + 1]
 		&& (cmds[*i + 1]->type == CHEVRON_RR || cmds[*i + 1]->type == '>'))
-	{
-		while (cmds[*i + 1]
-			&& (cmds[*i + 1]->type == CHEVRON_RR
-				|| cmds[*i + 1]->type == '>'))
-		{
-			(*i)++;
-			if (cmds[*i + 1]
-				&& (cmds[*i + 1]->type == CHEVRON_RR
-					|| cmds[*i + 1]->type == '>')
-				&& !ft_create_file(cmds[*i]->args[0]))
-			{
-				ft_error(cmds[*i]->str, "Is a directory", 1);
-				return (false);
-			}
-		}
-		if (cmds[*i]->type == '>')
-			r_chevron(cmds[save_i], cmds[*i]);
-		else if (cmds[*i]->type == CHEVRON_RR)
-			rr_chevron(cmds[save_i], cmds[*i]);
-	}
+		red_right(cmds, i);
 	return (true);
 }
 
