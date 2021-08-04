@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 07:36:34 by mmehran           #+#    #+#             */
-/*   Updated: 2021/08/04 17:24:10 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/04 17:52:00 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ static void	read_in_util(t_cmd *end_keyword)
 		write(end_keyword->fout, "\n", 1);
 		free(line);
 	}
+	close(end_keyword->fout);
 	exit(0);
 }
 
@@ -57,7 +58,11 @@ void	ll_chevron(t_cmd *cmd1, t_cmd *end_keyword)
 	pipe(fd1);
 	fork_id2 = fork();
 	if (fork_id2 == 0)
+	{
+		close(fd1[0]);
+		end_keyword->fout = fd1[1];
 		read_in_util(end_keyword);
+	}
 	waitpid(fork_id2, NULL, 0);
 	fork_id = fork();
 	if (fork_id == 0)
