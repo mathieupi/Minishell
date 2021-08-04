@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 12:36:42 by mmehran           #+#    #+#             */
-/*   Updated: 2021/08/04 18:20:15 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/04 18:30:31 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ bool	is_suffix(char *str, char *suffix)
 	return (false);
 }
 
-void	ft_replace(char **p, char *new)
+void	ft_replace(char **p, char *new_str)
 {
 	if (!p)
 		return ;
 	free(*p);
-	*p = new;
+	*p = new_str;
 }
