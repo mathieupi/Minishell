@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 07:33:07 by mmehran           #+#    #+#             */
-/*   Updated: 2021/08/04 16:53:04 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/04 17:32:28 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	ft_exec_redir(t_cmd *cmd)
 	exit(0);
 }
 
-static void	read_file(t_cmd *cmd_file, int fdout)
+static void	read_file(t_cmd *cmd_file)
 {
 	int		fd;
 	char	*line;
@@ -49,8 +49,6 @@ void	l_chevron(t_cmd *cmd1, t_cmd *cmd_file)
 {
 	int		fd1[2];
 	int		fork_id;
-	int		fd_file;
-	char	*line;
 
 	pipe(fd1);
 	fork_id = fork();
@@ -61,7 +59,10 @@ void	l_chevron(t_cmd *cmd1, t_cmd *cmd_file)
 		ft_exec_redir(cmd1);
 	}
 	else
-		read_file(cmd_file, fd1[1]);
+	{
+		cmd_file->fout = fd1[1];
+		read_file(cmd_file);
+	}
 	close(fd1[0]);
 	close(fd1[1]);
 	waitpid(fork_id, NULL, 0);
