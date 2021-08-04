@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 00:18:53 by mmehran           #+#    #+#             */
-/*   Updated: 2021/08/04 12:35:39 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/04 15:08:26 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ bool	cmds_is_valid(t_cmd	**cmds);
 /*
 * REDIRECION
 */
-void	redirection(t_cmd **cmds);
 void	ft_pipe(t_cmd *cmd1, t_cmd *cmd2);
 void	l_chevron(t_cmd *cmd1, t_cmd *cmd_file);
 void	ll_chevron(t_cmd *cmd1, t_cmd *end_keyword);

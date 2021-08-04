@@ -3,32 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 14:24:07 by mmehran           #+#    #+#             */
-/*   Updated: 2021/08/03 10:51:11 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/04 15:05:17 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
-
-void	try_cmds(t_cmd	**cmds)
-{
-	char	**argv;
-	int		i;
-
-	i = -1;
-	while (cmds[++i])
-	{
-		if (cmds[i]->str)
-		{
-			argv = cmds[i]->args;
-			if (count_array(argv) > 0)
-				update_env("_", argv[count_array(argv) - 1]);
-			try_exec(argv);
-		}
-	}
-}
 
 void	minishell(void)
 {
@@ -47,10 +29,7 @@ void	minishell(void)
 			ft_add_history(in);
 		cmds = split_cmds(in);
 		if (cmds)
-		{
-			redirection(cmds);
 			try_cmds(cmds);
-		}
 		free_cmds(cmds);
 		free(in);
 		free(prompt);
