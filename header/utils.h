@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/30 06:24:22 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/30 06:24:22 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/04 18:18:04 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ int		ft_checkunset(char c);
 void	update_env(char *env, char *new_value);
 char	**ft_get_paths(void);
 bool	is_suffix(char *str, char *suffix);
+void	ft_replace(char **p, char *new);
 
 #endif

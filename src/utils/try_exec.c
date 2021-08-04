@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 18:18:53 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/02 09:35:25 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/04 18:19:57 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void	try_exec2(char **argv)
 	int		code;
 	char	*save;
 
+	code = 126;
 	program_name = ft_strdup(argv[0]);
 	paths = get_exec_paths(program_name);
 	i = -1;
@@ -83,8 +84,7 @@ void	try_exec2(char **argv)
 		save = ft_strdup(paths[i]);
 		add_value(&save, "/");
 		add_value(&save, argv[0]);
-		free(argv[0]);
-		argv[0] = save;
+		ft_replace(&argv[0], save);
 		code = exec(argv);
 		if (code != 126)
 			break ;
