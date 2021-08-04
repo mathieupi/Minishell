@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 07:27:49 by mmehran           #+#    #+#             */
-/*   Updated: 2021/08/04 16:05:33 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/04 16:06:54 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,14 @@ void	ft_pipe(t_cmd *cmd1, t_cmd *cmd2)
 	fork_id = fork();
 	if (fork_id == 0)
 	{
+		cmd1->fin = 0;
 		cmd1->fout = fd1[1];
 		ft_exec_redir(cmd1);
 	}
 	fork_id2 = fork();
 	if (fork_id2 == 0)
 	{
+		cmd1->fout = 1;
 		cmd2->fin = fd1[0];
 		ft_exec_redir(cmd2);
 	}
