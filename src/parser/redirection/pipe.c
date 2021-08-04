@@ -6,39 +6,48 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 07:27:49 by mmehran           #+#    #+#             */
-/*   Updated: 2021/08/03 10:53:47 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/04 15:54:54 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../header/parser.h"
 
+static void	ft_exec_redir(t_cmd *cmd)
+{
+	if (cmd->fin)
+	{
+		dup2(cmd->fin, 0);
+		close(cmd->fin);
+	}
+	if (cmd->fout)
+	{
+		dup2(cmd->fout, 1);
+		close(cmd->fout);
+	}
+	try_exec(cmd->args);
+	close(1);
+	close(0);
+	exit(0);
+}
+
 void	ft_pipe(t_cmd *cmd1, t_cmd *cmd2)
 {
-	int	fd1[2];
-	int	fork_id;
-	int	fork_id2;
-	char	**argv;
+	int		fd1[2];
+	int		fork_id;
+	int		fork_id2;
 
 	pipe(fd1);
-	if ((fork_id = fork()) == 0)
+	fork_id = fork();
+	if (fork_id == 0)
 	{
-		dup2(fd1[1], 1);
-		close(fd1[0]);
-		close(fd1[1]);
-		argv = parsing(cmd1->str);
-		try_exec(argv);
-		close(1);
-		exit(0);
+		cmd1->fout = fd1[1];
+		ft_exec_redir(cmd1);
 	}
-	if ((fork_id2 = fork()) == 0)
+	fork_id2 = fork();
+	if (fork_id2 == 0)
 	{
-		dup2(fd1[0], 0);
-		close(fd1[0]);
-		close(fd1[1]);
-		argv = parsing(cmd2->str);
-		try_exec(argv);
-		close(0);
-		exit(0);
+		cmd1->fin = fd1[0];
+		ft_exec_redir(cmd2);
 	}
 	close(fd1[0]);
 	close(fd1[1]);
