@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/04 17:28:17 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/04 17:28:29 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/04 17:34:51 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,25 @@ static bool	ft_create_file(char *str)
 {
 	int	fd;
 
-	fd = open(str, O_CREAT | O_APPEND | O_WRONLY, 0777);;
+	fd = open(str, O_CREAT | O_APPEND | O_WRONLY, 0777);
 	if (fd == -1)
 		return (false);
 	close(fd);
 	return (true);
+}
+
+static void	red_left(t_cmd **cmds, int *i)
+{
+	int	save_i;
+
+	save_i = *i;
+	while (cmds[*i + 1]
+		&& (cmds[*i + 1]->type == CHEVRON_LL || cmds[*i + 1]->type == '<'))
+		(*i)++;
+	if (cmds[*i]->type == '<')
+		l_chevron(cmds[save_i], cmds[*i]);
+	else if (cmds[*i]->type == CHEVRON_LL)
+		ll_chevron(cmds[save_i], cmds[*i]);
 }
 
 static bool	redirection(t_cmd **cmds, int *i)
@@ -30,23 +44,20 @@ static bool	redirection(t_cmd **cmds, int *i)
 	save_i = *i;
 	if (cmds[*i + 1]
 		&& (cmds[*i + 1]->type == CHEVRON_LL || cmds[*i + 1]->type == '<'))
-	{
-		while (cmds[*i + 1]
-			&& (cmds[*i + 1]->type == CHEVRON_LL || cmds[*i + 1]->type == '<'))
-			(*i)++;
-		if (cmds[*i]->type == '<')
-			l_chevron(cmds[save_i], cmds[*i]);
-		else if (cmds[*i]->type == CHEVRON_LL)
-			ll_chevron(cmds[save_i], cmds[*i]);
-	}
+	red_left(cmds, i);
 	else if (cmds[*i + 1] && cmds[*i + 1]->type == '|')
 		ft_pipe(cmds[save_i], cmds[++(*i)]);
-	else if (cmds[*i + 1] && (cmds[*i + 1]->type == CHEVRON_RR || cmds[*i + 1]->type == '>'))
+	else if (cmds[*i + 1]
+		&& (cmds[*i + 1]->type == CHEVRON_RR || cmds[*i + 1]->type == '>'))
 	{
-		while (cmds[*i + 1] && (cmds[*i + 1]->type == CHEVRON_RR || cmds[*i + 1]->type == '>'))
+		while (cmds[*i + 1]
+			&& (cmds[*i + 1]->type == CHEVRON_RR
+				|| cmds[*i + 1]->type == '>'))
 		{
 			(*i)++;
-			if (cmds[*i + 1] && (cmds[*i + 1]->type == CHEVRON_RR || cmds[*i + 1]->type == '>')
+			if (cmds[*i + 1]
+				&& (cmds[*i + 1]->type == CHEVRON_RR
+					|| cmds[*i + 1]->type == '>')
 				&& !ft_create_file(cmds[*i]->args[0]))
 			{
 				ft_error(cmds[*i]->str, "Is a directory", 1);
