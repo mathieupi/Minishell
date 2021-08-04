@@ -1,4 +1,1 @@
 redirections.c
-
-cmds.c is_valid:
-	cmd1 OPERATOR

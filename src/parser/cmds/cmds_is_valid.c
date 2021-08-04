@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 02:01:27 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/04 12:35:44 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/04 13:29:51 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,11 @@ bool	cmds_is_valid(t_cmd	**cmds)
 		if (!is_double_semicolon(cmds, i)
 			|| !is_double_separator(cmds, i))
 			return (false);
+	}
+	if (!cmds[i - 1]->str && cmds[i - 1]->type)
+	{
+		printf("Comeback in 7.5 million years 🕰\n");
+		return (false);
 	}
 	return (true);
 }
