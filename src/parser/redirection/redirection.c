@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/03 10:36:47 by mmehran           #+#    #+#             */
-/*   Updated: 2021/08/04 17:27:16 by bledda           ###   ########.fr       */
+/*   Created: 2021/08/04 17:28:17 by bledda            #+#    #+#             */
+/*   Updated: 2021/08/04 17:28:29 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,10 @@ static bool	ft_create_file(char *str)
 {
 	int	fd;
 
-	//argv = parsing(str);
 	fd = open(str, O_CREAT | O_APPEND | O_WRONLY, 0777);;
 	if (fd == -1)
 		return (false);
-	close (fd);
+	close(fd);
 	return (true);
 }
 
