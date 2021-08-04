@@ -6,47 +6,68 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 07:32:19 by mmehran           #+#    #+#             */
-/*   Updated: 2021/08/04 15:06:50 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/04 17:15:49 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../header/parser.h"
+
+static void	ft_exec_redir(t_cmd *cmd)
+{
+	if (cmd->fin)
+	{
+		dup2(cmd->fin, 0);
+		close(cmd->fin);
+	}
+	if (cmd->fout)
+	{
+		dup2(cmd->fout, 1);
+		close(cmd->fout);
+	}
+	try_exec(cmd->args);
+	close(1);
+	close(0);
+	exit(0);
+}
+
+static void	write_file(t_cmd *cmd_file, int fdin)
+{
+	int		fd;
+	char	*line;
+
+	dup2(fdin, 0);
+	close(fdin);
+	fd = open(cmd_file->args[0], O_CREAT | O_TRUNC | O_WRONLY, 0777);
+	while (get_next_line(0, &line) > 0)
+	{
+		write(fd, line, ft_strlen(line));
+		write(fd, "\n", 1);
+		free(line);
+	}
+	close(fd);
+	close(0);
+	exit(0);
+}
 
 void	r_chevron(t_cmd *cmd1, t_cmd *cmd_file)
 {
 	int	fd1[2];
 	int	fork_id;
 	int	fork_id2;
-	char	**argv;
 
 	pipe(fd1);
-	if ((fork_id = fork()) == 0)
+	fork_id = fork();
+	if (fork_id == 0)
 	{
-		dup2(fd1[1], 1);
 		close(fd1[0]);
-		close(fd1[1]);
-		argv = parsing(cmd1->str);
-		try_exec(argv);
-		close(1);
-		exit(0);
+		cmd1->fout = fd1[1];
+		ft_exec_redir(cmd1);
 	}
-	if ((fork_id2 = fork()) == 0)
+	fork_id2 = fork();
+	if (fork_id2 == 0)
 	{
-		dup2(fd1[0], 0);
-		close(fd1[0]);
 		close(fd1[1]);
-		argv = parsing(cmd_file->str);
-		int fd = open(argv[0], O_CREAT | O_TRUNC | O_WRONLY, 0777);
-		char *line;
-		while (get_next_line(0, &line) > 0)
-		{
-			write(fd, line, ft_strlen(line));
-			write(fd, "\n", 1);
-			free(line);
-		}
-		close(fd);
-		close(0);
-		exit(0);
+		write_file(cmd_file, fd1[0]);
 	}
 	close(fd1[0]);
 	close(fd1[1]);

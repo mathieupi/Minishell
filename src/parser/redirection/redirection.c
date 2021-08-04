@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 10:36:47 by mmehran           #+#    #+#             */
-/*   Updated: 2021/08/04 16:26:18 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/04 16:33:32 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static bool	ft_create_file(char *str)
 	fd = open(str, O_CREAT);
 	if (fd == -1)
 		return (false);
-	close (fd);
+	close(fd);
 	return (true);
 }
 
