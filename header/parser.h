@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 00:18:53 by mmehran           #+#    #+#             */
-/*   Updated: 2021/08/05 12:56:59 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/05 14:41:27 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ bool	cmds_is_valid(t_cmd	**cmds);
 * REDIRECION
 */
 void	ft_pipe(t_cmd *cmd1, t_cmd *cmd2);
+void	multi_pipe(t_cmd **cmds, int *i);
 void	l_chevron(t_cmd *cmd1, t_cmd *cmd_file);
 void	ll_chevron(t_cmd *cmd1, t_cmd *end_keyword);
 void	r_chevron(t_cmd *cmd1, t_cmd *cmd_file);

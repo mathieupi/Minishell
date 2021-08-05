@@ -6,7 +6,7 @@
 #    By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/08/05 12:56:43 by mmehran          ###   ########.fr        #
+#    Updated: 2021/08/05 16:27:51 by mmehran          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,8 @@ SRCS_PARSER_REDI	= pipe.c \
 						ll_chevron.c \
 						r_chevron.c \
 						rr_chevron.c \
-						redirection.c
+						redirection.c \
+						multi_pipe.c
 
 SRC					= $(addprefix ${FOLDER},${SRCS})
 SRC_INC				= $(addprefix ${FOLDER_INC},${SRCS_INC})

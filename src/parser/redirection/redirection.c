@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/04 17:28:17 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/04 17:46:50 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/05 18:43:29 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,17 @@ static bool	red_right(t_cmd **cmds, int *i)
 
 static bool	redirection(t_cmd **cmds, int *i)
 {
-	int	save_i;
+	// int	save_i;
 
-	save_i = *i;
+	// save_i = *i;
 	if (cmds[*i + 1]
 		&& (cmds[*i + 1]->type == CHEVRON_LL || cmds[*i + 1]->type == '<'))
 		red_left(cmds, i);
 	else if (cmds[*i + 1] && cmds[*i + 1]->type == '|')
-		ft_pipe(cmds[save_i], cmds[++(*i)]);
+	{
+		// ft_pipe(cmds[save_i], cmds[++(*i)]);
+		multi_pipe(cmds, i);
+	}
 	else if (cmds[*i + 1]
 		&& (cmds[*i + 1]->type == CHEVRON_RR || cmds[*i + 1]->type == '>'))
 		red_right(cmds, i);
@@ -84,12 +87,14 @@ void	try_cmds(t_cmd	**cmds)
 	char	**argv;
 	int		i;
 
-	i = -1;
-	while (cmds[++i])
+	i = 0;
+	while (cmds[i])
 	{
 		if (cmds[i + 1] && cmds[i + 1]->type)
 		{
 			if (!redirection(cmds, &i))
+				break ;
+			if (!cmds[i])
 				break ;
 		}
 		else if (cmds[i]->str)
@@ -99,5 +104,6 @@ void	try_cmds(t_cmd	**cmds)
 				update_env("_", argv[count_array(argv) - 1]);
 			try_exec(argv);
 		}
+		i++;
 	}
 }
