@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/15 17:19:23 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/23 23:52:17 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/05 12:53:23 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,11 @@ int	main(int ac, char **av, char **envp)
 {
 	int	i;
 
-	i = 0;
+	i = -1;
 	g_global = (t_global){0};
 	g_global.env = ft_calloc(sizeof(char *), count_array(envp) + 1);
-	while (envp[i])
-	{
+	while (envp[++i])
 		g_global.env[i] = ft_strdup(envp[i]);
-		i++;
-	}
 	signal(SIGINT, handle);
 	signal(SIGQUIT, handle);
 	if (ft_tester(ac, av) || run_sh(ac, av))

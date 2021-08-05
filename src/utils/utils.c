@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 01:43:26 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/19 21:43:00 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/05 12:49:17 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,9 @@ void	free_array(char **arr)
 
 	if (!arr)
 		return ;
-	i = 0;
-	while (arr[i])
-	{
+	i = -1;
+	while (arr[++i])
 		free(arr[i]);
-		i++;
-	}
 	free(arr);
 }
 

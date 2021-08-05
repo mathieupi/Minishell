@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 02:01:27 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/04 13:29:51 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/05 12:59:27 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,25 @@
 
 static char	*string_char(int nb)
 {
-	char	*tmp;
-
-	tmp = 0;
 	if (nb == CHEVRON_RR)
-		tmp = ft_strdup(">>");
+		return (">>");
 	else if (nb == CHEVRON_LL)
-		tmp = ft_strdup("<<");
+		return ("<<");
 	else if (nb == PIPE_PIPE)
-		tmp = ft_strdup("||");
+		return ("||");
 	else if (nb == AND_AND)
-		tmp = ft_strdup("&&");
+		return ("&&");
 	else if (nb == '|')
-		tmp = ft_strdup("|");
+		return ("|");
 	else if (nb == '<')
-		tmp = ft_strdup("<");
+		return ("<");
 	else if (nb == '>')
-		tmp = ft_strdup(">");
+		return (">");
 	else if (nb == ';')
-		tmp = ft_strdup(";");
+		return (";");
 	else if (nb == '&')
-		tmp = ft_strdup("&");
-	return (tmp);
+		return ("&");
+	return (NULL);
 }
 
 static bool	first_is_command(t_cmd **cmds)
@@ -47,7 +44,6 @@ static bool	first_is_command(t_cmd **cmds)
 	{
 		str_error = string_char(cmds[1]->type);
 		ft_error("syntax error near unexpected token", str_error, 2);
-		free(str_error);
 		return (false);
 	}
 	return (true);
@@ -70,7 +66,6 @@ static bool	is_double_semicolon(t_cmd **cmds, int i)
 	{
 		str_error = string_char(cmds[i + 1]->type);
 		ft_error("syntax error near unexpected token", str_error, 2);
-		free(str_error);
 		return (false);
 	}
 	return (true);
@@ -85,7 +80,6 @@ static bool	is_double_separator(t_cmd **cmds, int i)
 	{
 		str_error = string_char(cmds[i + 1]->type);
 		ft_error("syntax error near unexpected token", str_error, 2);
-		free(str_error);
 		return (false);
 	}
 	return (true);

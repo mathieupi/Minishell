@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 12:36:42 by mmehran           #+#    #+#             */
-/*   Updated: 2021/08/05 12:13:47 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/05 12:48:33 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,10 @@ bool	ft_strisdigit(char *str)
 {
 	int	i;
 
-	i = 0;
-	while (str[i])
+	i = -1;
+	while (str[++i])
 	{
-		if (ft_isdigit(str[i]))
-			i++;
-		else
+		if (!ft_isdigit(str[i]))
 			return (false);
 	}
 	return (true);

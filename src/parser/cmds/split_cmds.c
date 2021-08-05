@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 20:51:30 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/05 11:35:56 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/05 12:56:55 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static bool	try_create_cmd(char **strp, t_parsing *parsing,
 
 	str = *strp;
 	if (!parsing->inhibited && !parsing->in_squote && !parsing->in_dquote
-		&& isset(*str, "<>|;&"))
+		&& is_in_set(*str, "<>|;&"))
 	{
 		add_calloc(cmdsp);
 		(*i)++;

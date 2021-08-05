@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 00:18:53 by mmehran           #+#    #+#             */
-/*   Updated: 2021/08/04 15:08:26 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/05 12:56:59 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ t_cmd	**split_cmds(char *str);
 void	free_cmds(t_cmd **cmds);
 void	try_cmds(t_cmd	**cmds);
 void	add_calloc(t_cmd ***cmdsp);
-bool	isset(char c, const char *set);
+bool	is_in_set(char c, const char *set);
 bool	double_char(char c, char next_c, char *set);
 bool	cmds_is_valid(t_cmd	**cmds);
 

@@ -3,27 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   update_env.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 21:34:52 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/23 14:26:17 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/05 12:47:49 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/utils.h"
 
-static int	isset_env(char *env)
+static bool	isset_env(char *env)
 {
 	int	i;
 
-	i = 0;
-	while (g_global.env[i] != 0)
+	i = -1;
+	while (g_global.env[++i] != 0)
 	{
-		if (ft_strncmp(g_global.env[i], env, ft_strlen(env)) == 0)
-			return (1);
-		i++;
+		if (ft_streql(g_global.env[i], env))
+			return (true);
 	}
-	return (0);
+	return (false);
 }
 
 void	update_env(char *env, char *new_value)

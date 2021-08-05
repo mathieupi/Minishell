@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
+#    By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/08/05 11:25:50 by bledda           ###   ########.fr        #
+#    Updated: 2021/08/05 12:56:43 by mmehran          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,7 +73,7 @@ SRCS_PARSER_ARGS	= parser.c \
 
 SRCS_PARSER_CMDS	= split_cmds.c \
 						add_calloc.c \
-						isset.c \
+						is_in_set.c \
 						double_char.c \
 						cmds_is_valid.c \
 						free_cmds.c
