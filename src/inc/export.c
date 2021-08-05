@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 20:52:30 by bledda            #+#    #+#             */
-/*   Updated: 2021/07/23 23:52:45 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/05 11:23:10 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,13 @@ static int	update_var(char **av)
 	t_export	var;
 
 	var = (t_export){0};
-	while (av[++var.arg])
+	while (++var.arg < count_array(av))
 	{
 		if (av[var.arg][var.i] == 0)
 			break ;
 		var.i = 0;
 		var.i_env = 0;
+		var.tmp = 0;
 		while (av[var.arg][var.i] && av[var.arg][var.i] != '=')
 			add_char(&var.tmp, av[var.arg][var.i++]);
 		if (av[var.arg][var.i] != '=' || !ft_strcheckunset(var.tmp))
