@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 20:52:30 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/05 11:23:10 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/05 11:45:58 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,13 @@ static void	send_update(int i_env, char **av, int arg, int i)
 	}
 }
 
+static void	reset_var(t_export *var)
+{
+	var->i = 0;
+	var->i_env = 0;
+	var->tmp = 0;
+}
+
 static int	update_var(char **av)
 {
 	t_export	var;
@@ -73,9 +80,7 @@ static int	update_var(char **av)
 	{
 		if (av[var.arg][var.i] == 0)
 			break ;
-		var.i = 0;
-		var.i_env = 0;
-		var.tmp = 0;
+		reset_var(&var);
 		while (av[var.arg][var.i] && av[var.arg][var.i] != '=')
 			add_char(&var.tmp, av[var.arg][var.i++]);
 		if (av[var.arg][var.i] != '=' || !ft_strcheckunset(var.tmp))
