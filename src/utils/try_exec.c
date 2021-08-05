@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   try_exec.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 18:18:53 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/04 18:30:16 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/05 11:54:14 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	try_exec(char **argv)
 	else if (ft_streql(argv[0], "unset"))
 		ft_unset(argv);
 	else if (ft_streql(argv[0], "exit"))
-		ft_exit();
+		ft_exit(argv);
 	else if (ft_streql(argv[0], "pwd"))
 		ft_pwd();
 	else if (ft_streql(argv[0], "echo"))

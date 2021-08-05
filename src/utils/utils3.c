@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 12:36:42 by mmehran           #+#    #+#             */
-/*   Updated: 2021/08/04 18:30:31 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/05 12:13:47 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,19 @@ void	ft_replace(char **p, char *new_str)
 		return ;
 	free(*p);
 	*p = new_str;
+}
+
+bool	ft_strisdigit(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (ft_isdigit(str[i]))
+			i++;
+		else
+			return (false);
+	}
+	return (true);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/30 06:24:22 by mmehran           #+#    #+#             */
-/*   Updated: 2021/08/04 18:30:29 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/05 12:03:46 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ void	update_env(char *env, char *new_value);
 char	**ft_get_paths(void);
 bool	is_suffix(char *str, char *suffix);
 void	ft_replace(char **p, char *new_str);
+bool	ft_strisdigit(char *str);
 
 #endif

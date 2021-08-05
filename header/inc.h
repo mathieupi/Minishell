@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inc.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 17:54:58 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/02 09:35:52 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/05 11:54:24 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 void	ft_pwd(void);
 void	ft_echo(char **argv);
-void	ft_exit(void);
+void	ft_exit(char **argv);
 void	ft_export(char **argv);
 void	ft_env(char **argv);
 void	ft_cd(char **argv);
