@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 05:42:10 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/05 13:31:51 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/05 18:55:22 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	ft_exit(char **av)
 		else if (count_array(av) != 2)
 		{
 			ft_error2("exit", av[1], "too many arguments", 1);
-			return ;
 		}
 		else
 			g_global.return_code = ft_atoi(av[1]);
