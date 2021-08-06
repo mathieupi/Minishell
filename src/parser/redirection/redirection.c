@@ -6,140 +6,60 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/04 17:28:17 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/06 18:34:51 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/06 20:54:41 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../header/parser.h"
 
-static void	red_left(t_cmd **cmds, int *i)
+static bool	try_multi(t_cmd **cmds, int *i)
 {
 	int	save_i;
+	int	fin;
+	int	fout;
+	int	j;
 
 	save_i = *i;
-	while (cmds[*i + 1]
-		&& (cmds[*i + 1]->type == CHEVRON_LL || cmds[*i + 1]->type == '<'))
-		(*i)++;
-	if (cmds[*i]->type == '<')
-		l_chevron(cmds[save_i], cmds[*i]);
-	else if (cmds[*i]->type == CHEVRON_LL)
-		ll_chevron(cmds[save_i], cmds[*i]);
-}
-
-static bool	red_right(t_cmd **cmds, int *i)
-{
-	int	save_i;
-
-	save_i = *i;
-	while (cmds[*i + 1]
-		&& (cmds[*i + 1]->type == CHEVRON_RR
-			|| cmds[*i + 1]->type == '>'))
-	{
-		(*i)++;
-		if (cmds[*i + 1]
-			&& (cmds[*i + 1]->type == CHEVRON_RR
-				|| cmds[*i + 1]->type == '>')
-			&& !ft_create_file(cmds[*i]->args[0]))
+	fin = -1;
+	fout = -1;
+	j = 0;
+	while (j++ <= 1)
+		if (!exec_multi(cmds, &save_i, &fin, &fout))
 			return (false);
-	}
-	if (cmds[*i]->type == '>')
-		r_chevron(cmds[save_i], cmds[*i]);
-	else if (cmds[*i]->type == CHEVRON_RR)
-		rr_chevron(cmds[save_i], cmds[*i]);
+	multi_pipe(cmds, i, fin, fout);
 	return (true);
 }
 
-static bool simple(t_cmd **cmds, int *j)
+static bool	try_simple(t_cmd **cmds, int *i)
 {
-	int i = *j;
-
-	if (cmds[i + 1] && cmds[i + 1]->type == '|')
+	if (cmds[*i + 1] && cmds[*i + 1]->type == '|')
 	{
-		while (cmds[i + 1] && cmds[i + 1]->type == '|')
-			i++;
-		if (cmds[i + 1] && cmds[i + 1]->type != '|')
-			return (false);
+		multi_pipe(cmds, i, -1, -1);
+		return (false);
 	}
-	else if (cmds[i + 1]
-		&& (cmds[i + 1]->type == CHEVRON_RR || cmds[i + 1]->type == '>'))
-	{
-		while (cmds[i + 1]
-			&& (cmds[i + 1]->type == CHEVRON_RR || cmds[i + 1]->type == '>'))
-			i++;
-		if (cmds[i + 1]
-			&& (cmds[i + 1]->type != CHEVRON_RR || cmds[i + 1]->type != '>'))
-			return (false);
-	}
-	else if (cmds[i + 1]
-		&& (cmds[i + 1]->type == CHEVRON_LL || cmds[i + 1]->type == '<'))
-	{
-		while (cmds[i + 1]
-			&& (cmds[i + 1]->type == CHEVRON_LL || cmds[i + 1]->type == '<'))
-			i++;
-		if (cmds[i + 1]
-			&& (cmds[i + 1]->type != CHEVRON_LL || cmds[i + 1]->type != '<'))
-			return (false);
-	}
-	return (true);
-}
-
-static bool	try_right(t_cmd **cmds, int *i)
-{
-	while (cmds[*i + 1]
+	else if (cmds[*i + 1]
 		&& (cmds[*i + 1]->type == CHEVRON_RR || cmds[*i + 1]->type == '>'))
 	{
-		if (!ft_create_file(cmds[*i]->args[0]))
+		if (!red_right(cmds, i))
 			return (false);
-		(*i)++;
 	}
+	else if (cmds[*i + 1]
+		&& (cmds[*i + 1]->type == CHEVRON_LL || cmds[*i + 1]->type == '<'))
+		red_left(cmds, i);
 	return (true);
 }
 
 static bool	redirection(t_cmd **cmds, int *i)
 {
-	int save_i;
-	int fin;
-	int fout;
-
-	save_i = *i;
-	fin = -1;
-	fout = -1;
-	if (simple(cmds, i))
+	if (is_simple(cmds, i))
 	{
-		if (cmds[*i + 1] && cmds[*i + 1]->type == '|')
-		{
-			multi_pipe(cmds, i, -1, -1);
+		if (!try_simple(cmds, i))
 			return (false);
-		}
-		else if (cmds[*i + 1]
-			&& (cmds[*i + 1]->type == CHEVRON_RR || cmds[*i + 1]->type == '>'))
-		{
-			if (!red_right(cmds, i))
-				return (false);
-		}
-		else if (cmds[*i + 1]
-			&& (cmds[*i + 1]->type == CHEVRON_LL || cmds[*i + 1]->type == '<'))
-			red_left(cmds, i);
 	}
-	else if (!simple(cmds, i))
+	else if (!is_simple(cmds, i))
 	{
-		while (cmds[save_i + 1] && cmds[save_i + 1]->type == '|')
-			save_i++;
-		try_right(cmds, &save_i);
-		if ((cmds[save_i]->type == CHEVRON_RR || cmds[save_i]->type == '>'))
-			fout = save_i;
-		while (cmds[save_i + 1]
-			&& (cmds[save_i + 1]->type == CHEVRON_LL || cmds[save_i + 1]->type == '<'))
-			save_i++;
-		if ((cmds[save_i]->type == CHEVRON_LL || cmds[save_i]->type == '<'))
-			fin = save_i;
-		if (fout == -1)
-		{
-			try_right(cmds, &save_i);
-			if ((cmds[save_i]->type == CHEVRON_RR || cmds[save_i]->type == '>'))
-				fout = save_i;
-		}
-		multi_pipe(cmds, i, fin, fout);
+		if (!try_multi(cmds, i))
+			return (false);
 	}
 	return (true);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   multi_pipe.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 13:34:40 by mmehran           #+#    #+#             */
-/*   Updated: 2021/08/06 18:13:15 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/06 19:29:00 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,6 @@ void	multi_pipe(t_cmd **cmds, int *i, int icmd, int ocmd)
 		first = false;
 		(*i)++;
 	}
-	if (icmd != -1 && ocmd != -1)
+	if (icmd != -1 || ocmd != -1)
 		*i = ft_max(icmd, ocmd);
 }
