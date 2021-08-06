@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/04 17:28:17 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/05 18:43:46 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/06 14:15:57 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,10 @@ static bool	redirection(t_cmd **cmds, int *i)
 		&& (cmds[*i + 1]->type == CHEVRON_LL || cmds[*i + 1]->type == '<'))
 		red_left(cmds, i);
 	else if (cmds[*i + 1] && cmds[*i + 1]->type == '|')
+	{
 		multi_pipe(cmds, i);
+		return (false);
+	}
 	else if (cmds[*i + 1]
 		&& (cmds[*i + 1]->type == CHEVRON_RR || cmds[*i + 1]->type == '>'))
 		red_right(cmds, i);
@@ -87,7 +90,7 @@ void	try_cmds(t_cmd	**cmds)
 		if (cmds[i + 1] && cmds[i + 1]->type)
 		{
 			if (!redirection(cmds, &i))
-				break ;
+				continue ;
 			if (!cmds[i])
 				break ;
 		}
