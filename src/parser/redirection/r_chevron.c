@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 07:32:19 by mmehran           #+#    #+#             */
-/*   Updated: 2021/08/04 17:15:49 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/06 21:35:07 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	write_file(t_cmd *cmd_file, int fdin)
 
 	dup2(fdin, 0);
 	close(fdin);
-	fd = open(cmd_file->args[0], O_CREAT | O_TRUNC | O_WRONLY, 0777);
+	fd = ft_create_file(cmd_file->args[0], false);
 	while (get_next_line(0, &line) > 0)
 	{
 		write(fd, line, ft_strlen(line));

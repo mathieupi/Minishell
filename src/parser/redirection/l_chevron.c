@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 07:33:07 by mmehran           #+#    #+#             */
-/*   Updated: 2021/08/06 17:57:23 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/06 21:35:10 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	read_file(t_cmd *cmd_file)
 	int		fd;
 	char	*line;
 
-	fd = open(cmd_file->args[0], O_RDONLY);
+	fd = ft_open_file(cmd_file->args[0]);
 	while (get_next_line(fd, &line) > 0)
 	{
 		write(cmd_file->fout, line, ft_strlen(line));
