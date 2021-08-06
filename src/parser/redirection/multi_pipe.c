@@ -6,11 +6,18 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 13:34:40 by mmehran           #+#    #+#             */
-/*   Updated: 2021/08/06 20:28:43 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/06 20:35:05 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../header/parser.h"
+
+static bool	is_last_pipe(t_cmd **cmds, int i)
+{
+	if (!cmds[i + 1] || cmds[i + 1]->type != '|')
+		return (true);
+	return (false);
+}
 
 static void	child_exec_redir(t_cmd *cmd)
 {
@@ -75,7 +82,7 @@ void	multi_pipe(t_cmd **cmds, int *i, int icmd, int ocmd)
 	while (cmds[*i] && (first || cmds[*i]->type == '|'))
 	{
 		cmds[*i]->fin = fin;
-		if (!cmds[*i + 1] || cmds[*i + 1]->type != '|')
+		if (!is_last_pipe(cmds, *i))
 		{
 			pipe(curr_pipe);
 			cmds[*i]->fout = curr_pipe[1];
