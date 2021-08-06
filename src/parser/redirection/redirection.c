@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/04 17:28:17 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/06 18:22:05 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/06 18:31:48 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,18 @@ static bool simple(t_cmd **cmds, int *j)
 	return (true);
 }
 
+static bool	try_right(t_cmd **cmds, int *i)
+{
+	while (cmds[*i + 1]
+		&& (cmds[*i + 1]->type == CHEVRON_RR || cmds[*i + 1]->type == '>'))
+	{
+		if (!ft_create_file(cmds[*i]->args[0]))
+			return (false);
+		(*i)++;
+	}
+	return (true);
+}
+
 static bool	redirection(t_cmd **cmds, int *i)
 {
 	int save_i;
@@ -116,35 +128,17 @@ static bool	redirection(t_cmd **cmds, int *i)
 	{
 		while (cmds[save_i + 1] && cmds[save_i + 1]->type == '|')
 			save_i++;
-		while (cmds[save_i + 1]
-			&& (cmds[save_i + 1]->type == CHEVRON_RR || cmds[save_i + 1]->type == '>'))
-			save_i++;
+		try_right(cmds, &save_i);
 		if ((cmds[save_i]->type == CHEVRON_RR || cmds[save_i]->type == '>'))
 			fout = save_i;
 		while (cmds[save_i + 1]
 			&& (cmds[save_i + 1]->type == CHEVRON_LL || cmds[save_i + 1]->type == '<'))
-		{
-			if (!ft_create_file(cmds[*i]->args[0]))
-			{
-				ft_error(cmds[*i]->str, "Is a directory", 1);
-				return (false);
-			}
 			save_i++;
-		}
 		if ((cmds[save_i]->type == CHEVRON_LL || cmds[save_i]->type == '<'))
 			fin = save_i;
 		if (fout == -1)
 		{
-			while (cmds[save_i + 1]
-				&& (cmds[save_i + 1]->type == CHEVRON_RR || cmds[save_i + 1]->type == '>'))
-			{
-				if (!ft_create_file(cmds[*i]->args[0]))
-				{
-					ft_error(cmds[*i]->str, "Is a directory", 1);
-					return (false);
-				}
-				save_i++;
-			}
+			try_right(cmds, &save_i);
 			if ((cmds[save_i]->type == CHEVRON_RR || cmds[save_i]->type == '>'))
 				fout = save_i;
 		}
