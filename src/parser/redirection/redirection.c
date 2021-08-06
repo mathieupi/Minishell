@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/04 17:28:17 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/06 18:01:37 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/06 18:05:00 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ static bool	redirection(t_cmd **cmds, int *i)
 	{
 		if (cmds[*i + 1] && cmds[*i + 1]->type == '|')
 		{
-			multi_pipe(cmds, i);
+			multi_pipe(cmds, i, -1, -1);
 			return (false);
 		}
 		else if (cmds[*i + 1]
@@ -159,7 +159,7 @@ static bool	redirection(t_cmd **cmds, int *i)
 			if ((cmds[save_i]->type == CHEVRON_RR || cmds[save_i]->type == '>'))
 				fout = save_i;
 		}
-		multi_pipe2(cmds, i, fin, fout);
+		multi_pipe(cmds, i, fin, fout);
 	}
 	return (true);
 }
