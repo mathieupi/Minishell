@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   multi_pipe.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/05 13:34:40 by mmehran           #+#    #+#             */
-/*   Updated: 2021/08/06 19:29:00 by bledda           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../../../header/parser.h"
 
 static bool	is_last_pipe(t_cmd **cmds, int i)
@@ -44,23 +32,14 @@ static void	child_exec_redir(t_cmd *cmd)
 	waitpid(fork_id, NULL, 0);
 }
 
-static void	reset_fd(int stdin_, int stdout_)
-{
-	dup2(stdin_, 0);
-	dup2(stdout_, 1);
-}
-
-typedef struct s_tam
-{
-	int	lol;
-}	t_tam;
-
-static void	close_fd(t_cmd *cmd)
+static void	close_reset_fd(t_cmd *cmd, int stdin_, int stdout_)
 {
 	if (cmd->fin)
 		close(cmd->fin);
 	if (cmd->fout)
 		close(cmd->fout);
+	dup2(stdin_, 0);
+	dup2(stdout_, 1);
 }
 
 void	multi_pipe(t_cmd **cmds, int *i, int icmd, int ocmd)
@@ -100,8 +79,7 @@ void	multi_pipe(t_cmd **cmds, int *i, int icmd, int ocmd)
 		else
 			cmds[*i]->fout = fout;
 		child_exec_redir(cmds[*i]);
-		close_fd(cmds[*i]);
-		reset_fd(stdin_, stdout_);
+		close_reset_fd(cmds[*i], stdin_, stdout_);
 		first = false;
 		(*i)++;
 	}
