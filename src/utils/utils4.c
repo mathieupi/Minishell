@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utils4.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 12:36:42 by mmehran           #+#    #+#             */
-/*   Updated: 2021/08/06 19:30:16 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/06 21:28:12 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/utils.h"
 
-bool	ft_append_file(char *str)
+int	ft_append_file(char *str, bool should_close)
 {
 	int	fd;
 
@@ -20,13 +20,14 @@ bool	ft_append_file(char *str)
 	if (fd == -1)
 	{
 		ft_error(str, "Is a directory", 1);
-		return (false);
+		return (fd);
 	}
-	close(fd);
-	return (true);
+	if (should_close)
+		close(fd);
+	return (fd);
 }
 
-bool	ft_create_file(char *str)
+int	ft_create_file(char *str, bool should_close)
 {
 	int	fd;
 
@@ -34,10 +35,11 @@ bool	ft_create_file(char *str)
 	if (fd == -1)
 	{
 		ft_error(str, "Is a directory", 1);
-		return (false);
+		return (fd);
 	}
-	close(fd);
-	return (true);
+	if (should_close)
+		close(fd);
+	return (fd);
 }
 
 int	ft_open_file(char *str)

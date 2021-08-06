@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 20:55:05 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/06 20:56:56 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/06 21:28:55 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ bool	red_right(t_cmd **cmds, int *i)
 			&& (cmds[*i + 1]->type == CHEVRON_RR
 				|| cmds[*i + 1]->type == '>')
 			&& (cmds[*i]->type == '>' || cmds[*i]->type == CHEVRON_RR)
-			&& !ft_create_file(cmds[*i]->args[0]))
+			&& ft_append_file(cmds[*i]->args[0], true) == -1)
 			return (false);
 	}
 	if (cmds[*i]->type == '>')
@@ -57,7 +57,7 @@ bool	try_right(t_cmd **cmds, int *i)
 	{
 		if (cmds[*i]->type == '>' || cmds[*i]->type == CHEVRON_RR)
 		{
-			if (!ft_create_file(cmds[*i]->args[0]))
+			if (ft_append_file(cmds[*i]->args[0], true) == -1)
 				return (false);
 		}
 		(*i)++;

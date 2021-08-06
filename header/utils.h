@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/30 06:24:22 by mmehran           #+#    #+#             */
-/*   Updated: 2021/08/06 18:29:33 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/06 21:28:26 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void	ft_replace(char **p, char *new_str);
 bool	ft_strisdigit(char *str);
 int		ft_max(int a, int b);
 
-bool	ft_append_file(char *str);
-bool	ft_create_file(char *str);
+int		ft_append_file(char *str, bool should_close);
+int		ft_create_file(char *str, bool should_close);
 int		ft_open_file(char *str);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 00:18:53 by mmehran           #+#    #+#             */
-/*   Updated: 2021/08/06 20:56:37 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/06 21:14:24 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,15 @@ void	red_left(t_cmd **cmds, int *i);
 bool	red_right(t_cmd **cmds, int *i);
 bool	try_right(t_cmd **cmds, int *i);
 bool	exec_multi(t_cmd **cmds, int *save_i, int *fin, int *fout);
+
+typedef struct s_fds
+{
+	int		curr_pipe[2];
+	bool	first;
+	int		stdin_;
+	int		stdout_;
+	int		fin;
+	int		fout;
+}				t_fds;
 
 #endif

@@ -6,18 +6,11 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 21:00:06 by mmehran           #+#    #+#             */
-/*   Updated: 2021/08/06 21:00:06 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/06 21:27:11 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../header/parser.h"
-
-static bool	is_last_pipe(t_cmd **cmds, int i)
-{
-	if (!cmds[i + 1] || cmds[i + 1]->type != '|')
-		return (true);
-	return (false);
-}
 
 static void	child_exec_redir(t_cmd *cmd)
 {
@@ -54,45 +47,52 @@ static void	close_reset_fd(t_cmd *cmd, int stdin_, int stdout_)
 	dup2(stdout_, 1);
 }
 
-void	multi_pipe(t_cmd **cmds, int *i, int icmd, int ocmd)
+bool	jsp(t_cmd **cmds, int icmd, int *fin)
 {
-	int		curr_pipe[2];
-	bool	first;
-	int		stdin_;
-	int		stdout_;
-	int		fin;
-	int		fout;
-
-	stdin_ = dup(0);
-	stdout_ = dup(1);
 	if (icmd == -1)
-		fin = dup(stdin_);
+		*fin = dup(0);
 	else
-		fin = open(cmds[icmd]->args[0], O_RDONLY);
+		*fin = ft_open_file(cmds[icmd]->args[0]);
+	return (*fin != -1);
+}
+
+bool	jsp2(t_cmd **cmds, int ocmd, int *fout)
+{
 	if (ocmd == -1)
-		fout = dup(stdout_);
+		*fout = dup(0);
 	else
 	{
 		if (cmds[ocmd]->type == '>')
-			fout = open(cmds[ocmd]->args[0], O_CREAT | O_TRUNC | O_WRONLY, 0777);
+			*fout = ft_create_file(cmds[ocmd]->args[0], false);
 		else
-			fout = open(cmds[ocmd]->args[0], O_CREAT | O_APPEND | O_WRONLY, 0777);
+			*fout = ft_append_file(cmds[ocmd]->args[0], false);
 	}
-	first = true;
-	while (cmds[*i] && (first || cmds[*i]->type == '|'))
+	return (*fout != -1);
+}
+
+void	multi_pipe(t_cmd **cmds, int *i, int icmd, int ocmd)
+{
+	t_fds	fds;
+
+	fds.stdin_ = dup(0);
+	fds.stdout_ = dup(1);
+	if (!jsp(cmds, icmd, &fds.fin) || !jsp2(cmds, ocmd, &fds.fout))
+		return ;
+	fds.first = true;
+	while (cmds[*i] && (fds.first || cmds[*i]->type == '|'))
 	{
-		cmds[*i]->fin = fin;
-		if (!is_last_pipe(cmds, *i))
+		cmds[*i]->fin = fds.fin;
+		if (cmds[*i + 1] && cmds[*i + 1]->type == '|')
 		{
-			pipe(curr_pipe);
-			cmds[*i]->fout = curr_pipe[1];
-			fin = curr_pipe[0];
+			pipe(fds.curr_pipe);
+			cmds[*i]->fout = fds.curr_pipe[1];
+			fds.fin = fds.curr_pipe[0];
 		}
 		else
-			cmds[*i]->fout = fout;
+			cmds[*i]->fout = fds.fout;
 		child_exec_redir(cmds[*i]);
-		close_reset_fd(cmds[*i], stdin_, stdout_);
-		first = false;
+		close_reset_fd(cmds[*i], fds.stdin_, fds.stdout_);
+		fds.first = false;
 		(*i)++;
 	}
 	if (icmd != -1 || ocmd != -1)
