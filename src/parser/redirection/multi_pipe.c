@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 13:34:40 by mmehran           #+#    #+#             */
-/*   Updated: 2021/08/06 18:01:19 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/06 18:04:56 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 static bool	is_last_pipe(t_cmd **cmds, int i)
 {
-	if (!cmds[i + 1])
-		return (true);
-	if (cmds[i + 1]->type != '|')
+	if (!cmds[i + 1] || cmds[i + 1]->type != '|')
 		return (true);
 	return (false);
 }
@@ -60,7 +58,7 @@ static void	close_fd(t_cmd *cmd)
 		close(cmd->fout);
 }
 
-void	multi_pipe2(t_cmd **cmds, int *i, int icmd, int ocmd)
+void	multi_pipe(t_cmd **cmds, int *i, int icmd, int ocmd)
 {
 	int		curr_pipe[2];
 	bool	first;
@@ -103,10 +101,4 @@ void	multi_pipe2(t_cmd **cmds, int *i, int icmd, int ocmd)
 		(*i)++;
 	}
 	*i = ft_max(icmd, ocmd);
-}
-
-
-void	multi_pipe(t_cmd **cmds, int *i)
-{
-	multi_pipe2(cmds, i, -1, -1);
 }
