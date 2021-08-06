@@ -3,25 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/04 17:28:17 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/06 18:05:00 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/06 18:22:05 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../header/parser.h"
-
-static bool	ft_create_file(char *str)
-{
-	int	fd;
-
-	fd = open(str, O_CREAT | O_APPEND | O_WRONLY, 0777);
-	if (fd == -1)
-		return (false);
-	close(fd);
-	return (true);
-}
 
 static void	red_left(t_cmd **cmds, int *i)
 {

@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 13:34:40 by mmehran           #+#    #+#             */
-/*   Updated: 2021/08/06 18:09:15 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/06 18:13:15 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,11 @@ static void	reset_fd(int stdin_, int stdout_)
 	dup2(stdin_, 0);
 	dup2(stdout_, 1);
 }
+
+typedef struct s_tam
+{
+	int	lol;
+}	t_tam;
 
 static void	close_fd(t_cmd *cmd)
 {

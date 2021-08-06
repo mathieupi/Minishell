@@ -6,7 +6,7 @@
 #    By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/08/05 16:27:51 by mmehran          ###   ########.fr        #
+#    Updated: 2021/08/06 18:21:28 by mmehran          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,8 @@ SRCS_UTILS			= utils.c \
 						ft_getenv.c \
 						print_array.c \
 						update_env.c \
-						utils3.c
+						utils3.c \
+						utils4.c
 
 SRCS_INC			= pwd.c \
 						echo.c \
