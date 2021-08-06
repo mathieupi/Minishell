@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 13:34:40 by mmehran           #+#    #+#             */
-/*   Updated: 2021/08/06 18:04:56 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/06 18:09:15 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,6 @@ void	multi_pipe(t_cmd **cmds, int *i, int icmd, int ocmd)
 		first = false;
 		(*i)++;
 	}
-	*i = ft_max(icmd, ocmd);
+	if (icmd != -1 && ocmd != -1)
+		*i = ft_max(icmd, ocmd);
 }
