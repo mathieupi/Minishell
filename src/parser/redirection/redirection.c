@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/04 17:28:17 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/06 18:31:48 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/06 18:34:51 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,7 @@ static bool	red_right(t_cmd **cmds, int *i)
 			&& (cmds[*i + 1]->type == CHEVRON_RR
 				|| cmds[*i + 1]->type == '>')
 			&& !ft_create_file(cmds[*i]->args[0]))
-		{
-			ft_error(cmds[*i]->str, "Is a directory", 1);
 			return (false);
-		}
 	}
 	if (cmds[*i]->type == '>')
 		r_chevron(cmds[save_i], cmds[*i]);
@@ -117,7 +114,7 @@ static bool	redirection(t_cmd **cmds, int *i)
 		else if (cmds[*i + 1]
 			&& (cmds[*i + 1]->type == CHEVRON_RR || cmds[*i + 1]->type == '>'))
 		{
-			if (red_right(cmds, i))
+			if (!red_right(cmds, i))
 				return (false);
 		}
 		else if (cmds[*i + 1]
