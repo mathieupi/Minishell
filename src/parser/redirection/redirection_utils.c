@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 20:55:05 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/06 21:22:51 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/06 21:23:30 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ bool	red_right(t_cmd **cmds, int *i)
 			&& (cmds[*i + 1]->type == CHEVRON_RR
 				|| cmds[*i + 1]->type == '>')
 			&& (cmds[*i]->type == '>' || cmds[*i]->type == CHEVRON_RR)
-			&& ft_append_file(cmds[*i]->args[0], 1) == -1)
+			&& !ft_append_file(cmds[*i]->args[0]))
 			return (false);
 	}
 	if (cmds[*i]->type == '>')
@@ -57,7 +57,7 @@ bool	try_right(t_cmd **cmds, int *i)
 	{
 		if (cmds[*i]->type == '>' || cmds[*i]->type == CHEVRON_RR)
 		{
-			if (ft_append_file(cmds[*i]->args[0], 1) == -1)
+			if (!ft_append_file(cmds[*i]->args[0]))
 				return (false);
 		}
 		(*i)++;
