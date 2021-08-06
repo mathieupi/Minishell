@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 12:36:42 by mmehran           #+#    #+#             */
-/*   Updated: 2021/08/05 12:48:33 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/06 17:47:15 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,11 @@ bool	ft_strisdigit(char *str)
 			return (false);
 	}
 	return (true);
+}
+
+int	ft_max(int a, int b)
+{
+	if (a > b)
+		return (a);
+	return (b);
 }

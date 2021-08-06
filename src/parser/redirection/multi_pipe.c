@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 13:34:40 by mmehran           #+#    #+#             */
-/*   Updated: 2021/08/05 17:40:23 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/06 18:01:19 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,17 +60,30 @@ static void	close_fd(t_cmd *cmd)
 		close(cmd->fout);
 }
 
-void	multi_pipe(t_cmd **cmds, int *i)
+void	multi_pipe2(t_cmd **cmds, int *i, int icmd, int ocmd)
 {
 	int		curr_pipe[2];
 	bool	first;
 	int		stdin_;
 	int		stdout_;
 	int		fin;
+	int		fout;
 
 	stdin_ = dup(0);
 	stdout_ = dup(1);
-	fin = dup(stdin_);
+	if (icmd == -1)
+		fin = dup(stdin_);
+	else
+		fin = open(cmds[icmd]->args[0], O_RDONLY);
+	if (ocmd == -1)
+		fout = dup(stdout_);
+	else
+	{
+		if (cmds[ocmd]->type == '>')
+			fout = open(cmds[ocmd]->args[0], O_CREAT | O_TRUNC | O_WRONLY, 0777);
+		else
+			fout = open(cmds[ocmd]->args[0], O_CREAT | O_APPEND | O_WRONLY, 0777);
+	}
 	first = true;
 	while (cmds[*i] && (first || cmds[*i]->type == '|'))
 	{
@@ -81,10 +94,19 @@ void	multi_pipe(t_cmd **cmds, int *i)
 			cmds[*i]->fout = curr_pipe[1];
 			fin = curr_pipe[0];
 		}
+		else
+			cmds[*i]->fout = fout;
 		child_exec_redir(cmds[*i]);
 		close_fd(cmds[*i]);
 		reset_fd(stdin_, stdout_);
 		first = false;
 		(*i)++;
 	}
+	*i = ft_max(icmd, ocmd);
+}
+
+
+void	multi_pipe(t_cmd **cmds, int *i)
+{
+	multi_pipe2(cmds, i, -1, -1);
 }

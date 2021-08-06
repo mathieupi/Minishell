@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/04 17:28:17 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/06 17:22:44 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/06 18:01:37 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,8 +159,7 @@ static bool	redirection(t_cmd **cmds, int *i)
 			if ((cmds[save_i]->type == CHEVRON_RR || cmds[save_i]->type == '>'))
 				fout = save_i;
 		}
-		printf("%s\n%s\n%s\n",cmds[*i]->str, cmds[fin]->str, cmds[fout]->str);
-		pause();
+		multi_pipe2(cmds, i, fin, fout);
 	}
 	return (true);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/30 06:24:22 by mmehran           #+#    #+#             */
-/*   Updated: 2021/08/05 12:03:46 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/06 17:47:27 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ char	**ft_get_paths(void);
 bool	is_suffix(char *str, char *suffix);
 void	ft_replace(char **p, char *new_str);
 bool	ft_strisdigit(char *str);
+int		ft_max(int a, int b);
 
 #endif
