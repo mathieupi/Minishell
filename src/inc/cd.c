@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 04:36:22 by mmehran           #+#    #+#             */
-/*   Updated: 2021/08/02 09:34:46 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/08 15:16:18 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,18 +60,16 @@ static bool	is_arg_count_valid(char **av)
 	{
 		pwd = get_pwd();
 		if (ft_count_char(av[0], '/') == ft_strlen(av[0]))
-		{
 			try_chdir("/", pwd, av);
-			free(pwd);
-			return (false);
-		}
-		if (ft_streql(av[0], "-"))
+		else if (ft_streql(av[0], "-"))
 		{
 			go("OLDPWD", av);
 			printf("%s\n", pwd);
-			free(pwd);
-			return (false);
 		}
+		free(pwd);
+		if (ft_count_char(av[0], '/') == ft_strlen(av[0])
+			|| ft_streql(av[0], "-"))
+			return (false);
 	}
 	return (true);
 }
