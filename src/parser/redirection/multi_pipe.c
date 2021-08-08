@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 21:00:06 by mmehran           #+#    #+#             */
-/*   Updated: 2021/08/06 21:27:11 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/08 22:20:09 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,11 @@ static void	close_reset_fd(t_cmd *cmd, int stdin_, int stdout_)
 		close(cmd->fout);
 	dup2(stdin_, 0);
 	dup2(stdout_, 1);
+	close(stdin_);
+	close(stdout_);
 }
 
-bool	jsp(t_cmd **cmds, int icmd, int *fin)
+static bool	open_fin(t_cmd **cmds, int icmd, int *fin)
 {
 	if (icmd == -1)
 		*fin = dup(0);
@@ -56,7 +58,7 @@ bool	jsp(t_cmd **cmds, int icmd, int *fin)
 	return (*fin != -1);
 }
 
-bool	jsp2(t_cmd **cmds, int ocmd, int *fout)
+static bool	create_fout(t_cmd **cmds, int ocmd, int *fout)
 {
 	if (ocmd == -1)
 		*fout = dup(0);
@@ -74,13 +76,13 @@ void	multi_pipe(t_cmd **cmds, int *i, int icmd, int ocmd)
 {
 	t_fds	fds;
 
-	fds.stdin_ = dup(0);
-	fds.stdout_ = dup(1);
-	if (!jsp(cmds, icmd, &fds.fin) || !jsp2(cmds, ocmd, &fds.fout))
+	if (!open_fin(cmds, icmd, &fds.fin) || !create_fout(cmds, ocmd, &fds.fout))
 		return ;
 	fds.first = true;
 	while (cmds[*i] && (fds.first || cmds[*i]->type == '|'))
 	{
+		fds.stdin_ = dup(0);
+		fds.stdout_ = dup(1);
 		cmds[*i]->fin = fds.fin;
 		if (cmds[*i + 1] && cmds[*i + 1]->type == '|')
 		{
