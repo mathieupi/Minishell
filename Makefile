@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/02 11:30:44 by mmehran           #+#    #+#              #
-#    Updated: 2021/08/06 20:55:11 by bledda           ###   ########.fr        #
+#    Updated: 2021/08/08 23:48:01 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,14 +20,15 @@ HEADER_FILE 		= minishell.h \
 						color.h \
 						history.h
 
-FOLDER				= src/
-FOLDER_INC			= src/inc/
-FOLDER_UTILS		= src/utils/
-FOLDER_PARSER_ARGS	= src/parser/args/
-FOLDER_PARSER_CMDS	= src/parser/cmds/
-FOLDER_PARSER_REDI	= src/parser/redirection/
 FOLDER_HEADER		= header/
-FOLDER_CROSS		= src/cross_platform/
+FOLDER				= src/
+FOLDER_INC			= $(addprefix ${FOLDER},inc/)
+FOLDER_UTILS		= $(addprefix ${FOLDER},utils/)
+FOLDER_CROSS		= $(addprefix ${FOLDER},cross_platform/)
+FOLDER_PARSER		= $(addprefix ${FOLDER},parser/)
+FOLDER_PARSER_ARGS	= $(addprefix ${FOLDER_PARSER},args/)
+FOLDER_PARSER_CMDS	= $(addprefix ${FOLDER_PARSER},cmds/)
+FOLDER_PARSER_REDI	= $(addprefix ${FOLDER_PARSER},redirection/)
 
 SRCS				= minishell.c \
 						main.c \
