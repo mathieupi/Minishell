@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update_env.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 21:34:52 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/05 12:47:49 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/09 08:55:00 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static bool	isset_env(char *env)
 	i = -1;
 	while (g_global.env[++i] != 0)
 	{
-		if (ft_streql(g_global.env[i], env))
+		if (ft_strncmp(g_global.env[i], env, ft_strlen(env)) == 0)
 			return (true);
 	}
 	return (false);
