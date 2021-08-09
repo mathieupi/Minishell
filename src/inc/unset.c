@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 21:42:23 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/05 12:51:17 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/09 10:22:11 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	clear_var(int i_env, int i, char **av)
 	int		arg;
 	char	**env;
 
-	if (g_global.env[i_env] && ft_streql(g_global.env[i_env], av[i]))
+	if (g_global.env[i_env]
+		&& ft_strncmp(g_global.env[i_env], av[i], ft_strlen(av[i])) == 0)
 	{
 		env = ft_calloc(sizeof(char *), count_array(g_global.env));
 		arg = 0;
@@ -57,7 +58,8 @@ void	ft_unset(char **av)
 				return ;
 			}
 			while (g_global.env[i_env]
-				&& !ft_streql(g_global.env[i_env], av[i]))
+				&& ft_strncmp(g_global.env[i_env], av[i],
+					ft_strlen(av[i])) != 0)
 				i_env++;
 			clear_var(i_env, i, av);
 		}
