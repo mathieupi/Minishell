@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 04:10:50 by mmehran           #+#    #+#             */
-/*   Updated: 2021/08/12 21:22:56 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/12 21:31:17 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ size_t	ft_count_char(const char *str, char c)
 char	*get_pwd(void)
 {
 	char	buffer[4096];
-	char 	*pwd;
+	char	*pwd;
 
 	if (getcwd(buffer, 4096) == 0)
 	{		
