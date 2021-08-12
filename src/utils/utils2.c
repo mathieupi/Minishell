@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 04:10:50 by mmehran           #+#    #+#             */
-/*   Updated: 2021/08/12 21:31:17 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/12 23:36:25 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ char	*get_pwd(void)
 	if (getcwd(buffer, 4096) == 0)
 	{		
 		pwd = ft_getenv("PWD");
-		printf("%s\n", pwd);
 		return (pwd);
 	}
 	return (ft_strdup(buffer));
