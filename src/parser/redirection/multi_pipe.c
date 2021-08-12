@@ -6,13 +6,13 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 21:00:06 by mmehran           #+#    #+#             */
-/*   Updated: 2021/08/08 22:20:09 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/12 23:52:25 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../header/parser.h"
 
-static void	child_exec_redir(t_cmd *cmd)
+static void	child_exec_redir(t_cmd *cmd, bool last)
 {
 	int		fork_id;
 
@@ -34,7 +34,8 @@ static void	child_exec_redir(t_cmd *cmd)
 		close(0);
 		exit(0);
 	}
-	waitpid(fork_id, NULL, 0);
+	if (last)
+		waitpid(fork_id, NULL, 0);
 }
 
 static void	close_reset_fd(t_cmd *cmd, int stdin_, int stdout_)
@@ -92,7 +93,7 @@ void	multi_pipe(t_cmd **cmds, int *i, int icmd, int ocmd)
 		}
 		else
 			cmds[*i]->fout = fds.fout;
-		child_exec_redir(cmds[*i]);
+		child_exec_redir(cmds[*i], !cmds[*i + 1] || cmds[*i + 1]->type != '|');
 		close_reset_fd(cmds[*i], fds.stdin_, fds.stdout_);
 		fds.first = false;
 		(*i)++;
