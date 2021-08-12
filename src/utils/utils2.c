@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 04:10:50 by mmehran           #+#    #+#             */
-/*   Updated: 2021/07/17 18:02:14 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/12 21:22:56 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,14 @@ size_t	ft_count_char(const char *str, char c)
 char	*get_pwd(void)
 {
 	char	buffer[4096];
+	char 	*pwd;
 
 	if (getcwd(buffer, 4096) == 0)
-		exit(EXIT_FAILURE);
+	{		
+		pwd = ft_getenv("PWD");
+		printf("%s\n", pwd);
+		return (pwd);
+	}
 	return (ft_strdup(buffer));
 }
 
