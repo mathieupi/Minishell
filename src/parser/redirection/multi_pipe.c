@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 21:00:06 by mmehran           #+#    #+#             */
-/*   Updated: 2021/08/12 23:52:25 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/13 00:38:20 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static void	child_exec_redir(t_cmd *cmd, bool last)
 {
 	int		fork_id;
 
+	(void) last;
 	fork_id = fork();
 	if (fork_id == 0)
 	{
@@ -34,8 +35,7 @@ static void	child_exec_redir(t_cmd *cmd, bool last)
 		close(0);
 		exit(0);
 	}
-	if (last)
-		waitpid(fork_id, NULL, 0);
+	waitpid(fork_id, NULL, 0);
 }
 
 static void	close_reset_fd(t_cmd *cmd, int stdin_, int stdout_)
