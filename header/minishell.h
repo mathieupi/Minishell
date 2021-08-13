@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 11:28:54 by mmehran           #+#    #+#             */
-/*   Updated: 2021/08/12 22:01:12 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/13 02:09:08 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	rl_replace_line(const char *buffer, int something);
 typedef struct s_global
 {
 	char	**env;
+	int		child_pid;
 	int		return_code;
 }			t_global;
 

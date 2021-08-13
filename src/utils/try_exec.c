@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   try_exec.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 18:18:53 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/12 22:32:25 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/13 02:14:41 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,12 @@ int	exec(char **argv)
 	}
 	else if (pid > 0)
 	{
+		g_global.child_pid = pid;
 		waitpid(pid, &status, 0);
+		g_global.child_pid = 0;
 		return (WEXITSTATUS(status));
 	}
+	g_global.child_pid = 0;
 	return (1);
 }
 
