@@ -6,17 +6,16 @@
 /*   By: mmehran <mmehran@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 21:00:06 by mmehran           #+#    #+#             */
-/*   Updated: 2021/08/13 00:38:20 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/08/13 05:32:52 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../header/parser.h"
 
-static void	child_exec_redir(t_cmd *cmd, bool last)
+static void	child_exec_redir(t_cmd *cmd)
 {
 	int		fork_id;
 
-	(void) last;
 	fork_id = fork();
 	if (fork_id == 0)
 	{
@@ -93,7 +92,7 @@ void	multi_pipe(t_cmd **cmds, int *i, int icmd, int ocmd)
 		}
 		else
 			cmds[*i]->fout = fds.fout;
-		child_exec_redir(cmds[*i], !cmds[*i + 1] || cmds[*i + 1]->type != '|');
+		child_exec_redir(cmds[*i]);
 		close_reset_fd(cmds[*i], fds.stdin_, fds.stdout_);
 		fds.first = false;
 		(*i)++;
